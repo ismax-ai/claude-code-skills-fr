@@ -1,268 +1,191 @@
-# Skills Claude Code : fais relire ton contenu par des experts avant de publier
+# Skills Claude Code par Ismax
 
-> 2 skills qui attaquent systématiquement ton contenu. S'il survit, il est prêt.
-
----
-
-## Prérequis
-
-Tu as besoin de **Claude Code** (l'assistant IA en ligne de commande d'Anthropic). Si tu ne l'as pas encore, c'est la version "pro" de Claude qui travaille directement sur ton ordinateur.
-
-Tu peux l'installer depuis [claude.ai/code](https://claude.ai/code) ou depuis l'app Claude Desktop.
+10 skills. Prêts à copier. En français.
 
 ---
 
 ## Le problème
 
-Tu écris un post. Tu relis. Tu corriges une virgule. Tu publies.
+Tu écris un post. Tu relis. Tu publies.
 
-Et là, un commentaire : "T'as vérifié tes sources ?" ou pire, le silence. Personne ne réagit parce que le texte sonnait robot sans que tu t'en rendes compte.
+Et le premier commentaire pointe la faille que tu n'avais pas vue. Ou pire, le silence. Personne ne réagit parce que le texte sonnait robot sans que tu t'en rendes compte.
 
-Le problème, c'est pas ta rédaction. C'est que tu relis avec les mêmes yeux qui ont écrit. Tu ne peux pas être ton propre critique.
+En fait le vrai problème c'est pas ta rédaction. C'est que tu relis avec les mêmes yeux qui ont écrit. Tu ne peux pas être ton propre critique (et c'est normal).
 
 ## La solution
 
-2 skills Claude Code qui simulent des regards extérieurs sur ton contenu :
+10 skills Claude Code qui font le boulot à ta place. Red team, superviseur qualité, avocat du diable, boucle infinie, prompt engineer. Chaque skill = un expert que tu appelles en une commande.
 
-| Skill | Ce qu'il fait | En une phrase |
-|-------|---------------|---------------|
-| `/sentinel` | Attaque ton contenu avec 20 profils professionnels | Un red team de sécurité pour tes textes |
-| `/eagle-supervisor` | 6 vérifications séquentielles avant publication | Un directeur éditorial exigeant |
+Pas besoin de coder. Pas de terminal. Juste un copier-coller.
 
-**Un skill, c'est quoi ?** C'est une instruction que tu donnes à Claude une seule fois. Après, tu l'appelles quand tu veux en tapant `/sentinel` ou `/eagle-supervisor`. Comme un raccourci vers un expert spécialisé.
+---
+
+## Les 10 skills
+
+| # | Skill | Commande | En une phrase |
+|---|-------|----------|---------------|
+| 1 | **Superpowers** | `/superpowers` | Découpe ta tâche en sous-agents parallèles. Tout avance en même temps |
+| 2 | **Créateur de Skills** | `/create-skill` | Tu décris ce que tu veux, il génère le skill complet |
+| 3 | **Prompt Engineer** | `/prompt-engineer` | Boîte à outils pour construire, tester et améliorer tes prompts |
+| 4 | **Agent Auto-Améliorant** | `/self-improve` | Il produit, il critique, il corrige. Tout seul |
+| 5 | **Gouvernance Prompts** | `/prompt-governance` | Audit qualité de tes prompts. Cohérence et versioning |
+| 6 | **L'Avocat du Diable** | `/devils-advocate` | Steel-man, pre-mortem, questionnement socratique sur tes idées |
+| 7 | **Sentinel** | `/sentinel` | Red Team complet : 20 angles d'attaque, score sur 10 |
+| 8 | **Karen** | `/karen` | Vérifie si c'est VRAIMENT fait. Pas juste "fait" |
+| 9 | **Ralph** | `/ralph` | Boucle plan → build → check. Tourne jusqu'au propre |
+| 10 | **L'Aigle Superviseur** | `/eagle-supervisor` | 7 passes qualité séquentielles. Un FAIL, rien ne sort |
 
 ---
 
 ## Installation
 
-Copie un de ces textes dans Claude Code. Claude s'occupe du reste.
+Copie ce texte dans Claude Code. Il s'occupe du reste.
 
-### Installer /sentinel
-
-```
-Va sur https://github.com/dersoiralaoui-ai/claude-code-skills,
-lis le fichier skills/sentinel.md,
-et installe-le comme commande Claude Code.
-```
-
-### Installer /eagle-supervisor
+### Tout installer d'un coup
 
 ```
-Va sur https://github.com/dersoiralaoui-ai/claude-code-skills,
-lis le fichier skills/eagle-supervisor.md,
-et installe-le comme commande Claude Code.
-```
-
-### Installer les deux d'un coup
-
-```
-Va sur https://github.com/dersoiralaoui-ai/claude-code-skills,
+Va sur https://github.com/ismax-ai/claude-code-skills-fr,
 lis les fichiers dans le dossier skills/,
 et installe-les tous comme commandes Claude Code.
 ```
 
+### Installer un skill précis
+
+```
+Va sur https://github.com/ismax-ai/claude-code-skills-fr,
+lis le fichier skills/sentinel.md,
+et installe-le comme commande Claude Code.
+```
+
+Remplace `sentinel.md` par le nom du skill voulu.
+
 Pas de terminal. Pas de ligne de commande. Pas de dossier à créer. Claude fait tout.
 
----
-
-## Les skills en détail
-
-### /sentinel, le Red Team
-
-En cybersécurité, un **Red Team** est une équipe qui attaque volontairement un système pour trouver les failles AVANT qu'un vrai attaquant ne le fasse.
-
-Sentinel fait la même chose avec ton contenu. Il lance 3 batteries d'attaques :
-
-**1. CIA Structured Analytic Techniques (9 techniques)**
-
-Les mêmes outils que les analystes du renseignement utilisent pour éviter les biais cognitifs.
-
-- **Pre-mortem** : "On est 6 mois plus tard, ça a échoué. Pourquoi ?"
-- **Key Assumptions Check** : "Quelles hypothèses non vérifiées dans ce texte ?"
-- **Devil's Advocacy** : "L'argument le plus fort CONTRE ta position ?"
-- Et 6 autres techniques (analyse des hypothèses concurrentes, auto-critique structurée, détection de tromperie...)
-
-**2. Six Thinking Hats (6 perspectives)**
-
-La méthode d'Edward de Bono. Chaque "chapeau" force un angle différent :
-
-- Chapeau blanc : les faits purs (qu'est-ce qui est prouvé ?)
-- Chapeau noir : la critique (qu'est-ce qui peut foirer ?)
-- Chapeau rouge : les émotions (quelle réaction instinctive du lecteur ?)
-- Chapeau vert : la créativité (quel angle mort ?)
-- Chapeau jaune : l'optimisme (quelles forces sous-exploitées ?)
-- Chapeau bleu : le processus (le raisonnement est-il solide ?)
-
-**3. OWASP LLM (5 vérifications)**
-
-Adapté des standards de sécurité pour l'IA :
-
-- Le contenu affirme-t-il des choses sans source ?
-- Le ton est-il adapté à l'audience ?
-- Les sources citées sont-elles fiables ?
-
-**Résultat** : un score sur 10 avec un verdict clair.
-- **PASS** (7+) : ton contenu est solide
-- **AMEND** (4-6) : des corrections sont nécessaires
-- **FAIL** (<4) : réécriture nécessaire
+> Pas encore Claude Code ? Installe-le depuis [claude.ai/code](https://claude.ai/code). C'est la version de Claude qui travaille directement sur ton ordi.
 
 ---
 
-### /eagle-supervisor, l'Aigle Superviseur
+## Les 3 familles
 
-L'aigle survole tout ton contenu depuis le ciel. Il ne réécrit rien. Il vérifie tout.
+### ✦ Critique et qualité
 
-**6 passes séquentielles. 1 seul FAIL = rien ne sort.**
+Les skills qui attaquent ton travail avant que ton audience le fasse.
 
-| Passe | Nom | Ce qu'elle vérifie |
-|-------|-----|-------------------|
-| A | **Format** | Le bon type de contenu est identifié |
-| B | **Structure** | Les blocs sont complets, les transitions fluides |
-| C | **Langue** | 0 pattern robotique, 0 calque anglais, rythme naturel |
-| D | **Ton** | Ça sonne comme toi, pas comme un chatbot ou un marketeur |
-| E | **Audience** | Un non-expert comprend chaque mot |
-| F | **Promesse** | Le titre est tenu dans le contenu |
+**Sentinel** lance 3 batteries d'attaques. 9 techniques CIA (pre-mortem, hypothèses non vérifiées, auto-critique structurée). 6 chapeaux de Bono (faits purs, émotions, critique, créativité). 5 checks OWASP adaptés au contenu. Score sur 10, verdict clair : PASS, AMEND ou FAIL.
 
-**Pourquoi 6 passes au lieu d'une ?**
+**L'Aigle Superviseur** survole tout depuis le ciel. 7 passes séquentielles : format, structure, langue, ton, audience, promesse centrale, cohérence narrative. Chaque passe ne regarde qu'une seule chose. Un seul FAIL et rien ne sort. Bon, c'est exigeant. Mais c'est le but.
 
-Parce qu'une relecture "globale" rate toujours quelque chose. Tu regardes le fond, tu oublies la forme. Tu vérifies le ton, tu oublies l'audience. L'aigle découpe la vérification en 6 angles. Chaque passe ne regarde qu'une seule chose. Rien ne passe entre les mailles.
+**L'Avocat du Diable** prend ton idée. Il la steel-man d'abord (la renforce au maximum). Puis il l'attaque. Pre-mortem, inversion, questionnement socratique. 7 objections max, classées par sévérité. Si l'idée survit, elle est solide.
 
-**Le test clé** : l'aigle lit tes 3 premiers paragraphes "à voix haute". Si ça sonne comme une présentation PowerPoint, c'est FAIL. Si ça sonne comme un message à un collègue, c'est PASS.
+**Karen** ne s'intéresse pas à ce que tu dis avoir fait. Elle regarde ce qui est VRAIMENT fait. Code qui compile mais ne tourne pas ? Feature "terminée" mais jamais testée ? Karen trouve le trou. C'est son truc.
+
+### ✦ Création et production
+
+Les skills qui produisent à ta place.
+
+**Superpowers** prend un objectif complexe. Il le découpe en sous-tâches, lance des agents en parallèle, et orchestre le tout. Tu donnes la direction, il fait avancer.
+
+**Créateur de Skills** génère un skill Claude Code complet à partir de ta description en français. Le fichier `.md` sort prêt à installer. Du coup tu peux créer tes propres skills sans te prendre la tête avec le format.
+
+**Prompt Engineer** c'est ta boîte à outils. Construire un prompt de zéro, analyser un prompt existant, l'améliorer étape par étape. Du brouillon au prompt qui tourne en prod.
+
+**Agent Auto-Améliorant** produit un résultat. L'analyse. Le critique. Le corrige. Puis recommence. Sans que tu interviennes. La boucle tourne jusqu'à ce que le résultat soit bon.
+
+### ✦ Gouvernance et boucles
+
+Les skills qui maintiennent l'ordre dans ton système.
+
+**Gouvernance Prompts** audite tes prompts. Qualité, cohérence, versioning. Quand t'as 50 prompts qui partent dans tous les sens, ce skill remet de l'ordre.
+
+**Ralph** c'est la boucle infinie. Planifier, construire, vérifier. Si le résultat ne passe pas le check, il recommence. Encore. Encore. Jusqu'à ce que ce soit propre. (Spoiler : il peut tourner longtemps.)
 
 ---
 
-## Utilisation
+## Workflow recommandé
 
-Une fois installé, tape dans Claude Code :
+### Pour du contenu
 
 ```
-/sentinel                → analyse le dernier contenu de la conversation
-/sentinel content        → challenge un texte spécifique
-/sentinel code           → challenge du code
-/sentinel decision       → challenge une décision business
-
-/eagle-supervisor        → 6 passes de vérification avant publication
-```
-
-### Workflow recommandé
-
-1. Tu écris ton contenu
-2. `/sentinel` pour attaquer et trouver les failles
+1. Tu écris
+2. /sentinel          → trouve les failles
 3. Tu corriges
-4. `/eagle-supervisor` pour vérifier que tout est propre
+4. /eagle-supervisor  → vérifie que tout tient
 5. Tu publies
+```
 
-Sentinel trouve les failles, l'aigle vérifie que les corrections tiennent.
+Sentinel attaque. L'aigle vérifie que les corrections tiennent.
+
+### Pour du code
+
+```
+1. Tu codes
+2. /karen             → vérifie que c'est fait pour de vrai
+3. /sentinel code     → red team technique
+4. Tu corriges
+5. Tu livres
+```
+
+### Pour une décision
+
+```
+1. Tu poses ta décision
+2. /devils-advocate   → challenge les hypothèses
+3. /sentinel decision → red team complet
+4. Tu décides en connaissance de cause
+```
 
 ---
 
-## Exemples concrets
-
-### /sentinel sur un post LinkedIn
+## Exemple concret
 
 Tu écris :
-> "L'IA va remplacer 80% des jobs d'ici 2030. Les entreprises qui n'adoptent pas l'IA maintenant vont disparaître."
+> "L'IA va remplacer 80% des jobs d'ici 2030."
 
-Sentinel répond :
+Tu lances `/sentinel`. Il répond :
+
 ```
 🔴 RED TEAM — CONTENT
 
 CIA SATs : 5/9 passed
-  ❌ Key Assumptions Check : "80% des jobs", source ? Aucune étude sérieuse ne donne ce chiffre.
-  ❌ Pre-mortem : si ce post est partagé, le premier commentaire sera "source ?"
-  ❌ Deception Detection : "vont disparaître" = affirmation absolue non prouvable
-  ❌ Devil's Advocacy : des entreprises sans IA dominent encore des secteurs entiers
-
-Six Hats : 4/6 clean
-  ⚠️ Blanc (Faits) : 0 source citée
-  ⚠️ Rouge (Émotions) : génère de l'anxiété, pas de la réflexion
-
-OWASP : 3/5 passed
-  ❌ Misinformation : chiffre inventé ou non sourcé
-  ❌ Excessive Agency : promet une certitude que personne n'a
+  ❌ Key Assumptions Check : "80%", source ? Aucune étude sérieuse ne donne ce chiffre
+  ❌ Pre-mortem : premier commentaire garanti = "source ?"
+  ❌ Devil's Advocacy : des secteurs entiers sans IA dominent encore
 
 SCORE : 4/10
 VERDICT : AMEND
-→ Remplacer "80%" par un chiffre sourcé (McKinsey, OCDE)
-→ Remplacer "vont disparaître" par une nuance vérifiable
-→ Ajouter 1 source minimum
+→ Sourcer le chiffre (McKinsey, OCDE)
+→ Nuancer "remplacer" par un verbe vérifiable
 ```
 
-### /eagle-supervisor sur une newsletter
-
-```
-🦅 EAGLE SUPERVISOR — NEWSLETTER
-
-PASSE A — FORMAT : newsletter ✅
-PASSE B — STRUCTURE : WARN
-  ⚠️ Pas de transition entre la section 2 et 3 (saut brutal)
-PASSE C — LANGUE : FAIL
-  ❌ "Dans le monde d'aujourd'hui" (phrase de remplissage IA)
-  ❌ 4 phrases consécutives de 12-14 mots (rythme monotone)
-PASSE D — TON : PASS ✅
-PASSE E — AUDIENCE : WARN
-  ⚠️ "Fine-tuning" utilisé sans explication
-PASSE F — PROMESSE : PASS ✅
-
-VERDICT : CORRIGE AVANT
-1. Retirer "Dans le monde d'aujourd'hui" (passe C)
-2. Varier la longueur des phrases section 3 (passe C)
-3. Expliquer "fine-tuning" à la première mention (passe E)
-4. Ajouter une transition entre section 2 et 3 (passe B)
-```
+En 10 secondes, tu sais que ton post va se faire descendre. Avant de le publier.
 
 ---
 
-## La philosophie
+## Crédits
 
-Quand tu écris, ton cerveau comble les trous. Tu sais ce que tu voulais dire, donc tu lis ce que tu voulais dire, pas ce qui est écrit.
+3 skills sont des forks de projets open source. Traduits en français et améliorés.
 
-Ces skills simulent des regards que tu n'as pas :
-- Un analyste qui cherche les hypothèses non vérifiées
-- Un critique qui cherche les failles logiques
-- Un lecteur non-expert qui bute sur le jargon
-- Un détecteur qui repère les patterns IA
+| Skill | Auteur original | Source | Ce qu'on a ajouté |
+|-------|----------------|--------|-------------------|
+| L'Avocat du Diable | [notmanas](https://github.com/notmanas/claude-code-skills) | Devil's Advocate | Traduction FR, frameworks CIA, pre-mortem |
+| Karen | [darcyegb](https://github.com/darcyegb/ClaudeCodeAgents) | Karen | Traduction FR, severity ratings, bullshit detection |
+| Ralph | [Geoffrey Huntley](https://ghuntley.com/ralph/) | Ralph | Traduction FR, structure plan d'implémentation |
 
-Si ton contenu survit à ces attaques, il survivra à ton audience.
+Les 7 autres sont des créations originales.
 
----
-
-## Crédits et inspirations
-
-- **Red Team / CIA SATs** : adapté des [Structured Analytic Techniques](https://www.cia.gov/resources/csi/books-monographs/structured-analytic-techniques-for-intelligence-analysis/) utilisées par la communauté du renseignement
-- **Six Thinking Hats** : méthode créée par [Edward de Bono](https://www.debonogroup.com/services/six-thinking-hats/)
-- **OWASP LLM Top 10** : adapté des [standards de sécurité pour les LLM](https://owasp.org/www-project-top-10-for-large-language-model-applications/)
-- **Boucle autonome** : inspiré par les travaux de [Geoffrey Huntley](https://ghuntley.com/ralph/) sur Claude Code
+Détails complets dans [CREDITS.md](CREDITS.md).
 
 ---
 
-## Autres skills recommandés
+## Pour aller plus loin
 
-Ces skills ne sont pas les miens, mais je les utilise et je les recommande :
+Ces 10 skills sont un bout de mon workflow IA. Si tu veux voir comment je les utilise en vrai, comment je crée du contenu, et les systèmes que je construis au quotidien :
 
-| Skill | Auteur | Ce qu'il fait |
-|-------|--------|---------------|
-| **Devil's Advocate** | [notmanas](https://github.com/notmanas/claude-code-skills) | Pre-mortem et inversion de tes plans |
-| **Karen** | [darcyegb](https://github.com/darcyegb/ClaudeCodeAgents) | Reality-check tes features "terminées" |
-
-### Installer Devil's Advocate
-
-```
-Va sur https://github.com/notmanas/claude-code-skills,
-trouve le skill devil's advocate,
-et installe-le dans mes commandes Claude Code.
-```
-
-### Installer Karen
-
-```
-Va sur https://github.com/darcyegb/ClaudeCodeAgents/blob/master/karen.md,
-lis le contenu de ce fichier,
-et installe-le comme commande Claude Code.
-```
+→ **[Ma newsletter](https://redigeretvendreavecia.substack.com)** — 2 emails par semaine. Tutoriels IA en français, pas de blabla
+→ **[Mon Instagram](https://instagram.com/ismaelalaoui_)** — workflows IA en carrousels, tout est actionnable
 
 ---
 
 ## Licence
 
-MIT. Utilise, modifie, partage librement.
+MIT. Utilise, modifie, partage.
