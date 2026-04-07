@@ -46,6 +46,8 @@ Les noms de fichiers disponibles :
 | Karen | `skills/karen.md` |
 | Ralph | `skills/ralph.md` |
 | L'Aigle Superviseur | `skills/eagle-supervisor.md` |
+| Le Régulateur | `skills/effort-router.md` |
+| ELI5 | `skills/eli5.md` |
 
 ---
 

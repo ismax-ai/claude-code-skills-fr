@@ -1,6 +1,6 @@
 ---
 name: prompt-engineer
-description: "Boite a outils pour analyser, tester et ameliorer les prompts IA. A/B testing automatise, versioning avec historique immutable, boucle de regression, templates reutilisables et grille d'evaluation. Utiliser quand l'utilisateur veut ameliorer ses prompts, construire des templates, optimiser un workflow de contenu IA, ou quand il mentionne 'prompt engineering', 'ameliorer mes prompts', 'qualite d'ecriture IA', 'templates de prompt' ou 'workflow de contenu IA'."
+description: "Boite a outils pour analyser, tester et améliorer les prompts IA. A/B testing automatise, versioning avec historique immutable, boucle de regression, templates réutilisables et grille d'évaluation. Utiliser quand l'utilisateur veut améliorer ses prompts, construire des templates, optimiser un workflow de contenu IA, ou quand il mentionne 'prompt engineering', 'améliorer mes prompts', 'qualite d'écriture IA', 'templates de prompt' ou 'workflow de contenu IA'."
 license: MIT
 metadata:
   version: 1.0.0
@@ -11,20 +11,20 @@ metadata:
 
 # Boite a Outils Prompt Engineer
 
-> Fork de [alirezarezvani/claude-skills](https://github.com/alirezarezvani/claude-skills) -- traduit integralement en francais.
+> Fork de [alirezarezvani/claude-skills](https://github.com/alirezarezvani/claude-skills) -- traduit intégralement en français.
 
 ## Vue d'ensemble
 
-Ce skill sert a faire passer les prompts du brouillon ad-hoc a des assets de production avec des tests reproductibles, du versioning et une protection contre les regressions. L'accent est mis sur la qualite mesurable plutot que sur l'intuition. L'utiliser quand on lance une nouvelle feature LLM qui necessite des outputs fiables, quand la qualite des prompts se degrade apres un changement de modele ou d'instructions, quand plusieurs personnes editent les memes prompts et ont besoin d'historique/diffs, quand on veut un choix de prompt base sur des preuves pour la mise en production, ou quand on veut une gouvernance coherente des prompts sur tous les environnements.
+Ce skill sert a faire passer les prompts du brouillon ad-hoc a des assets de production avec des tests reproductibles, du versioning et une protection contre les regressions. L'accent est mis sur la qualite mesurable plutot que sur l'intuition. L'utiliser quand on lance une nouvelle feature LLM qui nécessité des outputs fiables, quand la qualite des prompts se dégradé apres un changement de modèle ou d'instructions, quand plusieurs personnes editent les mêmes prompts et ont besoin d'historique/diffs, quand on veut un choix de prompt base sur des preuves pour la mise en production, ou quand on veut une gouvernance cohérente des prompts sur tous les environnements.
 
 ## Capacites principales
 
-- Evaluation A/B de prompts sur des cas de test structures
-- Scoring quantitatif pour l'adherence, la pertinence et les verifications de securite
+- Évaluation A/B de prompts sur des cas de test structures
+- Scoring quantitatif pour l'adhérence, la pertinence et les verifications de sécurité
 - Suivi de versions avec historique immutable et changelog
 - Diffs de prompts pour identifier les modifications qui impactent le comportement
-- Templates de prompts reutilisables et guide de selection
-- Workflows compatibles regression pour les mises a jour de modeles/prompts
+- Templates de prompts réutilisables et guide de selection
+- Workflows compatibles regression pour les mises a jour de modèles/prompts
 
 ## Workflows cles
 
@@ -50,7 +50,7 @@ Le testeur score les outputs par cas et agregge :
 - couverture du contenu attendu
 - violations de contenu interdit
 - conformite regex/format
-- coherence de la longueur de sortie
+- cohérence de la longueur de sortie
 
 Utiliser le prompt avec le meilleur score comme candidat baseline, puis lancer la suite de regression.
 
@@ -75,54 +75,54 @@ python3 scripts/prompt_versioner.py changelog --name support_classifier
 1. Stocker la version baseline.
 2. Proposer des modifications du prompt.
 3. Relancer le test A/B.
-4. Promouvoir uniquement si le score et les contraintes de securite s'ameliorent.
+4. Promouvoir uniquement si le score et les contraintes de sécurité s'ameliorent.
 
 ## Interfaces des scripts
 
 - `python3 scripts/prompt_tester.py --help`
   - Lit les prompts/cas depuis stdin ou `--input`
   - Commande runner externe optionnelle
-  - Produit des metriques en texte ou JSON
+  - Produit des métriques en texte ou JSON
 - `python3 scripts/prompt_versioner.py --help`
-  - Gere l'historique des prompts (`add`, `list`, `diff`, `changelog`)
-  - Stocke les metadonnees et les snapshots de contenu en local
+  - Géré l'historique des prompts (`add`, `list`, `diff`, `changelog`)
+  - Stocke les métadonnées et les snapshots de contenu en local
 
 ## Pieges, bonnes pratiques et checklist de relecture
 
-**Erreurs a eviter :**
+**Erreurs a éviter :**
 1. Choisir un prompt a partir d'un seul cas -- utiliser une suite de tests realiste et riche en cas limites.
-2. Changer le prompt et le modele en meme temps -- toujours isoler les variables.
-3. Oublier les checks `must_not_contain` (contenu interdit) dans les criteres d'evaluation.
-4. Modifier des prompts sans metadonnees de version, auteur ou justification du changement.
-5. Sauter les diffs semantiques avant de deployer une nouvelle version de prompt.
-6. Optimiser un benchmark tout en degradant les cas limites -- suivre la suite complete.
-7. Changer de modele sans relancer la suite A/B baseline.
+2. Changer le prompt et le modèle en même temps -- toujours isoler les variables.
+3. Oublier les checks `must_not_contain` (contenu interdit) dans les critères d'évaluation.
+4. Modifier des prompts sans métadonnées de version, auteur ou justification du changement.
+5. Sauter les diffs semantiques avant de déployer une nouvelle version de prompt.
+6. Optimiser un benchmark tout en degradant les cas limites -- suivre la suite complété.
+7. Changer de modèle sans relancer la suite A/B baseline.
 
 **Avant de promouvoir un prompt, confirmer :**
-- [ ] L'intention de la tache est explicite et non ambigue.
+- [ ] L'intention de la tâche est explicite et non ambigue.
 - [ ] Le schema/format de sortie est explicite.
-- [ ] Les contraintes de securite et d'exclusion sont explicites.
+- [ ] Les contraintes de sécurité et d'exclusion sont explicites.
 - [ ] Pas d'instructions contradictoires.
 - [ ] Pas de tokens superflus.
-- [ ] Le score A/B s'ameliore et le nombre de violations reste a zero.
+- [ ] Le score A/B s'amélioré et le nombre de violations reste a zero.
 
-## References
+## Références
 
-- [references/prompt-templates.md](references/prompt-templates.md) -- Templates de prompts reutilisables
-- [references/technique-guide.md](references/technique-guide.md) -- Guide des techniques de prompting
-- [references/evaluation-rubric.md](references/evaluation-rubric.md) -- Grille d'evaluation et scoring
-- [README.md](README.md) -- Demarrage rapide et installation
+- [références/prompt-templates.md](références/prompt-templates.md) -- Templates de prompts réutilisables
+- [références/technique-guide.md](références/technique-guide.md) -- Guide des techniques de prompting
+- [références/évaluation-rubric.md](références/évaluation-rubric.md) -- Grille d'évaluation et scoring
+- [README.md](README.md) -- Démarrage rapide et installation
 
-## Design des evaluations
+## Design des évaluations
 
-Chaque cas de test doit definir :
+Chaque cas de test doit définir :
 
 - `input` : entree realiste, similaire a la production
 - `expected_contains` : marqueurs/contenu obligatoire
 - `forbidden_contains` : phrases interdites ou contenu non securise
 - `expected_regex` : patterns structurels requis
 
-Ca permet un scoring deterministe entre variantes de prompts.
+Ça permet un scoring deterministe entre variantes de prompts.
 
 ## Politique de versioning
 
@@ -131,17 +131,17 @@ Ca permet un scoring deterministe entre variantes de prompts.
 - Ne jamais ecraser les versions precedentes.
 - Diff avant de promouvoir un nouveau prompt en production.
 
-## Strategie de deploiement
+## Stratégie de déploiement
 
-1. Creer la version baseline du prompt.
+1. Créer la version baseline du prompt.
 2. Proposer le prompt candidat.
-3. Lancer la suite A/B sur les memes cas.
-4. Promouvoir uniquement si le gagnant ameliore la moyenne et maintient le nombre de violations a zero.
-5. Suivre les retours post-deploiement et alimenter la suite de tests avec les nouveaux cas d'echec.
+3. Lancer la suite A/B sur les mêmes cas.
+4. Promouvoir uniquement si le gagnant amélioré la moyenne et maintient le nombre de violations a zero.
+5. Suivre les retours post-déploiement et alimenter la suite de tests avec les nouveaux cas d'échec.
 
 ---
 
-## Reference : prompt-templates.md
+## Référence : prompt-templates.md
 
 > Contenu original de `references/prompt-templates.md`
 
@@ -156,7 +156,7 @@ Input:
 {{input}}
 ```
 
-**Usage :** extraction de donnees structurees a partir de texte libre. Le schema JSON definit le format de sortie attendu.
+**Usage :** extraction de donnees structurees a partir de texte libre. Le schema JSON définit le format de sortie attendu.
 
 ### 2) Classifieur
 
@@ -178,7 +178,7 @@ Input:
 {{input}}
 ```
 
-**Usage :** resume contraint par un nombre de mots et un axe de focus.
+**Usage :** résumé contraint par un nombre de mots et un axe de focus.
 
 ### 4) Reecriture avec contraintes
 
@@ -217,9 +217,9 @@ Input:
 {{input}}
 ```
 
-**Usage :** classification de severite d'incidents avec assignation automatique.
+**Usage :** classification de sévérité d'incidents avec assignation automatique.
 
-### 7) Resume de code review
+### 7) Résumé de code review
 
 ```text
 Review this diff and return:
@@ -243,9 +243,9 @@ Format: {{format}}
 Input: {{input}}
 ```
 
-**Usage :** reecriture d'un contenu en adoptant un persona specifique avec un objectif et un format donnes.
+**Usage :** reecriture d'un contenu en adoptant un persona spécifique avec un objectif et un format donnes.
 
-### 9) Verification de conformite
+### 9) Vérification de conformite
 
 ```text
 Check input against policy.
@@ -256,7 +256,7 @@ Input:
 {{input}}
 ```
 
-**Usage :** verification automatique de conformite a une politique donnee, avec liste des violations et recommandations.
+**Usage :** vérification automatique de conformite a une politique donnee, avec liste des violations et recommandations.
 
 ### 10) Critique de prompt
 
@@ -267,21 +267,21 @@ Prompt:
 {{input}}
 ```
 
-**Usage :** meta-analyse d'un prompt pour identifier les ambiguites, contraintes manquantes et modes d'echec. Retourne des recommandations et une version amelioree.
+**Usage :** meta-analyse d'un prompt pour identifier les ambiguites, contraintes manquantes et modes d'échec. Retourne des recommandations et une version améliorée.
 
 ---
 
-## Reference : technique-guide.md
+## Référence : technique-guide.md
 
 > Contenu original de `references/technique-guide.md`
 
-### Regles de selection
+### Règles de selection
 
-- **Zero-shot** : taches deterministes et simples
+- **Zero-shot** : tâches deterministes et simples
 - **Few-shot** : ambiguite de formatage ou cas limites d'etiquettes
-- **Chain-of-thought** : taches de raisonnement en plusieurs etapes
-- **Structured output** : parsing en aval ou integration requise
-- **Self-critique / meta prompting** : boucles d'amelioration de prompts
+- **Chain-of-thought** : tâches de raisonnement en plusieurs étapes
+- **Structured output** : parsing en aval ou intégration requise
+- **Self-critique / meta prompting** : boucles d'amélioration de prompts
 
 ### Checklist de construction de prompt
 
@@ -289,9 +289,9 @@ Prompt:
 - Format de sortie explicite
 - Contraintes et exclusions
 - Instructions pour la gestion des cas limites
-- Usage minimal de tokens pour les taches repetitives
+- Usage minimal de tokens pour les tâches répétitives
 
-### Checklist des patterns d'echec
+### Checklist des patterns d'échec
 
 - Objectif trop large
 - Schema de sortie manquant
@@ -301,18 +301,18 @@ Prompt:
 
 ---
 
-## Reference : evaluation-rubric.md
+## Référence : évaluation-rubric.md
 
 > Contenu original de `references/evaluation-rubric.md`
 
-### Grille d'evaluation
+### Grille d'évaluation
 
-Scorer chaque cas sur 0-100 via des criteres ponderes :
+Scorer chaque cas sur 0-100 via des critères ponderes :
 
 - Couverture du contenu attendu : +poids
 - Violations de contenu interdit : -poids
 - Conformite regex/format : +poids
-- Coherence de la longueur de sortie : +/-poids
+- Cohérence de la longueur de sortie : +/-poids
 
 ### Seuils d'acceptation recommandes
 
@@ -322,11 +322,11 @@ Scorer chaque cas sur 0-100 via des criteres ponderes :
 
 ---
 
-## Reference : README.md
+## Référence : README.md
 
 > Contenu original du `README.md` du toolkit
 
-### Demarrage rapide
+### Démarrage rapide
 
 ```bash
 # Lancer une evaluation A/B de prompts

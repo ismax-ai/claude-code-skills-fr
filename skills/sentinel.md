@@ -19,7 +19,7 @@ Lance une attaque Red Team sur le contenu fourni. 20 profils d'attaque professio
 ## Ce que tu dois faire
 
 1. **Identifier le contenu à challenger** :
-   - Si `$ARGUMENTS` contient un type (content/code/decision/idea), utiliser ce type
+   - Si `$ARGUMENTS` contient un type (content/code/décision/idea), utiliser ce type
    - Si `$ARGUMENTS` est vide, demander quel output challenger
    - Le contenu = le dernier output significatif de la conversation, OU un texte collé directement
 

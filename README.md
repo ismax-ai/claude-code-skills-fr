@@ -1,36 +1,36 @@
 # Skills Claude Code par Ismax
 
-La plus grosse bibliotheque francophone de skills Claude Code. 11 skills, open source.
+La plus grosse bibliotheque francophone de skills Claude Code. 12 skills, open source.
 
 ---
 
 ## C'est quoi un skill ?
 
-Un skill, c'est un fichier d'instructions qui donne de nouvelles capacites a Claude Code. Tu tapes une commande, Claude change de comportement. `/sentinel` et il devient un red teamer qui attaque ton travail sous 20 angles. `/ralph` et il entre dans une boucle autonome jusqu'a ce que le resultat soit propre. `/karen` et il verifie si c'est vraiment fait, pas juste "fait".
+Un skill, c'est un fichier d'instructions qui donne de nouvelles capacites a Claude Code. Tu tapes une commande, Claude change de comportement. `/sentinel` et il devient un red teamer qui attaque ton travail sous 20 angles. `/ralph` et il entre dans une boucle autonome jusqu'a ce que le résultat soit propre. `/karen` et il vérifié si c'est vraiment fait, pas juste "fait".
 
 En gros : un skill = un expert specialise que tu appelles en une commande.
 
-Pas de code a ecrire. Pas de plugin a installer. Pas de configuration. Tu copies, Claude fait le reste.
+Pas de code a écrire. Pas de plugin a installer. Pas de configuration. Tu copies, Claude fait le reste.
 
 ## Pourquoi cette bibliotheque
 
-Claude Code est puissant de base. Mais il fait ce que tu lui demandes, exactement comme tu le demandes. Si ton prompt est vague, le resultat est vague. Si tu oublies de lui dire de verifier son travail, il ne verifie pas.
+Claude Code est puissant de base. Mais il fait ce que tu lui demandes, exactement comme tu le demandes. Si ton prompt est vague, le résultat est vague. Si tu oublies de lui dire de vérifier son travail, il ne vérifié pas.
 
-Les skills corrigent ca. Chaque skill encode un processus complet : les etapes, les criteres de qualite, les cas limites, les red flags a detecter. Du coup tu obtiens un resultat de niveau expert sans ecrire un prompt de 200 lignes a chaque fois.
+Les skills corrigent ça. Chaque skill encode un processus complet : les étapes, les critères de qualite, les cas limites, les red flags a détecter. Du coup tu obtiens un résultat de niveau expert sans écrire un prompt de 200 lignes a chaque fois.
 
-Aujourd'hui il y a 11 skills. L'objectif c'est d'en avoir 100+. Chaque skill est teste en conditions reelles avant d'etre publie ici.
+Aujourd'hui il y a 12 skills. L'objectif c'est d'en avoir 100+. Chaque skill est teste en conditions reelles avant d'etre publie ici.
 
 ## Pour qui
 
 - Tu utilises Claude Code (ou tu veux t'y mettre)
-- Tu veux des resultats concrets : du contenu qui tient, du code qui marche, des decisions challengees
+- Tu veux des résultats concrets : du contenu qui tient, du code qui marche, des décisions challengees
 - Tu preferes installer un truc qui marche plutot que passer 3 heures a bricoler un prompt
 
 Pas besoin d'etre dev. Tous les skills s'installent avec un copier-coller.
 
 ---
 
-## Les 11 skills
+## Les 12 skills
 
 | # | Skill | Commande | En une phrase |
 |---|-------|----------|---------------|
@@ -43,8 +43,9 @@ Pas besoin d'etre dev. Tous les skills s'installent avec un copier-coller.
 | 7 | **Sentinel** | `/sentinel` | Red Team complet : 20 angles d'attaque, score sur 10 |
 | 8 | **Karen** | `/karen` | Vérifie si c'est VRAIMENT fait. Pas juste "fait" |
 | 9 | **Ralph** | `/ralph` | Boucle plan → build → check. Tourne jusqu'au propre |
-| 10 | **L'Aigle Superviseur** | `/eagle-supervisor` | 7 passes qualité séquentielles. Un FAIL, rien ne sort |
+| 10 | **L'Aigle Superviseur** | `/eagle-supervisor` | 6 passes qualité séquentielles. Un FAIL, rien ne sort |
 | 11 | **Le Régulateur** | `/effort-router` | Dose la réflexion par tâche. System 1 pour le simple, System 2 pour le critique |
+| 12 | **ELI5** | `/eli5` | Explique chaque terme technique à sa première apparition. Accessibilité sans simplification |
 
 ---
 
@@ -84,7 +85,7 @@ Les skills qui attaquent ton travail avant que ton audience le fasse.
 
 **Sentinel** lance 3 batteries d'attaques. 9 techniques CIA (pre-mortem, hypothèses non vérifiées, auto-critique structurée). 6 chapeaux de Bono (faits purs, émotions, critique, créativité). 5 checks OWASP adaptés au contenu. Score sur 10, verdict clair : PASS, AMEND ou FAIL.
 
-**L'Aigle Superviseur** survole tout depuis le ciel. 7 passes séquentielles : format, structure, langue, ton, audience, promesse centrale, cohérence narrative. Chaque passe ne regarde qu'une seule chose. Un seul FAIL et rien ne sort. Bon, c'est exigeant. Mais c'est le but.
+**L'Aigle Superviseur** exécute 6 passes séquentielles : format, structure, langue, ton, audience, promesse. Chaque passe ne regarde qu'une seule chose. Un seul FAIL et rien ne sort.
 
 **L'Avocat du Diable** prend ton idée. Il la steel-man d'abord (la renforce au maximum). Puis il l'attaque. Pre-mortem, inversion, questionnement socratique. 7 objections max, classées par sévérité. Si l'idée survit, elle est solide.
 
@@ -110,11 +111,13 @@ Les skills qui maintiennent l'ordre dans ton système.
 
 **Ralph** c'est la boucle infinie. Planifier, construire, vérifier. Si le résultat ne passe pas le check, il recommence. Encore. Encore. Jusqu'à ce que ce soit propre. (Spoiler : il peut tourner longtemps.)
 
-### ✦ Optimisation
+### ✦ Optimisation et accessibilité
 
-Le skill qui rend Claude plus efficace avec tes tokens.
+Les skills qui rendent Claude plus efficace et ton contenu plus accessible.
 
 **Le Régulateur** applique le principe System 1 / System 2 de Kahneman à Claude. Tâche simple (renommer, lister, chercher) ? Réponse directe, zéro sur-réflexion. Tâche critique (archi, sécurité, prod) ? Analyse en profondeur. Claude dose tout seul, tu parles normalement. Correction de route si le calibrage est mauvais.
+
+**ELI5** scanne ton contenu et détecte chaque terme technique utilisé sans explication. Anglais ou français, acronyme ou mot composé. Il injecte une définition courte à la première apparition. Le fond ne change pas, les termes deviennent accessibles.
 
 ---
 
@@ -180,15 +183,15 @@ En 10 secondes, tu sais que ton post va se faire descendre. Avant de le publier.
 
 ## Credits
 
-7 skills sur 11 sont des traductions integrales de projets open source. 4 sont des creations originales.
+7 skills sur 12 sont des traductions integrales de projets open source. 5 sont des creations originales.
 
-Details complets, auteurs originaux et sources dans [CREDITS.md](CREDITS.md).
+Détails complets, auteurs originaux et sources dans [CREDITS.md](CREDITS.md).
 
 ---
 
 ## Pour aller plus loin
 
-Cette bibliotheque c'est un bout de mon workflow IA. Si tu veux voir comment j'utilise ces skills en vrai, comment je cree du contenu, et les systemes que je construis au quotidien :
+Cette bibliotheque c'est un bout de mon workflow IA. Si tu veux voir comment j'utilise ces skills en vrai, comment je créé du contenu, et les systèmes que je construis au quotidien :
 
 → **[Ma newsletter](https://redigeretvendreavecia.substack.com)** — 2 emails par semaine. Tutoriels IA en français, pas de blabla
 → **[Mon Instagram](https://instagram.com/ismaelalaoui_)** — workflows IA en carrousels, tout est actionnable
