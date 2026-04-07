@@ -11,7 +11,7 @@ description: "Utiliser quand tu crees de nouveaux skills, modifies des skills ex
 
 **Ecrire des skills, C'EST le Developpement Guide par les Tests (TDD) applique a la documentation de processus.**
 
-**Les skills personnels vivent dans des repertoires specifiques a l'agent (`~/.claude/skills` pour Claude Code, `~/.agents/skills/` pour Codex)**
+**Les skills personnels vivent dans des repertoires specifiques a l'agent (`$HOME/.claude/skills` pour Claude Code, `$HOME/.agents/skills/` pour Codex)**
 
 Tu ecris des cas de test (scenarios de pression avec des sous-agents), tu les regardes echouer (comportement de base), tu ecris le skill (documentation), tu regardes les tests passer (les agents se conforment), et tu refactores (tu bouches les failles).
 
