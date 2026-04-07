@@ -1,6 +1,6 @@
 # Crédits
 
-7 skills sur 10 sont des forks de projets open source existants. Les versions ici sont traduites en français et améliorées avec des fonctionnalités en plus.
+7 skills sur 10 sont des forks de projets open source existants. Les versions ici sont des traductions completes et fideles en francais.
 
 ---
 
@@ -57,10 +57,7 @@
 **Licence originale** : MIT
 
 **Ce qu'on a ajouté** :
-- Traduction complète en français
-- Frameworks CIA (Key Assumptions Check, pre-mortem, analyse des hypothèses concurrentes)
-- Système de sévérité par objection (critique, haute, moyenne, basse)
-- Verdict structuré : ship it, ship with changes, rethink
+- Traduction complete en francais (skill principal + 3 fichiers de reference inclus)
 
 ---
 
@@ -71,22 +68,17 @@
 **Licence originale** : MIT
 
 **Ce qu'on a ajouté** :
-- Traduction complète en français
-- Severity ratings (critique, haute, moyenne, basse)
-- Table de détection de bullshit (patterns communs d'auto-illusion)
-- Critères de complétion testables pour chaque finding
+- Traduction complete en francais (multi-agent protocol + companion agents inclus)
 
 ---
 
 ## La Boucle Infinie — Ralph (`/ralph`)
 
-**Auteur original** : [Geoffrey Huntley](https://ghuntley.com)
-**Source** : [ghuntley.com/ralph](https://ghuntley.com/ralph/)
+**Concept original** : [Geoffrey Huntley](https://ghuntley.com) — [ghuntley.com/ralph](https://ghuntley.com/ralph/)
+**Playbook** : [ClaytonFarr/ralph-playbook](https://github.com/ClaytonFarr/ralph-playbook)
 
 **Ce qu'on a ajouté** :
-- Traduction complète en français
-- Structure plan d'implémentation (fichier IMPLEMENTATION_PLAN.md)
-- Double mode : boucle interne (skill) + boucle externe (bash)
+- Traduction complete en francais (11 fichiers source integres : playbook, prompts, agents, scripts, ameliorations)
 
 ---
 
