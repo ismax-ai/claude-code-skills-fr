@@ -47,7 +47,7 @@ Les SATs sont les techniques utilisées par les analystes du renseignement pour 
 |---|-----------|---------------------------|
 | 1 | **Key Assumptions Check** | Quelles hypothèses non vérifiées sous-tendent ce contenu ? |
 | 2 | **Pre-mortem** | On est 6 mois plus tard, ça a échoué. Qu'est-ce qui a mal tourné ? |
-| 3 | **Analysis of Competing Hypotheses** | Quelles autres explications ou approches possibles ? |
+| 3 | **Analysis of Competing Hypothèses** | Quelles autres explications ou approches possibles ? |
 | 4 | **Devil's Advocacy** | L'argument le plus fort CONTRE cette position ? |
 | 5 | **Structured Self-Critique** | Où est-ce que l'auteur se trompe probablement ? |
 | 6 | **Red Hat Analysis** | Quelles réactions émotionnelles chez le lecteur/utilisateur ? |

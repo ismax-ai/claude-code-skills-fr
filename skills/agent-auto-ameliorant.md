@@ -13,10 +13,10 @@ La mémoire auto de Claude Code capture des patterns. Ce skill ajoute l'intellig
 
 | Commande | Ce que ça fait |
 |----------|---------------|
-| `/si:review` | Analyse MEMORY.md — trouve les candidats a promotion, les entrees obsolètes, les opportunites de consolidation |
+| `/si:review` | Analyse MEMORY.md — trouve les candidats a promotion, les entrees obsolètes, les opportunités de consolidation |
 | `/si:promote` | Fait passer un pattern de MEMORY.md → CLAUDE.md ou `.claude/rules/` |
 | `/si:extract` | Transforme un pattern prouve en skill standalone |
-| `/si:status` | Dashboard sante mémoire — nombre de lignes, fichiers thematiques, recommandations |
+| `/si:status` | Dashboard santé mémoire — nombre de lignes, fichiers thematiques, recommandations |
 | `/si:remember` | Sauvegarde explicitement un savoir important dans la mémoire auto |
 
 ## Comment ça s'articule
@@ -48,7 +48,7 @@ La mémoire auto de Claude Code capture des patterns. Ce skill ajoute l'intellig
 |---------|-----------|-------------|
 | `./CLAUDE.md` | Toi (+ `/si:promote`) | Chaque session, en entier |
 | `MEMORY.md` | Claude (auto) | 200 premières lignes |
-| `memory/*.md` | Claude (debordement) | A la demande |
+| `memory/*.md` | Claude (débordement) | A la demande |
 | `.claude/rules/*.md` | Toi (+ `/si:promote`) | Quand les fichiers concernes sont ouverts |
 
 ## Cycle de promotion
@@ -61,7 +61,7 @@ La mémoire auto de Claude Code capture des patterns. Ce skill ajoute l'intellig
 5. L'entree MEMORY.md est supprimee → libere de l'espace pour de nouveaux apprentissages
 ```
 
-## Concepts cles
+## Concepts clés
 
 ### La mémoire auto capture, elle ne trie pas
 
@@ -106,7 +106,7 @@ paths:
 Analyse MEMORY.md et les fichiers thematiques pour identifier :
 - Entrees qui reviennent entre sessions (candidats a promotion)
 - Entrees obsolètes qui referencent des fichiers supprimes
-- Entrees liees qui devraient etre consolidees
+- Entrees liees qui devraient être consolidees
 - Écarts entre ce que MEMORY.md sait et ce que CLAUDE.md impose
 
 ### skill-extractor

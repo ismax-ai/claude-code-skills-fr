@@ -1,6 +1,6 @@
 ---
 name: gouvernance-prompts
-description: "Utiliser pour gérer des prompts en production a grande echelle : versioning de prompts, A/B tests, registres de prompts, prévention des regressions, création de pipelines d'évaluation pour des features IA en production. Déclencheurs : 'gérer les prompts en production', 'versioning de prompts', 'regression de prompts', 'A/B test de prompts', 'registre de prompts', 'pipeline d'évaluation'. PAS pour écrire ou améliorer un prompt individuel (utiliser senior-prompt-engineer). PAS pour le design de pipelines RAG (utiliser rag-architect). PAS pour la reduction de coûts LLM (utiliser llm-cost-optimizer)."
+description: "Utiliser pour gérer des prompts en production a grande échelle : versioning de prompts, A/B tests, registres de prompts, prévention des regressions, création de pipelines d'évaluation pour des features IA en production. Déclencheurs : 'gérer les prompts en production', 'versioning de prompts', 'regression de prompts', 'A/B test de prompts', 'registre de prompts', 'pipeline d'évaluation'. PAS pour écrire ou améliorer un prompt individuel (utiliser senior-prompt-engineer). PAS pour le design de pipelines RAG (utiliser rag-architect). PAS pour la réduction de coûts LLM (utiliser llm-cost-optimizer)."
 ---
 
 # Gouvernance des Prompts
@@ -22,7 +22,7 @@ Collecter ce contexte (poser tout en une seule fois) :
 ### 1. État actuel
 - Comment sont stockes les prompts aujourd'hui ? (hardcodes dans le code, fichiers de config, base de donnees, outil de gestion de prompts ?)
 - Combien de prompts distincts sont en production ?
-- Un changement de prompt a-t-il déjà cause une regression de qualite non détectée avant que les utilisateurs ne la signalent ?
+- Un changement de prompt a-t-il déjà cause une regression de qualité non détectée avant que les utilisateurs ne la signalent ?
 
 ### 2. Objectifs
 - Quel est le problème principal ? (chaos de versioning, pas d'evals, A/B testing a l'aveugle, iteration trop lente ?)
@@ -40,10 +40,10 @@ Collecter ce contexte (poser tout en une seule fois) :
 Pas de gestion centralisee des prompts aujourd'hui. Concevoir et implémenter un registre de prompts avec versioning, promotion par environnement, et piste d'audit.
 
 ### Mode 2 : Construire un pipeline d'évaluation
-Les prompts sont stockes quelque part mais il n'y a pas de test de qualite systematique. Construire un pipeline d'évaluation qui détecté les regressions avant la production.
+Les prompts sont stockes quelque part mais il n'y a pas de test de qualité systématique. Construire un pipeline d'évaluation qui détecté les regressions avant la production.
 
 ### Mode 3 : Iteration gouvernee
-Le registre et les evals existent. Designer le workflow de gouvernance complet : branche, test, eval, review, promotion -- avec capacite de rollback.
+Le registre et les evals existent. Designer le workflow de gouvernance complet : branche, test, eval, review, promotion -- avec capacité de rollback.
 
 ---
 
@@ -93,7 +93,7 @@ prompts:
 
 ### Registre production (base de donnees)
 
-Pour les équipes plus larges : registre de prompts accessible par API avec des tables cles pour les prompts et les prompt_versions, trackant le slug, le contenu, le modèle, l'environnement, le score d'eval et les métadonnées de promotion.
+Pour les équipes plus larges : registre de prompts accessible par API avec des tables clés pour les prompts et les prompt_versions, trackant le slug, le contenu, le modèle, l'environnement, le score d'eval et les métadonnées de promotion.
 
 Pour initialiser un registre base fichiers, créer l'arborescence ci-dessus et peupler le YAML du registre avec les prompts existants, leurs versions actuelles et les métadonnées de propriété.
 
@@ -101,7 +101,7 @@ Pour initialiser un registre base fichiers, créer l'arborescence ci-dessus et p
 
 ## Mode 2 : Construire un pipeline d'évaluation
 
-**Le problème :** Les changements de prompts sont déployés au feeling. Il n'y a pas de moyen systematique de savoir si un nouveau prompt est meilleur ou pire que l'actuel.
+**Le problème :** Les changements de prompts sont déployés au feeling. Il n'y a pas de moyen systématique de savoir si un nouveau prompt est meilleur ou pire que l'actuel.
 
 **La solution :** Des evals automatisees qui tournent a chaque changement de prompt, similaires a des tests unitaires.
 
@@ -110,8 +110,8 @@ Pour initialiser un registre base fichiers, créer l'arborescence ci-dessus et p
 | Type | Ce que ça mesure | Quand l'utiliser |
 |---|---|---|
 | **Match exact** | L'output est egal a la chaîne attendue | Classification, extraction, output structure |
-| **Vérification de contenu** | L'output contient les éléments requis | Extraction de points cles, résumés |
-| **LLM-as-judge** | Un autre LLM score la qualite de 1 a 5 | Generation ouverte, ton, utilite |
+| **Vérification de contenu** | L'output contient les éléments requis | Extraction de points clés, résumés |
+| **LLM-as-judge** | Un autre LLM score la qualité de 1 a 5 | Génération ouverte, ton, utilité |
 | **Similarite semantique** | Similarite d'embedding avec la réponse gold | Comparaisons tolerantes aux paraphrases |
 | **Validation de schema** | L'output est conforme au schema JSON | Tâches de sortie structuree |
 | **Évaluation humaine** | Un humain note de 1 a 5 sur des critères | Enjeux eleves, gates de lancement |
@@ -134,7 +134,7 @@ Seuils de réussite (a calibrer selon le cas d'usage) :
 - Classification/extraction : 95% ou plus en match exact
 - Résumé : 0.85 ou plus en score LLM-as-judge
 - Output structure : 100% en validation de schema
-- Generation ouverte : 80% ou plus en approbation humaine
+- Génération ouverte : 80% ou plus en approbation humaine
 
 Pour exécuter les evals, construire un runner qui itere sur le dataset gold, appelle le LLM avec la version de prompt testee, score chaque réponse par rapport a l'output attendu, et rapporte le taux de réussite agrege et les détails des échecs.
 
@@ -159,11 +159,11 @@ Quand on veut mesurer l'impact sur de vrais utilisateurs, pas seulement les scor
 
 - Utiliser un assignment stable (le même utilisateur reçoit toujours la même variante, base sur le hash de user_id)
 - Logger chaque assignment avec user_id, prompt_slug et variante pour l'analyse
-- Définir la métrique de succes AVANT de commencer (pas apres)
+- Définir la métrique de succès AVANT de commencer (pas après)
 - Tourner pendant minimum 1 semaine ou 1 000 requêtes par variante
-- Vérifier l'effet de nouveaute (pic d'engagement le premier jour)
+- Vérifier l'effet de nouveauté (pic d'engagement le premier jour)
 - Significativite statistique : p<0.05 avant de déclarer un gagnant
-- Monitorer la latence et le coût en parallele de la qualite
+- Monitorer la latence et le coût en parallele de la qualité
 
 ### Rollback Playbook
 
@@ -175,11 +175,11 @@ Rollback en une commande : promouvoir la version précédente en statut producti
 
 Signaler sans qu'on te le demande :
 
-- **Prompts hardcodes dans le code applicatif** -- Les changements de prompts necessitent des deploiements de code. Ça ralentit l'iteration et melange les responsabilites. Flagger immédiatement.
+- **Prompts hardcodes dans le code applicatif** -- Les changements de prompts necessitent des deploiements de code. Ça ralentit l'iteration et melange les responsabilités. Flagger immédiatement.
 - **Pas de dataset gold pour les prompts en production** -- Aucune visibilité sur la qualité. N'importe quel changement de prompt peut silencieusement dégrader la qualité.
 - **Taux de réussite des evals en baisse au fil du temps** -- Les mises a jour de modèles peuvent silencieusement casser des prompts. Des evals planifiees detectent ça avant les utilisateurs.
-- **Pas de capacite de rollback** -- Si un mauvais prompt atteint la production, l'équipe est bloquee jusqu'a un nouveau deploy. Toujours avoir un rollback.
-- **Une seule personne detient tout le savoir sur les prompts** -- Risque de bus factor. Le registre de prompts et la documentation representent un savoir qui survit aux changements d'équipe.
+- **Pas de capacité de rollback** -- Si un mauvais prompt atteint la production, l'équipe est bloquee jusqu'a un nouveau deploy. Toujours avoir un rollback.
+- **Une seule personne détient tout le savoir sur les prompts** -- Risque de bus factor. Le registre de prompts et la documentation représentent un savoir qui survit aux changements d'équipe.
 - **Changements de prompts déployés sans eval** -- Chaque deploy sans eval est un pari. Flagger quand l'équipe saute les evals "juste cette fois".
 
 ---
@@ -190,7 +190,7 @@ Signaler sans qu'on te le demande :
 |---|---|
 | Design du registre | Structure de fichiers, schema, workflow de promotion, et guide d'implémentation |
 | Pipeline d'évaluation | Template de dataset gold, approche du runner d'eval, recommandations de seuils de réussite |
-| Setup d'A/B test | Logique d'assignment des variantes, plan de mesure, métriques de succes, et template d'analyse |
+| Setup d'A/B test | Logique d'assignment des variantes, plan de mesure, métriques de succès, et template d'analyse |
 | Review de diff de prompt | Comparaison cote a cote avec delta de score d'eval et recommandation de déploiement |
 | Politique de gouvernance | Document de politique pour l'équipe : modèle de propriété, exigences de review, gates de déploiement |
 
@@ -210,17 +210,17 @@ Tous les outputs suivent le standard structure :
 
 | Anti-pattern | Pourquoi ça échoué | Meilleure approche |
 |---|---|---|
-| Hardcoder les prompts dans le code source applicatif | Les changements de prompts necessitent des deploiements de code, ralentissant l'iteration et couplant les responsabilites | Stocker les prompts dans un registre versionne séparé du code applicatif |
-| Déployer des changements de prompts sans lancer d'evals | Les regressions silencieuses de qualite atteignent les utilisateurs sans etre détectées | Gater chaque changement de prompt sur le passage du pipeline d'eval automatise avant promotion |
+| Hardcoder les prompts dans le code source applicatif | Les changements de prompts necessitent des deploiements de code, ralentissant l'iteration et couplant les responsabilités | Stocker les prompts dans un registre versionne séparé du code applicatif |
+| Déployer des changements de prompts sans lancer d'evals | Les regressions silencieuses de qualité atteignent les utilisateurs sans être détectées | Gater chaque changement de prompt sur le passage du pipeline d'eval automatise avant promotion |
 | Utiliser un seul dataset gold pour toujours | A mesure que le produit évolué, le dataset gold derive des patterns d'usage reels | Revoir et mettre a jour le dataset gold trimestriellement, en ajoutant les nouveaux cas limites tires des échecs en production |
-| Une seule personne detient tout le savoir sur les prompts | Bus factor de 1 -- quand cette personne part, le contexte des prompts est perdu | Documenter les prompts dans un registre avec propriété, justification et historique des versions |
-| A/B test sans métrique de succes prédéfinie | La selection de métriques post-hoc introduit du biais et des résultats non concluants | Définir la métrique de succes principale et la taille d'echantillon requise avant de lancer le test |
-| Sauter la capacite de rollback | Un mauvais prompt en production sans rollback force un déploiement de code en urgence | Chaque promotion de version de prompt doit avoir un rollback en une commande vers la version précédente |
+| Une seule personne détient tout le savoir sur les prompts | Bus factor de 1 -- quand cette personne part, le contexte des prompts est perdu | Documenter les prompts dans un registre avec propriété, justification et historique des versions |
+| A/B test sans métrique de succès prédéfinie | La selection de métriques post-hoc introduit du biais et des résultats non concluants | Définir la métrique de succès principale et la taille d'échantillon requise avant de lancer le test |
+| Sauter la capacité de rollback | Un mauvais prompt en production sans rollback force un déploiement de code en urgence | Chaque promotion de version de prompt doit avoir un rollback en une commande vers la version précédente |
 
 ## Skills associes
 
-- **senior-prompt-engineer** : Utiliser pour écrire ou améliorer des prompts individuels. PAS pour gérer des prompts en production a grande echelle (ça c'est ce skill).
-- **llm-cost-optimizer** : Utiliser pour reduire les depenses API LLM. Se combine avec ce skill -- les evals detectent les regressions de qualite quand on route vers des modèles moins chers.
+- **senior-prompt-engineer** : Utiliser pour écrire ou améliorer des prompts individuels. PAS pour gérer des prompts en production a grande échelle (ça c'est ce skill).
+- **llm-cost-optimizer** : Utiliser pour réduire les dépenses API LLM. Se combine avec ce skill -- les evals detectent les regressions de qualité quand on route vers des modèles moins chers.
 - **rag-architect** : Utiliser pour concevoir des pipelines de retrieval. Se combine avec ce skill pour gouverner séparément les prompts système RAG et les prompts de retrieval.
 - **ci-cd-pipeline-builder** : Utiliser pour construire des pipelines CI/CD. Se combine avec ce skill pour automatiser les runs d'eval en CI.
-- **observability-designer** : Utiliser pour concevoir le monitoring. Se combine avec ce skill pour les dashboards de qualite des prompts en production.
+- **observability-designer** : Utiliser pour concevoir le monitoring. Se combine avec ce skill pour les dashboards de qualité des prompts en production.

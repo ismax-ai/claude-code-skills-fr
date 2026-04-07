@@ -8,11 +8,11 @@ description: "Routage automatique d'effort : adapte la profondeur de réflexion 
 
 ## Ce que ce skill résout
 
-Depuis Opus 4.6, Claude utilise l'extended thinking : une phase de réflexion interne avant chaque réponse. Cette réflexion consomme des tokens. Par défaut, l'effort est règle sur `medium` pour toutes les tâches, quelle que soit leur complexite.
+Depuis Opus 4.6, Claude utilise l'extended thinking : une phase de réflexion interne avant chaque réponse. Cette réflexion consomme des tokens. Par défaut, l'effort est règle sur `medium` pour toutes les tâches, quelle que soit leur complexité.
 
 Problème : renommer un fichier et concevoir une architecture distribuee consomment le même budget de réflexion. Sur les tâches simples, Claude gaspille des tokens en réflexion inutile. Sur les tâches critiques, il ne réfléchit pas assez.
 
-Ce skill adapte le comportement de Claude (profondeur d'analyse, nombre d'alternatives considérées, détail de la réponse) en fonction de la complexite reelle de chaque tâche.
+Ce skill adapte le comportement de Claude (profondeur d'analyse, nombre d'alternatives considérées, détail de la réponse) en fonction de la complexité reelle de chaque tâche.
 
 ## Comment fonctionne l'extended thinking dans Claude
 
@@ -64,7 +64,7 @@ Tâches complexes. Multi-fichiers, effets de bord, décisions a prendre. Une err
 
 | Signal | Exemples |
 |--------|----------|
-| Debug multi-fichiers | "L'auth casse apres le deploy, trouve pourquoi" |
+| Debug multi-fichiers | "L'auth casse après le deploy, trouve pourquoi" |
 | Concevoir une feature | "Ajoute un système de notifications real-time" |
 | Refactorer un module entier | "Refactoré le module de paiement" |
 | Écrire un plan technique | "Planifie la migration de REST a GraphQL" |
@@ -75,7 +75,7 @@ Tâches complexes. Multi-fichiers, effets de bord, décisions a prendre. Une err
 
 ### MAX — Mode expert
 
-Reserve aux problèmes ou une erreur coûte cher. Décisions irréversibles, production, sécurité.
+Réservé aux problèmes ou une erreur coûte cher. Décisions irréversibles, production, sécurité.
 
 | Signal | Exemples |
 |--------|----------|
@@ -83,7 +83,7 @@ Reserve aux problèmes ou une erreur coûte cher. Décisions irréversibles, pro
 | Sécurité / audit | "Vérifié les failles d'injection" |
 | Bug non reproduisible | "Ça crash en prod 1 fois sur 10" |
 | Migration de donnees critique | "Migre la DB, zero perte, zero downtime" |
-| Design système a grande echelle | "Système de file d'attente pour 10K req/s" |
+| Design système a grande échelle | "Système de file d'attente pour 10K req/s" |
 
 **Comportement MAX** : investigation exhaustive, tous les angles consideres, chaque affirmation justifiee.
 
@@ -143,7 +143,7 @@ Ces signaux l'emportent TOUJOURS sur les signaux de déclassement.
 |-------|---------------|--------|
 | "Ecris un Dockerfile pour ce projet" | **MEDIUM** | Choix d'image, multi-stage, sécurité des layers. Si "basique" → LOW. |
 | "Explique-moi pourquoi X ne marche pas" | **MEDIUM** | Diagnostic sans fix, réflexion nécessaire. |
-| "Supprime les imports inutilises" dans un fichier de 200 imports | **MEDIUM** | Volume = complexite. Effets de bord possibles sur des re-exports. |
+| "Supprime les imports inutilises" dans un fichier de 200 imports | **MEDIUM** | Volume = complexité. Effets de bord possibles sur des re-exports. |
 | "Corrige ce bug en prod" | **HIGH** | "Prod" surclasse tout. |
 | "Fais un README" | **LOW** | Documentation standard. |
 | "Fais un README pour ce projet open-source" | **MEDIUM** | Décisions de communication et structure. |
@@ -172,7 +172,7 @@ Le classement automatique n'est pas parfait. L'utilisateur peut corriger en cour
 | "fais-le juste", "exécuté" | LOW |
 | "trop long", "plus court" | Descendre d'un niveau |
 
-Apres une correction, ajuster le calibrage pour les messages suivants de la même session. Si l'utilisateur dit "creuse plus" sur un type de tâche, classer les tâches similaires un cran au-dessus pour le reste de la session.
+Après une correction, ajuster le calibrage pour les messages suivants de la même session. Si l'utilisateur dit "creuse plus" sur un type de tâche, classer les tâches similaires un cran au-dessus pour le reste de la session.
 
 ---
 
@@ -251,7 +251,7 @@ Calibrage : [stable | tendance haute | tendance basse]
 | Session mixte (70% simple, 30% complexe) | Tout en MEDIUM | LOW/MEDIUM/HIGH adaptes | ~40% |
 | Debug prod critique | MEDIUM (sous-réflexion) | MAX (analyse complété) | Moins de tokens gaspilles en allers-retours |
 
-Le gain principal n'est pas que l'économie de tokens : c'est aussi la qualite. Les tâches critiques reçoivent plus de réflexion, les tâches simples sont executees sans latence inutile.
+Le gain principal n'est pas que l'économie de tokens : c'est aussi la qualité. Les tâches critiques reçoivent plus de réflexion, les tâches simples sont executees sans latence inutile.
 
 ---
 
