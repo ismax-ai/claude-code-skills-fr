@@ -28,8 +28,9 @@
 
 ## Boîte à Outils Prompt Engineer (`/prompt-engineer`)
 
-**Auteur original** : [AlirezaRezvworking](https://github.com/AlirezaRezvworking)
-**Repo source** : [AlirezaRezvworking/prompt-engineer-toolkit](https://github.com/AlirezaRezvworking/prompt-engineer-toolkit)
+**Auteur original** : [alirezarezvani](https://github.com/alirezarezvani)
+**Repo source** : [alirezarezvani/claude-skills](https://github.com/alirezarezvani/claude-skills) (9 800+ ⭐)
+**Fichier source** : `marketing-skill/prompt-engineer-toolkit/SKILL.md`
 
 **Ce qu'on a ajouté** :
 - Traduction complète en français
@@ -39,8 +40,9 @@
 
 ## Gouvernance des Prompts (`/gouvernance-prompts`)
 
-**Auteur original** : [chad848](https://github.com/chad848)
-**Repo source** : [chad848/prompt-governance](https://github.com/chad848/prompt-governance)
+**Auteur original** : [chad848](https://github.com/chad848) (via PR #448 à alirezarezvani/claude-skills)
+**Repo source** : [alirezarezvani/claude-skills](https://github.com/alirezarezvani/claude-skills) (9 800+ ⭐)
+**Fichier source** : `engineering/prompt-governance/SKILL.md`
 
 **Ce qu'on a ajouté** :
 - Traduction complète en français
