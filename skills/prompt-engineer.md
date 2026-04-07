@@ -353,7 +353,7 @@ python3 scripts/prompt_versioner.py add \
 #### Claude Code
 
 ```bash
-cp -R marketing-skill/prompt-engineer-toolkit ~/.claude/skills/prompt-engineer-toolkit
+cp -R marketing-skill/prompt-engineer-toolkit $HOME/.claude/skills/prompt-engineer-toolkit
 ```
 
 #### OpenAI Codex
