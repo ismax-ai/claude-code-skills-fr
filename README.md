@@ -1,6 +1,6 @@
 # Skills Claude Code par Ismax
 
-La plus grosse bibliotheque francophone de skills Claude Code. Open source.
+La plus grosse bibliotheque francophone de skills Claude Code. 11 skills, open source.
 
 ---
 
@@ -18,7 +18,7 @@ Claude Code est puissant de base. Mais il fait ce que tu lui demandes, exactemen
 
 Les skills corrigent ca. Chaque skill encode un processus complet : les etapes, les criteres de qualite, les cas limites, les red flags a detecter. Du coup tu obtiens un resultat de niveau expert sans ecrire un prompt de 200 lignes a chaque fois.
 
-Aujourd'hui il y a 10 skills. L'objectif c'est d'en avoir 100+. Chaque skill est teste en conditions reelles avant d'etre publie ici.
+Aujourd'hui il y a 11 skills. L'objectif c'est d'en avoir 100+. Chaque skill est teste en conditions reelles avant d'etre publie ici.
 
 ## Pour qui
 
@@ -30,7 +30,7 @@ Pas besoin d'etre dev. Tous les skills s'installent avec un copier-coller.
 
 ---
 
-## Les 10 skills
+## Les 11 skills
 
 | # | Skill | Commande | En une phrase |
 |---|-------|----------|---------------|
@@ -44,6 +44,7 @@ Pas besoin d'etre dev. Tous les skills s'installent avec un copier-coller.
 | 8 | **Karen** | `/karen` | Vérifie si c'est VRAIMENT fait. Pas juste "fait" |
 | 9 | **Ralph** | `/ralph` | Boucle plan → build → check. Tourne jusqu'au propre |
 | 10 | **L'Aigle Superviseur** | `/eagle-supervisor` | 7 passes qualité séquentielles. Un FAIL, rien ne sort |
+| 11 | **Le Régulateur** | `/effort-router` | Dose la réflexion par tâche. System 1 pour le simple, System 2 pour le critique |
 
 ---
 
@@ -109,6 +110,12 @@ Les skills qui maintiennent l'ordre dans ton système.
 
 **Ralph** c'est la boucle infinie. Planifier, construire, vérifier. Si le résultat ne passe pas le check, il recommence. Encore. Encore. Jusqu'à ce que ce soit propre. (Spoiler : il peut tourner longtemps.)
 
+### ✦ Optimisation
+
+Le skill qui rend Claude plus efficace avec tes tokens.
+
+**Le Régulateur** applique le principe System 1 / System 2 de Kahneman à Claude. Tâche simple (renommer, lister, chercher) ? Réponse directe, zéro sur-réflexion. Tâche critique (archi, sécurité, prod) ? Analyse en profondeur. Claude dose tout seul, tu parles normalement. Correction de route si le calibrage est mauvais.
+
 ---
 
 ## Workflow recommandé
@@ -173,7 +180,7 @@ En 10 secondes, tu sais que ton post va se faire descendre. Avant de le publier.
 
 ## Credits
 
-7 skills sur 10 sont des traductions integrales de projets open source. 3 sont des creations originales.
+7 skills sur 11 sont des traductions integrales de projets open source. 4 sont des creations originales.
 
 Details complets, auteurs originaux et sources dans [CREDITS.md](CREDITS.md).
 
