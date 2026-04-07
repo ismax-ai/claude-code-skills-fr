@@ -4,8 +4,9 @@ description: "Superviseur pré-publication : 6 passes séquentielles, 1 seul FAI
 
 # /eagle-supervisor — L'Aigle Superviseur
 
-> L'aigle voit tout depuis le ciel. Il ne rédige pas. Il supervise.
-> Il détecte ce que les vérifications individuelles ratent : les incohérences ENTRE les règles, les oublis systémiques, la dérive progressive du ton.
+## Ce que ce skill résout
+
+Les vérifications individuelles (orthographe, ton, structure) ratent les incohérences ENTRE les règles, les oublis systémiques et la dérive progressive du ton. Ce skill exécute 6 passes séquentielles sur le contenu. Chaque passe a un verdict (PASS, WARN, FAIL). Un seul FAIL bloque la publication.
 
 ## Quand l'invoquer
 
@@ -14,10 +15,7 @@ description: "Superviseur pré-publication : 6 passes séquentielles, 1 seul FAI
 - Quand le contenu a été réécrit 2+ fois (risque de dérive)
 - En cas de doute sur la qualité
 
-## Ce que l'aigle fait
-
-6 passes en séquence. Chaque passe a un verdict : **PASS**, **WARN**, ou **FAIL**.
-Si une seule passe FAIL, le contenu ne sort pas.
+## Les 6 passes
 
 ---
 
@@ -144,23 +142,23 @@ VERDICT : [PUBLIE | CORRIGE AVANT | REWRITE]
 
 ---
 
-## Ce que l'aigle ne fait PAS
+## Ce que ce skill ne fait PAS
 
 - Il ne réécrit pas le contenu (c'est ton job)
 - Il ne change pas les règles (il les applique)
 - Il dit "non" quand personne d'autre ne le dit
 
-L'aigle SUPERVISE. Il voit les patterns que les vérifications individuelles ratent. Il détecte la dérive progressive. Il bloque ce qui n'est pas prêt.
+Ce skill supervise. Il détecte les patterns que les vérifications individuelles ratent, la dérive progressive, et bloque ce qui n'est pas prêt.
 
 ---
 
 ## Intégration
 
-L'aigle est le DERNIER check avant publication :
+Ce skill est le DERNIER contrôle avant publication :
 
 1. Rédaction
 2. Relecture / vérification langue
 3. **🦅 /eagle-supervisor** (supervision globale)
 4. Publication
 
-Si l'aigle dit FAIL → retour à l'étape 1 ou 2 selon le problème.
+Si le verdict est FAIL → retour à l'étape 1 ou 2 selon le problème.

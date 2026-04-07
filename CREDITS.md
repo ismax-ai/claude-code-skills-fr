@@ -1,6 +1,6 @@
 # Crédits
 
-7 skills sur 11 sont des forks de projets open source existants. Les versions ici sont des traductions completes et fideles en francais.
+7 skills sur 12 sont des forks de projets open source existants. Les versions ici sont des traductions completes et fideles en français.
 
 ---
 
@@ -57,7 +57,7 @@
 **Licence originale** : MIT
 
 **Ce qu'on a ajouté** :
-- Traduction complete en francais (skill principal + 3 fichiers de reference inclus)
+- Traduction complété en français (skill principal + 3 fichiers de référence inclus)
 
 ---
 
@@ -68,7 +68,7 @@
 **Licence originale** : MIT
 
 **Ce qu'on a ajouté** :
-- Traduction complete en francais (multi-agent protocol + companion agents inclus)
+- Traduction complété en français (multi-agent protocol + companion agents inclus)
 
 ---
 
@@ -78,13 +78,13 @@
 **Playbook** : [ClaytonFarr/ralph-playbook](https://github.com/ClaytonFarr/ralph-playbook)
 
 **Ce qu'on a ajouté** :
-- Traduction complete en francais (11 fichiers source integres : playbook, prompts, agents, scripts, ameliorations)
+- Traduction complété en français (11 fichiers source integres : playbook, prompts, agents, scripts, améliorations)
 
 ---
 
 ## Les 4 originaux
 
-Agent Auto-Améliorant, Le Red Team (Sentinel), L'Aigle Superviseur et Le Régulateur (effort-router) sont des créations originales par [Ismax](https://github.com/ismax-ai).
+Agent Auto-Améliorant, Le Red Team (Sentinel), L'Aigle Superviseur, Le Régulateur (effort-router) et ELI5 sont des créations originales par [Ismax](https://github.com/ismax-ai).
 
 ---
 

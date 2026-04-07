@@ -1,30 +1,32 @@
 ---
 name: gouvernance-prompts
-description: "Utiliser pour gerer des prompts en production a grande echelle : versioning de prompts, A/B tests, registres de prompts, prevention des regressions, creation de pipelines d'evaluation pour des features IA en production. Declencheurs : 'gerer les prompts en production', 'versioning de prompts', 'regression de prompts', 'A/B test de prompts', 'registre de prompts', 'pipeline d'evaluation'. PAS pour ecrire ou ameliorer un prompt individuel (utiliser senior-prompt-engineer). PAS pour le design de pipelines RAG (utiliser rag-architect). PAS pour la reduction de couts LLM (utiliser llm-cost-optimizer)."
+description: "Utiliser pour gérer des prompts en production a grande echelle : versioning de prompts, A/B tests, registres de prompts, prévention des regressions, création de pipelines d'évaluation pour des features IA en production. Déclencheurs : 'gérer les prompts en production', 'versioning de prompts', 'regression de prompts', 'A/B test de prompts', 'registre de prompts', 'pipeline d'évaluation'. PAS pour écrire ou améliorer un prompt individuel (utiliser senior-prompt-engineer). PAS pour le design de pipelines RAG (utiliser rag-architect). PAS pour la reduction de coûts LLM (utiliser llm-cost-optimizer)."
 ---
 
 # Gouvernance des Prompts
 
-> Fork de [alirezarezvani/claude-skills](https://github.com/alirezarezvani/claude-skills) (contribution originale : [chad848](https://github.com/chad848), PR #448) -- traduit integralement en francais.
+> Fork de [alirezarezvani/claude-skills](https://github.com/alirezarezvani/claude-skills) (contribution originale : [chad848](https://github.com/chad848), PR #448) -- traduit intégralement en français.
 
-Tu es un expert en prompt engineering de production et en gouvernance de features IA. Ton objectif est de traiter les prompts comme une infrastructure de premier ordre -- versionnee, testee, evaluee et deployee avec la meme rigueur que du code applicatif. Tu previens les regressions de qualite, tu permets une iteration safe, et tu donnes aux equipes la confiance que les changements de prompts ne casseront pas la production.
+## Ce que ce skill résout
 
-Les prompts c'est du code. Ils changent le comportement en production. Les deployer comme du code.
+Les prompts en production changent le comportement de l'application. Sans gouvernance, chaque modification de prompt risque une régression de qualité non détectée. Ce skill traite les prompts comme de l'infrastructure : versionnés, testés, évalués et déployés avec la même rigueur que du code applicatif.
+
+Les prompts c'est du code. Ils changent le comportement en production. Les déployer comme du code.
 
 ## Avant de commencer
 
-**Verifier le contexte d'abord :** Si un fichier project-context.md existe, le lire avant de poser des questions. Recuperer la stack IA, les patterns de deploiement, et toute approche existante de gestion des prompts.
+**Vérifier le contexte d'abord :** Si un fichier project-context.md existe, le lire avant de poser des questions. Récupérer la stack IA, les patterns de déploiement, et toute approche existante de gestion des prompts.
 
 Collecter ce contexte (poser tout en une seule fois) :
 
-### 1. Etat actuel
+### 1. État actuel
 - Comment sont stockes les prompts aujourd'hui ? (hardcodes dans le code, fichiers de config, base de donnees, outil de gestion de prompts ?)
 - Combien de prompts distincts sont en production ?
-- Un changement de prompt a-t-il deja cause une regression de qualite non detectee avant que les utilisateurs ne la signalent ?
+- Un changement de prompt a-t-il déjà cause une regression de qualite non détectée avant que les utilisateurs ne la signalent ?
 
 ### 2. Objectifs
-- Quel est le probleme principal ? (chaos de versioning, pas d'evals, A/B testing a l'aveugle, iteration trop lente ?)
-- Taille de l'equipe et modele de propriete des prompts ? (un ingenieur possede tous les prompts vs. plusieurs contributeurs ?)
+- Quel est le problème principal ? (chaos de versioning, pas d'evals, A/B testing a l'aveugle, iteration trop lente ?)
+- Taille de l'équipe et modèle de propriété des prompts ? (un ingenieur possédé tous les prompts vs. plusieurs contributeurs ?)
 - Contraintes d'outillage ? (open-source uniquement, CI/CD existant, cloud provider ?)
 
 ### 3. Stack IA
@@ -35,10 +37,10 @@ Collecter ce contexte (poser tout en une seule fois) :
 ## Comment ce skill fonctionne
 
 ### Mode 1 : Construire un registre de prompts
-Pas de gestion centralisee des prompts aujourd'hui. Concevoir et implementer un registre de prompts avec versioning, promotion par environnement, et piste d'audit.
+Pas de gestion centralisee des prompts aujourd'hui. Concevoir et implémenter un registre de prompts avec versioning, promotion par environnement, et piste d'audit.
 
-### Mode 2 : Construire un pipeline d'evaluation
-Les prompts sont stockes quelque part mais il n'y a pas de test de qualite systematique. Construire un pipeline d'evaluation qui detecte les regressions avant la production.
+### Mode 2 : Construire un pipeline d'évaluation
+Les prompts sont stockes quelque part mais il n'y a pas de test de qualite systematique. Construire un pipeline d'évaluation qui détecté les regressions avant la production.
 
 ### Mode 3 : Iteration gouvernee
 Le registre et les evals existent. Designer le workflow de gouvernance complet : branche, test, eval, review, promotion -- avec capacite de rollback.
@@ -48,7 +50,7 @@ Le registre et les evals existent. Designer le workflow de gouvernance complet :
 ## Mode 1 : Construire un registre de prompts
 
 **Ce que fournit un registre de prompts :**
-- Source unique de verite pour tous les prompts
+- Source unique de vérité pour tous les prompts
 - Historique des versions avec rollback
 - Promotion par environnement (dev vers staging vers prod)
 - Piste d'audit (qui a change quoi, quand, pourquoi)
@@ -56,7 +58,7 @@ Le registre et les evals existent. Designer le workflow de gouvernance complet :
 
 ### Registre minimum viable (base fichiers)
 
-Pour les petites equipes : fichiers structures en controle de version.
+Pour les petites équipes : fichiers structures en contrôle de version.
 
 Arborescence :
 ```
@@ -91,28 +93,28 @@ prompts:
 
 ### Registre production (base de donnees)
 
-Pour les equipes plus larges : registre de prompts accessible par API avec des tables cles pour les prompts et les prompt_versions, trackant le slug, le contenu, le modele, l'environnement, le score d'eval et les metadonnees de promotion.
+Pour les équipes plus larges : registre de prompts accessible par API avec des tables cles pour les prompts et les prompt_versions, trackant le slug, le contenu, le modèle, l'environnement, le score d'eval et les métadonnées de promotion.
 
-Pour initialiser un registre base fichiers, creer l'arborescence ci-dessus et peupler le YAML du registre avec les prompts existants, leurs versions actuelles et les metadonnees de propriete.
+Pour initialiser un registre base fichiers, créer l'arborescence ci-dessus et peupler le YAML du registre avec les prompts existants, leurs versions actuelles et les métadonnées de propriété.
 
 ---
 
-## Mode 2 : Construire un pipeline d'evaluation
+## Mode 2 : Construire un pipeline d'évaluation
 
-**Le probleme :** Les changements de prompts sont deployes au feeling. Il n'y a pas de moyen systematique de savoir si un nouveau prompt est meilleur ou pire que l'actuel.
+**Le problème :** Les changements de prompts sont déployés au feeling. Il n'y a pas de moyen systematique de savoir si un nouveau prompt est meilleur ou pire que l'actuel.
 
 **La solution :** Des evals automatisees qui tournent a chaque changement de prompt, similaires a des tests unitaires.
 
-### Types d'evaluations
+### Types d'évaluations
 
-| Type | Ce que ca mesure | Quand l'utiliser |
+| Type | Ce que ça mesure | Quand l'utiliser |
 |---|---|---|
-| **Match exact** | L'output est egal a la chaine attendue | Classification, extraction, output structure |
-| **Verification de contenu** | L'output contient les elements requis | Extraction de points cles, resumes |
+| **Match exact** | L'output est egal a la chaîne attendue | Classification, extraction, output structure |
+| **Vérification de contenu** | L'output contient les éléments requis | Extraction de points cles, résumés |
 | **LLM-as-judge** | Un autre LLM score la qualite de 1 a 5 | Generation ouverte, ton, utilite |
-| **Similarite semantique** | Similarite d'embedding avec la reponse gold | Comparaisons tolerantes aux paraphrases |
-| **Validation de schema** | L'output est conforme au schema JSON | Taches de sortie structuree |
-| **Evaluation humaine** | Un humain note de 1 a 5 sur des criteres | Enjeux eleves, gates de lancement |
+| **Similarite semantique** | Similarite d'embedding avec la réponse gold | Comparaisons tolerantes aux paraphrases |
+| **Validation de schema** | L'output est conforme au schema JSON | Tâches de sortie structuree |
+| **Évaluation humaine** | Un humain note de 1 a 5 sur des critères | Enjeux eleves, gates de lancement |
 
 ### Design du dataset gold
 
@@ -120,65 +122,65 @@ Chaque prompt a besoin d'un dataset gold : un ensemble fixe de paires input/outp
 
 Exigences du dataset gold :
 - Minimum 20 exemples pour la couverture de base, 100+ pour la confiance en production
-- Couvrir les cas limites et les modes d'echec, pas juste le happy path
-- Revu et approuve par un expert du domaine, pas juste par l'ingenieur qui a ecrit le prompt
-- Versionne aux cotes du prompt (un changement de prompt peut necessiter une mise a jour du dataset gold)
+- Couvrir les cas limites et les modes d'échec, pas juste le happy path
+- Revu et approuve par un expert du domaine, pas juste par l'ingenieur qui a écrit le prompt
+- Versionne aux cotes du prompt (un changement de prompt peut nécessiter une mise a jour du dataset gold)
 
-### Implementation du pipeline d'evaluation
+### Implémentation du pipeline d'évaluation
 
-L'eval runner accepte une version de prompt et un dataset gold, appelle le LLM pour chaque exemple, evalue la reponse par rapport a l'output attendu, et retourne un resultat avec pass_rate, avg_score et details des echecs.
+L'eval runner accepte une version de prompt et un dataset gold, appelle le LLM pour chaque exemple, évalué la réponse par rapport a l'output attendu, et retourne un résultat avec pass_rate, avg_score et détails des échecs.
 
-Seuils de reussite (a calibrer selon le cas d'usage) :
+Seuils de réussite (a calibrer selon le cas d'usage) :
 - Classification/extraction : 95% ou plus en match exact
-- Resume : 0.85 ou plus en score LLM-as-judge
+- Résumé : 0.85 ou plus en score LLM-as-judge
 - Output structure : 100% en validation de schema
 - Generation ouverte : 80% ou plus en approbation humaine
 
-Pour executer les evals, construire un runner qui itere sur le dataset gold, appelle le LLM avec la version de prompt testee, score chaque reponse par rapport a l'output attendu, et rapporte le taux de reussite agrege et les details des echecs.
+Pour exécuter les evals, construire un runner qui itere sur le dataset gold, appelle le LLM avec la version de prompt testee, score chaque réponse par rapport a l'output attendu, et rapporte le taux de réussite agrege et les détails des échecs.
 
 ---
 
 ## Mode 3 : Iteration gouvernee
 
-Le cycle de deploiement complet avec des gates a chaque etape :
+Le cycle de déploiement complet avec des gates a chaque étape :
 
-1. **BRANCHE** -- Creer une feature branch pour le changement de prompt
-2. **DEVELOPPE** -- Editer le prompt en environnement dev, tests manuels
-3. **EVALUE** -- Lancer le pipeline d'eval vs dataset gold (automatise en CI)
+1. **BRANCHE** -- Créer une feature branch pour le changement de prompt
+2. **Développé** -- Éditer le prompt en environnement dev, tests manuels
+3. **Évalué** -- Lancer le pipeline d'eval vs dataset gold (automatise en CI)
 4. **COMPARE** -- Comparer le score d'eval du nouveau prompt vs le score de production actuel
-5. **REVIEW** -- PR review : resultats d'eval plus diff des changements de prompt
+5. **REVIEW** -- PR review : résultats d'eval plus diff des changements de prompt
 6. **PROMEUT** -- Staging vers Production avec gate d'approbation
-7. **MONITORE** -- Surveiller les metriques de production pendant 24-48h post-deploy
-8. **ROLLBACK** -- Retour en une commande a la version precedente si besoin
+7. **MONITORE** -- Surveiller les métriques de production pendant 24-48h post-deploy
+8. **ROLLBACK** -- Retour en une commande a la version précédente si besoin
 
 ### A/B testing de prompts
 
 Quand on veut mesurer l'impact sur de vrais utilisateurs, pas seulement les scores d'eval :
 
-- Utiliser un assignment stable (le meme utilisateur recoit toujours la meme variante, base sur le hash de user_id)
+- Utiliser un assignment stable (le même utilisateur reçoit toujours la même variante, base sur le hash de user_id)
 - Logger chaque assignment avec user_id, prompt_slug et variante pour l'analyse
-- Definir la metrique de succes AVANT de commencer (pas apres)
-- Tourner pendant minimum 1 semaine ou 1 000 requetes par variante
-- Verifier l'effet de nouveaute (pic d'engagement le premier jour)
-- Significativite statistique : p<0.05 avant de declarer un gagnant
-- Monitorer la latence et le cout en parallele de la qualite
+- Définir la métrique de succes AVANT de commencer (pas apres)
+- Tourner pendant minimum 1 semaine ou 1 000 requêtes par variante
+- Vérifier l'effet de nouveaute (pic d'engagement le premier jour)
+- Significativite statistique : p<0.05 avant de déclarer un gagnant
+- Monitorer la latence et le coût en parallele de la qualite
 
 ### Rollback Playbook
 
-Rollback en une commande : promouvoir la version precedente en statut production dans le registre, puis verifier en relancant les evals sur la version restauree.
+Rollback en une commande : promouvoir la version précédente en statut production dans le registre, puis vérifier en relancant les evals sur la version restauree.
 
 ---
 
-## Declencheurs proactifs
+## Déclencheurs proactifs
 
 Signaler sans qu'on te le demande :
 
-- **Prompts hardcodes dans le code applicatif** -- Les changements de prompts necessitent des deploiements de code. Ca ralentit l'iteration et melange les responsabilites. Flagger immediatement.
-- **Pas de dataset gold pour les prompts en production** -- On vole a l'aveugle. N'importe quel changement de prompt peut silencieusement degrader la qualite.
-- **Taux de reussite des evals en baisse au fil du temps** -- Les mises a jour de modeles peuvent silencieusement casser des prompts. Des evals planifiees detectent ca avant les utilisateurs.
-- **Pas de capacite de rollback** -- Si un mauvais prompt atteint la production, l'equipe est bloquee jusqu'a un nouveau deploy. Toujours avoir un rollback.
-- **Une seule personne detient tout le savoir sur les prompts** -- Risque de bus factor. Le registre de prompts et la documentation representent un savoir qui survit aux changements d'equipe.
-- **Changements de prompts deployes sans eval** -- Chaque deploy sans eval est un pari. Flagger quand l'equipe saute les evals "juste cette fois".
+- **Prompts hardcodes dans le code applicatif** -- Les changements de prompts necessitent des deploiements de code. Ça ralentit l'iteration et melange les responsabilites. Flagger immédiatement.
+- **Pas de dataset gold pour les prompts en production** -- Aucune visibilité sur la qualité. N'importe quel changement de prompt peut silencieusement dégrader la qualité.
+- **Taux de réussite des evals en baisse au fil du temps** -- Les mises a jour de modèles peuvent silencieusement casser des prompts. Des evals planifiees detectent ça avant les utilisateurs.
+- **Pas de capacite de rollback** -- Si un mauvais prompt atteint la production, l'équipe est bloquee jusqu'a un nouveau deploy. Toujours avoir un rollback.
+- **Une seule personne detient tout le savoir sur les prompts** -- Risque de bus factor. Le registre de prompts et la documentation representent un savoir qui survit aux changements d'équipe.
+- **Changements de prompts déployés sans eval** -- Chaque deploy sans eval est un pari. Flagger quand l'équipe saute les evals "juste cette fois".
 
 ---
 
@@ -186,11 +188,11 @@ Signaler sans qu'on te le demande :
 
 | Ce que tu demandes... | Ce que tu obtiens... |
 |---|---|
-| Design du registre | Structure de fichiers, schema, workflow de promotion, et guide d'implementation |
-| Pipeline d'evaluation | Template de dataset gold, approche du runner d'eval, recommandations de seuils de reussite |
-| Setup d'A/B test | Logique d'assignment des variantes, plan de mesure, metriques de succes, et template d'analyse |
-| Review de diff de prompt | Comparaison cote a cote avec delta de score d'eval et recommandation de deploiement |
-| Politique de gouvernance | Document de politique pour l'equipe : modele de propriete, exigences de review, gates de deploiement |
+| Design du registre | Structure de fichiers, schema, workflow de promotion, et guide d'implémentation |
+| Pipeline d'évaluation | Template de dataset gold, approche du runner d'eval, recommandations de seuils de réussite |
+| Setup d'A/B test | Logique d'assignment des variantes, plan de mesure, métriques de succes, et template d'analyse |
+| Review de diff de prompt | Comparaison cote a cote avec delta de score d'eval et recommandation de déploiement |
+| Politique de gouvernance | Document de politique pour l'équipe : modèle de propriété, exigences de review, gates de déploiement |
 
 ---
 
@@ -199,26 +201,26 @@ Signaler sans qu'on te le demande :
 Tous les outputs suivent le standard structure :
 - **Conclusion d'abord** -- le risque ou la recommandation avant l'explication
 - **Quoi + Pourquoi + Comment** -- chaque constat inclut les trois
-- **Les actions ont des proprietaires et des deadlines** -- pas de "l'equipe devrait envisager..."
-- **Tagging de confiance** -- verifie / moyen / suppose
+- **Les actions ont des propriétaires et des deadlines** -- pas de "l'équipe devrait envisager..."
+- **Tagging de confiance** -- vérifié / moyen / suppose
 
 ---
 
 ## Anti-patterns
 
-| Anti-pattern | Pourquoi ca echoue | Meilleure approche |
+| Anti-pattern | Pourquoi ça échoué | Meilleure approche |
 |---|---|---|
-| Hardcoder les prompts dans le code source applicatif | Les changements de prompts necessitent des deploiements de code, ralentissant l'iteration et couplant les responsabilites | Stocker les prompts dans un registre versionne separe du code applicatif |
-| Deployer des changements de prompts sans lancer d'evals | Les regressions silencieuses de qualite atteignent les utilisateurs sans etre detectees | Gater chaque changement de prompt sur le passage du pipeline d'eval automatise avant promotion |
-| Utiliser un seul dataset gold pour toujours | A mesure que le produit evolue, le dataset gold derive des patterns d'usage reels | Revoir et mettre a jour le dataset gold trimestriellement, en ajoutant les nouveaux cas limites tires des echecs en production |
-| Une seule personne detient tout le savoir sur les prompts | Bus factor de 1 -- quand cette personne part, le contexte des prompts est perdu | Documenter les prompts dans un registre avec propriete, justification et historique des versions |
-| A/B test sans metrique de succes predefinie | La selection de metriques post-hoc introduit du biais et des resultats non concluants | Definir la metrique de succes principale et la taille d'echantillon requise avant de lancer le test |
-| Sauter la capacite de rollback | Un mauvais prompt en production sans rollback force un deploiement de code en urgence | Chaque promotion de version de prompt doit avoir un rollback en une commande vers la version precedente |
+| Hardcoder les prompts dans le code source applicatif | Les changements de prompts necessitent des deploiements de code, ralentissant l'iteration et couplant les responsabilites | Stocker les prompts dans un registre versionne séparé du code applicatif |
+| Déployer des changements de prompts sans lancer d'evals | Les regressions silencieuses de qualite atteignent les utilisateurs sans etre détectées | Gater chaque changement de prompt sur le passage du pipeline d'eval automatise avant promotion |
+| Utiliser un seul dataset gold pour toujours | A mesure que le produit évolué, le dataset gold derive des patterns d'usage reels | Revoir et mettre a jour le dataset gold trimestriellement, en ajoutant les nouveaux cas limites tires des échecs en production |
+| Une seule personne detient tout le savoir sur les prompts | Bus factor de 1 -- quand cette personne part, le contexte des prompts est perdu | Documenter les prompts dans un registre avec propriété, justification et historique des versions |
+| A/B test sans métrique de succes prédéfinie | La selection de métriques post-hoc introduit du biais et des résultats non concluants | Définir la métrique de succes principale et la taille d'echantillon requise avant de lancer le test |
+| Sauter la capacite de rollback | Un mauvais prompt en production sans rollback force un déploiement de code en urgence | Chaque promotion de version de prompt doit avoir un rollback en une commande vers la version précédente |
 
 ## Skills associes
 
-- **senior-prompt-engineer** : Utiliser pour ecrire ou ameliorer des prompts individuels. PAS pour gerer des prompts en production a grande echelle (ca c'est ce skill).
-- **llm-cost-optimizer** : Utiliser pour reduire les depenses API LLM. Se combine avec ce skill -- les evals detectent les regressions de qualite quand on route vers des modeles moins chers.
-- **rag-architect** : Utiliser pour concevoir des pipelines de retrieval. Se combine avec ce skill pour gouverner separement les prompts systeme RAG et les prompts de retrieval.
+- **senior-prompt-engineer** : Utiliser pour écrire ou améliorer des prompts individuels. PAS pour gérer des prompts en production a grande echelle (ça c'est ce skill).
+- **llm-cost-optimizer** : Utiliser pour reduire les depenses API LLM. Se combine avec ce skill -- les evals detectent les regressions de qualite quand on route vers des modèles moins chers.
+- **rag-architect** : Utiliser pour concevoir des pipelines de retrieval. Se combine avec ce skill pour gouverner séparément les prompts système RAG et les prompts de retrieval.
 - **ci-cd-pipeline-builder** : Utiliser pour construire des pipelines CI/CD. Se combine avec ce skill pour automatiser les runs d'eval en CI.
 - **observability-designer** : Utiliser pour concevoir le monitoring. Se combine avec ce skill pour les dashboards de qualite des prompts en production.

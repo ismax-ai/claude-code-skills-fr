@@ -1,76 +1,66 @@
 ---
 name: ralph
-description: "La Boucle Infinie Ralph. Workflow autonome en 3 phases (specs, planification, build) avec boucle bash externe et contexte frais a chaque iteration. Playbook complet traduit integralement en francais."
+description: "La Boucle Infinie Ralph. Workflow autonome en 3 phases (specs, planification, build) avec boucle bash externe et contexte frais a chaque iteration. Playbook complet traduit intégralement en français."
 ---
 
-> Concept original : [Geoffrey Huntley](https://ghuntley.com/ralph/). Playbook : [ClaytonFarr/ralph-playbook](https://github.com/ClaytonFarr/ralph-playbook). Traduit integralement en francais.
+> Concept original : [Geoffrey Huntley](https://ghuntley.com/ralph/). Playbook : [ClaytonFarr/ralph-playbook](https://github.com/ClaytonFarr/ralph-playbook). Traduit intégralement en français.
 
 # Le Playbook Ralph
 
-En decembre 2025, la petite tete de [Ralph](https://ghuntley.com/ralph/), puissante mais volontairement simpliste, a emerge au sommet de la plupart des timelines liees a l'IA.
+## Ce que ce skill résout
 
-J'essaie de suivre les insights brillants que [@GeoffreyHuntley](https://x.com/GeoffreyHuntley) partage, mais je ne peux pas dire que Ralph m'avait vraiment parle cet ete. Maintenant, tout le buzz recent rend le sujet impossible a ignorer.
+Claude Code exécute les tâches une par une dans une seule session. Quand le contexte se remplit, la qualité se dégrade : hallucinations, oublis d'instructions, boucles. Ralph résout ce problème en externalisant la boucle de travail dans un script bash qui relance Claude avec un contexte frais à chaque itération.
 
-Les vues d'ensemble de [@mattpocockuk](https://x.com/mattpocockuk/status/2008200878633931247) et [@ryancarson](https://x.com/ryancarson/status/2008548371712135632) ont beaucoup aide, jusqu'a ce que Geoff arrive et [dise 'nah'](https://x.com/GeoffreyHuntley/status/2008731415312236984).
+Le workflow se décompose en 3 phases : définition des exigences (conversation), planification (prompt structuré), puis exécution en boucle autonome (script bash + prompt d'implémentation). Chaque itération lit le plan, choisit la prochaine tâche, l'implémente, commit, et met à jour le plan — sans accumulation de contexte.
 
-## Quelle est la facon optimale de faire du Ralph ?
-
-Beaucoup de gens semblent obtenir de bons resultats avec differentes variantes, mais je voulais lire entre les lignes aussi attentivement que possible de la part de celui qui non seulement a capture cette approche mais a aussi passe le plus de temps a la mettre en pratique.
-
-Alors j'ai creuse pour vraiment _RTFM_ sur les [videos recentes](https://www.youtube.com/watch?v=O2bBWDoxO4s) et le [post original](https://ghuntley.com/ralph/) de Geoff pour demeler par moi-meme ce qui fonctionne le mieux.
-
-Ci-dessous le resultat : un Playbook Ralph (probablement alimente par du TOC) qui organise les details divers pour mettre tout ca en pratique sans, esperons-le, le castrer dans le processus.
-
-> Creuser tout ca m'a aussi fait penser a des [ameliorations supplementaires](#ameliorations) potentiellement precieuses a l'approche de base qui visent a rester alignees avec les principes qui font si bien fonctionner Ralph.
-
-J'espere que ca vous aide. -- [@ClaytonFarr](https://x.com/ClaytonFarr)
+Concept original : [Geoffrey Huntley](https://ghuntley.com/ralph/). Playbook structuré : [ClaytonFarr](https://github.com/ClaytonFarr/ralph-playbook).
 
 ---
 
-## Table des matieres
+## Table des matières
 
 - [Workflow](#workflow)
 - [Principes cles](#principes-cles)
-- [Mecanique de la boucle](#mecanique-de-la-boucle)
+- [Mécanique de la boucle](#mécanique-de-la-boucle)
 - [Licence](#licence)
 - [Fichiers](#fichiers)
-- [Ameliorations](#ameliorations)
+- [Améliorations](#améliorations)
 
 ---
 
 ## Workflow
 
-Une image vaut mille tweets et une video d'une heure. La [vue d'ensemble de Geoff ici](https://ghuntley.com/ralph/) (inscription a sa newsletter pour voir l'article complet) a vraiment aide a clarifier les details du workflow pour passer de 1) idee a 2) specs individuelles alignees JTBD a 3) plan d'implementation complet a 4) boucles de travail Ralph.
+Une image vaut mille tweets et une video d'une heure. La [vue d'ensemble de Geoff ici](https://ghuntley.com/ralph/) (inscription a sa newsletter pour voir l'article complet) a vraiment aide a clarifier les détails du workflow pour passer de 1) idee a 2) specs individuelles alignees JTBD a 3) plan d'implémentation complet a 4) boucles de travail Ralph.
 
 ### Trois Phases, Deux Prompts, Une Boucle
 
 Ce diagramme m'a clarifie que Ralph n'est pas juste "une boucle qui code". C'est un entonnoir avec 3 Phases, 2 Prompts et 1 Boucle.
 
-#### Phase 1. Definir les exigences (conversation LLM)
+#### Phase 1. Définir les exigences (conversation LLM)
 
 - Discuter des idees de projet, identifier les Jobs to Be Done (JTBD)
 - Decouper chaque JTBD en sujet(s) de preoccupation (topic of concern)
 - Utiliser des subagents pour charger des infos depuis des URLs dans le contexte
-- Le LLM comprend le sujet de preoccupation JTBD : un subagent ecrit `specs/FICHIER.md` pour chaque sujet
+- Le LLM comprend le sujet de preoccupation JTBD : un subagent écrit `specs/FICHIER.md` pour chaque sujet
 
 #### Phase 2 / 3. Lancer la boucle Ralph (deux modes, changer `PROMPT.md` selon le besoin)
 
-Meme mecanisme de boucle, prompts differents pour des objectifs differents :
+Même mecanisme de boucle, prompts differents pour des objectifs differents :
 
 | Mode           | Quand l'utiliser                                    | Focus du prompt                                                      |
 | -------------- | --------------------------------------------------- | -------------------------------------------------------------------- |
-| _PLANIFICATION_ | Pas de plan, ou plan obsolete/incorrect            | Generer/mettre a jour `IMPLEMENTATION_PLAN.md` uniquement            |
-| _CONSTRUCTION_  | Le plan existe                                      | Implementer depuis le plan, commit, mettre a jour le plan en effet secondaire |
+| _PLANIFICATION_ | Pas de plan, ou plan obsolète/incorrect            | Générer/mettre a jour `IMPLEMENTATION_PLAN.md` uniquement            |
+| _CONSTRUCTION_  | Le plan existe                                      | Implémenter depuis le plan, commit, mettre a jour le plan en effet secondaire |
 
-_Differences de prompt par mode :_
+_Différences de prompt par mode :_
 
-- Le prompt 'PLANIFICATION' fait une analyse des ecarts (specs vs code) et produit une liste TODO priorisee, pas d'implementation, pas de commits.
-- Le prompt 'CONSTRUCTION' suppose que le plan existe, choisit des taches dedans, implemente, lance les tests (backpressure), commit.
+- Le prompt 'PLANIFICATION' fait une analyse des écarts (specs vs code) et produit une liste TODO priorisee, pas d'implémentation, pas de commits.
+- Le prompt 'CONSTRUCTION' suppose que le plan existe, choisit des tâches dedans, implémenté, lance les tests (backpressure), commit.
 
 _Pourquoi utiliser la boucle pour les deux modes ?_
 
-- La CONSTRUCTION le necessite : inheremment iteratif (beaucoup de taches x contexte frais = isolation)
-- La PLANIFICATION l'utilise par coherence : meme modele d'execution, bien que souvent completee en 1-2 iterations
+- La CONSTRUCTION le nécessité : inheremment iteratif (beaucoup de tâches x contexte frais = isolation)
+- La PLANIFICATION l'utilise par cohérence : même modèle d'exécution, bien que souvent complétée en 1-2 iterations
 - Flexibilite : si le plan a besoin de raffinement, la boucle permet plusieurs passes lisant sa propre sortie
 - Simplicite : un seul mecanisme pour tout ; E/S fichiers propres ; arret/redemarrage facile
 
@@ -79,51 +69,51 @@ _Contexte charge a chaque iteration :_ `PROMPT.md` + `AGENTS.md`
 _Cycle de vie de la boucle en mode PLANIFICATION :_
 
 1. Les subagents etudient `specs/*` et le `/src` existant
-2. Comparent les specs au code (analyse des ecarts)
-3. Creent/mettent a jour `IMPLEMENTATION_PLAN.md` avec les taches priorisees
-4. Pas d'implementation
+2. Comparent les specs au code (analyse des écarts)
+3. Creent/mettent a jour `IMPLEMENTATION_PLAN.md` avec les tâches priorisees
+4. Pas d'implémentation
 
 _Cycle de vie de la boucle en mode CONSTRUCTION :_
 
 1. _Orienter_ -- les subagents etudient `specs/*` (exigences)
 2. _Lire le plan_ -- etudier `IMPLEMENTATION_PLAN.md`
-3. _Selectionner_ -- choisir la tache la plus importante
-4. _Investiguer_ -- les subagents etudient le `/src` pertinent ("ne pas supposer que ce n'est pas implemente")
-5. _Implementer_ -- N subagents pour les operations fichiers
+3. _Selectionner_ -- choisir la tâche la plus importante
+4. _Investiguer_ -- les subagents etudient le `/src` pertinent ("ne pas supposer que ce n'est pas implémenté")
+5. _Implémenter_ -- N subagents pour les opérations fichiers
 6. _Valider_ -- 1 subagent pour build/tests (backpressure)
-7. _Mettre a jour `IMPLEMENTATION_PLAN.md`_ -- marquer la tache terminee, noter les decouvertes/bugs
+7. _Mettre a jour `IMPLEMENTATION_PLAN.md`_ -- marquer la tâche terminee, noter les decouvertes/bugs
 8. _Mettre a jour `AGENTS.md`_ -- si apprentissages operationnels
 9. _Commit_
-10. _Fin de boucle_ -> contexte efface -> iteration suivante demarre a neuf
+10. _Fin de boucle_ -> contexte efface -> iteration suivante démarré a neuf
 
 #### Concepts
 
-| Terme                          | Definition                                                             |
+| Terme                          | Définition                                                             |
 | ------------------------------ | ---------------------------------------------------------------------- |
-| _Job to be Done (JTBD)_        | Besoin ou resultat attendu de haut niveau                              |
+| _Job to be Done (JTBD)_        | Besoin ou résultat attendu de haut niveau                              |
 | _Sujet de preoccupation_       | Un aspect/composant distinct au sein d'un JTBD                         |
 | _Spec_                         | Document d'exigences pour un sujet de preoccupation (`specs/FICHIER.md`) |
-| _Tache_                        | Unite de travail derivee de la comparaison specs vs code               |
+| _Tâche_                        | Unite de travail derivee de la comparaison specs vs code               |
 
 _Relations :_
 
 - 1 JTBD -> plusieurs sujets de preoccupation
 - 1 sujet de preoccupation -> 1 spec
-- 1 spec -> plusieurs taches (les specs sont plus larges que les taches)
+- 1 spec -> plusieurs tâches (les specs sont plus larges que les tâches)
 
 _Exemple :_
 
-- JTBD : "Aider les designers a creer des moodboards"
+- JTBD : "Aider les designers a créer des moodboards"
 - Sujets : collecte d'images, extraction de couleurs, mise en page, partage
 - Chaque sujet -> un fichier spec
-- Chaque spec -> beaucoup de taches dans le plan d'implementation
+- Chaque spec -> beaucoup de tâches dans le plan d'implémentation
 
 _Test de portee du sujet : "Une phrase sans 'Et'"_
 
-- Pouvez-vous decrire le sujet de preoccupation en une phrase sans conjoindre des capacites non liees ?
-  - OK : "Le systeme d'extraction de couleurs analyse les images pour identifier les couleurs dominantes"
-  - PAS OK : "Le systeme utilisateur gere l'authentification, les profils et la facturation" -> 3 sujets
-- Si vous avez besoin de "et" pour decrire ce que ca fait, c'est probablement plusieurs sujets
+- Pouvez-vous décrire le sujet de preoccupation en une phrase sans conjoindre des capacites non liees ?
+  - OK : "Le système d'extraction de couleurs analyse les images pour identifier les couleurs dominantes"
+  - PAS OK : "Le système utilisateur géré l'authentification, les profils et la facturation" -> 3 sujets
+- Si vous avez besoin de "et" pour décrire ce que ça fait, c'est probablement plusieurs sujets
 
 ---
 
@@ -131,72 +121,72 @@ _Test de portee du sujet : "Une phrase sans 'Et'"_
 
 ### Le contexte est _TOUT_
 
-- Quand 200K+ tokens annonces = ~176K reellement utilisables
+- Quand 200K+ tokens annonces = ~176K réellement utilisables
 - Et 40-60% d'utilisation du contexte pour la "zone intelligente"
-- Taches serrees + 1 tache par boucle = _100% d'utilisation du contexte en zone intelligente_
+- Tâches serrees + 1 tâche par boucle = _100% d'utilisation du contexte en zone intelligente_
 
-Ca informe et pilote tout le reste :
+Ça informe et pilote tout le reste :
 
 - _Utiliser l'agent principal/contexte comme ordonnanceur_
-  - Ne pas allouer du travail couteux au contexte principal ; deleguer aux subagents a chaque fois que possible
-- _Utiliser les subagents comme extension memoire_
+  - Ne pas allouer du travail couteux au contexte principal ; déléguer aux subagents a chaque fois que possible
+- _Utiliser les subagents comme extension mémoire_
   - Chaque subagent dispose de ~156kb qui est ramasse par le garbage collector
-  - Distribuer pour eviter de polluer le contexte principal
+  - Distribuer pour éviter de polluer le contexte principal
 - _La simplicite et la brievete gagnent_
-  - S'applique au nombre de parties du systeme, a la config de la boucle et au contenu
+  - S'applique au nombre de parties du système, a la config de la boucle et au contenu
   - Des entrees verbeuses degradent le determinisme
-- _Preferer le Markdown au JSON_
-  - Pour definir et suivre le travail, pour une meilleure efficacite en tokens
+- _Préférer le Markdown au JSON_
+  - Pour définir et suivre le travail, pour une meilleure efficacite en tokens
 
 ### Piloter Ralph : Patterns + Backpressure
 
-Creer les bons signaux et portes pour piloter le succes de Ralph est **critique**. Vous pouvez piloter depuis deux directions :
+Créer les bons signaux et portes pour piloter le succes de Ralph est **critique**. Vous pouvez piloter depuis deux directions :
 
 - _Piloter en amont_
   - Assurer un setup deterministe :
     - Allouer les ~5 000 premiers tokens aux specs
-    - Le contexte de chaque boucle est alloue avec les memes fichiers pour que le modele parte d'un etat connu (`PROMPT.md` + `AGENTS.md`)
-  - Votre code existant influence ce qui est utilise et genere
-  - Si Ralph genere de mauvais patterns, ajoutez/mettez a jour des utilitaires et patterns de code existants pour le guider vers les bons
+    - Le contexte de chaque boucle est alloue avec les mêmes fichiers pour que le modèle parte d'un état connu (`PROMPT.md` + `AGENTS.md`)
+  - Votre code existant influence ce qui est utilise et généré
+  - Si Ralph généré de mauvais patterns, ajoutez/mettez a jour des utilitaires et patterns de code existants pour le guider vers les bons
 - _Piloter en aval_
-  - Creer de la backpressure via les tests, typechecks, lints, builds, etc. qui vont rejeter le travail invalide/inacceptable
-  - Le prompt dit "lancer les tests" de facon generique. `AGENTS.md` specifie les commandes reelles pour rendre la backpressure specifique au projet
-  - La backpressure peut aller au-dela de la validation du code : certains criteres d'acceptation resistent aux verifications programmatiques -- qualite creative, esthetique, ressenti UX. Les tests LLM-comme-juge peuvent fournir de la backpressure pour des criteres subjectifs avec un pass/fail binaire. ([Reflexions plus detaillees ci-dessous](#backpressure-non-deterministe) sur comment approcher ca avec Ralph.)
-- _Rappeler a Ralph de creer/utiliser la backpressure_
-  - Rappeler a Ralph d'utiliser la backpressure lors de l'implementation : "Important : quand tu rediges de la documentation, capture le pourquoi -- tests et importance de l'implementation."
+  - Créer de la backpressure via les tests, typechecks, lints, builds, etc. qui vont rejeter le travail invalide/inacceptable
+  - Le prompt dit "lancer les tests" de façon generique. `AGENTS.md` spécifié les commandes reelles pour rendre la backpressure spécifique au projet
+  - La backpressure peut aller au-delà de la validation du code : certains critères d'acceptation resistent aux verifications programmatiques -- qualite creative, esthetique, ressenti UX. Les tests LLM-comme-juge peuvent fournir de la backpressure pour des critères subjectifs avec un pass/fail binaire. ([Reflexions plus detaillees ci-dessous](#backpressure-non-deterministe) sur comment approcher ça avec Ralph.)
+- _Rappeler a Ralph de créer/utiliser la backpressure_
+  - Rappeler a Ralph d'utiliser la backpressure lors de l'implémentation : "Important : quand tu rediges de la documentation, capture le pourquoi -- tests et importance de l'implémentation."
 
 ### Laisser Ralph faire du Ralph
 
 L'efficacite de Ralph vient de combien vous lui faites confiance pour faire la bonne chose (eventuellement) et favorisez sa capacite a le faire.
 
 - _Laisser Ralph faire du Ralph_
-  - S'appuyer sur la capacite du LLM a s'auto-identifier, s'auto-corriger et s'auto-ameliorer
-  - S'applique au plan d'implementation, a la definition et priorisation des taches
+  - S'appuyer sur la capacite du LLM a s'auto-identifier, s'auto-corriger et s'auto-améliorer
+  - S'applique au plan d'implémentation, a la définition et priorisation des tâches
   - Consistance eventuelle atteinte par l'iteration
 - _Utiliser des protections_
-  - Pour operer de maniere autonome, Ralph necessite `--dangerously-skip-permissions` -- demander une approbation a chaque appel d'outil casserait la boucle. Ca contourne entierement le systeme de permissions de Claude -- donc une sandbox devient votre seule frontiere de securite.
-  - Philosophie : "La question n'est pas si ca va etre compromis, mais quand. Et quel est le rayon de l'explosion ?"
+  - Pour operer de manière autonome, Ralph nécessité `--dangerously-skip-permissions` -- demander une approbation a chaque appel d'outil casserait la boucle. Ça contourne entièrement le système de permissions de Claude -- donc une sandbox devient votre seule frontière de sécurité.
+  - Philosophie : "La question n'est pas si ça va etre compromis, mais quand. Et quel est le rayon de l'explosion ?"
   - Tourner sans sandbox expose vos identifiants, cookies navigateur, cles SSH et tokens d'acces sur votre machine
   - Tourner dans des environnements isoles avec un acces minimum viable :
-    - Uniquement les cles API et cles de deploiement necessaires a la tache
-    - Pas d'acces aux donnees privees au-dela des besoins
+    - Uniquement les cles API et cles de déploiement nécessaires a la tâche
+    - Pas d'acces aux donnees privees au-delà des besoins
     - Restreindre la connectivite reseau quand possible
-  - Options : sandboxes Docker (local), Fly Sprites/E2B/etc. (remote/production) -- [notes supplementaires](#environnements-sandbox)
-  - Sorties de secours supplementaires : Ctrl+C arrete la boucle ; `git reset --hard` annule les changements non commites ; regenerer le plan si la trajectoire part mal
+  - Options : sandboxes Docker (local), Fly Sprites/E2B/etc. (remote/production) -- [notes supplémentaires](#environnements-sandbox)
+  - Sorties de secours supplémentaires : Ctrl+C arrêté la boucle ; `git reset --hard` annule les changements non commites ; regenerer le plan si la trajectoire part mal
 
 ### Se mettre a l'exterieur de la boucle
 
-Pour tirer le maximum de Ralph, il faut se mettre hors de son chemin. Ralph devrait faire _tout_ le travail, y compris decider quelle tache planifiee implementer ensuite et comment l'implementer. Votre job est maintenant de vous asseoir SUR la boucle, pas DEDANS -- d'ingenierer le setup et l'environnement qui permettront a Ralph de reussir.
+Pour tirer le maximum de Ralph, il faut se mettre hors de son chemin. Ralph devrait faire _tout_ le travail, y compris décider quelle tâche planifiee implémenter ensuite et comment l'implémenter. Votre job est maintenant de vous asseoir SUR la boucle, pas DEDANS -- d'ingenierer le setup et l'environnement qui permettront a Ralph de réussir.
 
-_Observer et corriger le cap_ -- surtout au debut, asseyez-vous et regardez. Quels patterns emergent ? Ou Ralph se trompe-t-il ? Quels signes lui faut-il ? Les prompts avec lesquels vous commencez ne seront pas ceux avec lesquels vous finirez -- ils evoluent a travers les patterns d'echec observes.
+_Observer et corriger le cap_ -- surtout au début, asseyez-vous et regardez. Quels patterns emergent ? Ou Ralph se trompe-t-il ? Quels signes lui faut-il ? Les prompts avec lesquels vous commencez ne seront pas ceux avec lesquels vous finirez -- ils evoluent a travers les patterns d'échec observes.
 
-_Accorder comme une guitare_ -- au lieu de tout prescrire d'emblee, observer et ajuster de facon reactive. Quand Ralph echoue d'une certaine facon, ajoutez un signe pour l'aider la prochaine fois.
+_Ajuster de façon réactive_ -- au lieu de tout prescrire d'emblée, observer et corriger au fil des itérations. Quand Ralph échoue d'une certaine façon, ajoutez un signe pour l'aider la prochaine fois.
 
-Mais les signes ne sont pas juste du texte de prompt. Ce sont _n'importe quoi_ que Ralph peut decouvrir :
+Mais les signes ne sont pas juste du texte de prompt. Ce sont _n'importe quoi_ que Ralph peut découvrir :
 
-- Garde-fous du prompt -- instructions explicites comme "ne pas supposer que ce n'est pas implemente"
+- Garde-fous du prompt -- instructions explicites comme "ne pas supposer que ce n'est pas implémenté"
 - `AGENTS.md` -- apprentissages operationnels sur comment builder/tester
-- Utilitaires dans votre codebase -- quand vous ajoutez un pattern, Ralph le decouvre et le suit
+- Utilitaires dans votre codebase -- quand vous ajoutez un pattern, Ralph le découvre et le suit
 - Autres entrees pertinentes et decouvrables...
 
 > **Conseil :**
@@ -204,26 +194,26 @@ Mais les signes ne sont pas juste du texte de prompt. Ce sont _n'importe quoi_ q
 > 1. essayer de commencer avec _rien_ dans `AGENTS.md` (fichier vide ; pas de _bonnes pratiques_, etc.)
 > 2. tester ponctuellement les actions desirees, trouver les erreurs ([exemple de walkthrough de Geoff](https://x.com/ClaytonFarr/status/2010780371542241508))
 > 3. observer les boucles initiales, voir ou des lacunes apparaissent
-> 4. ajuster le comportement _uniquement si necessaire_, via des mises a jour AGENTS et/ou des patterns de code (utilitaires partages, etc.)
+> 4. ajuster le comportement _uniquement si nécessaire_, via des mises a jour AGENTS et/ou des patterns de code (utilitaires partages, etc.)
 
 Et rappelez-vous, _le plan est jetable :_
 
 - S'il est faux, jetez-le et recommencez
-- Le cout de regeneration est une boucle de Planification ; peu couteux par rapport a Ralph qui tourne en rond
+- Le coût de regeneration est une boucle de Planification ; peu couteux par rapport a Ralph qui tourne en rond
 - Regenerer quand :
-  - Ralph part dans la mauvaise direction (implemente les mauvaises choses, duplique le travail)
-  - Le plan semble obsolete ou ne correspond plus a l'etat actuel
-  - Trop d'encombrement d'elements completes
+  - Ralph part dans la mauvaise direction (implémenté les mauvaises choses, duplique le travail)
+  - Le plan semble obsolète ou ne correspond plus a l'état actuel
+  - Trop d'encombrement d'éléments completes
   - Vous avez fait des changements significatifs aux specs
-  - Vous etes confus sur ce qui est reellement fait
+  - Vous etes confus sur ce qui est réellement fait
 
 ---
 
-## Mecanique de la boucle
+## Mécanique de la boucle
 
-### I. Selection de tache
+### I. Selection de tâche
 
-`loop.sh` agit en effet comme une 'boucle externe' ou chaque boucle = une seule tache (dans des sessions separees). Quand la tache est completee, `loop.sh` lance une session fraiche pour selectionner la tache suivante, si des taches restantes sont disponibles.
+`loop.sh` agit en effet comme une 'boucle externe' ou chaque boucle = une seule tâche (dans des sessions separees). Quand la tâche est complétée, `loop.sh` lance une session fraiche pour selectionner la tâche suivante, si des tâches restantes sont disponibles.
 
 La forme minimale initiale du script `loop.sh` de Geoff :
 
@@ -231,44 +221,44 @@ La forme minimale initiale du script `loop.sh` de Geoff :
 while :; do cat PROMPT.md | claude ; done
 ```
 
-_Note :_ La meme approche peut etre utilisee avec d'autres CLIs ; par ex. `amp`, `codex`, `opencode`, etc.
+_Note :_ La même approche peut etre utilisee avec d'autres CLIs ; par ex. `amp`, `codex`, `opencode`, etc.
 
-_Qu'est-ce qui controle la continuation des taches ?_
+_Qu'est-ce qui contrôle la continuation des tâches ?_
 
 Le mecanisme de continuation est elegamment simple :
 
 1. _La boucle bash tourne_ -> alimente `PROMPT.md` a claude
-2. _PROMPT.md instruit_ -> "Etudie IMPLEMENTATION_PLAN.md et choisis la chose la plus importante..."
-3. _L'agent complete une tache_ -> met a jour IMPLEMENTATION_PLAN.md sur disque, commit, sort
-4. _La boucle bash redemarre immediatement_ -> fenetre de contexte fraiche
+2. _PROMPT.md instruit_ -> "Etudie Implémentation_PLAN.md et choisis la chose la plus importante..."
+3. _L'agent complété une tâche_ -> met a jour Implémentation_PLAN.md sur disque, commit, sort
+4. _La boucle bash redemarre immédiatement_ -> fenêtre de contexte fraiche
 5. _L'agent lit le plan mis a jour_ -> choisit la prochaine chose la plus importante...
 
-_Insight cle :_ Le fichier IMPLEMENTATION_PLAN.md persiste sur disque entre les iterations et agit comme etat partage entre des executions de boucle autrement isolees. Chaque iteration charge de facon deterministe les memes fichiers (`PROMPT.md` + `AGENTS.md` + `specs/*`) et lit l'etat courant depuis le disque.
+_Insight cle :_ Le fichier Implémentation_PLAN.md persiste sur disque entre les iterations et agit comme état partage entre des executions de boucle autrement isolees. Chaque iteration charge de façon deterministe les mêmes fichiers (`PROMPT.md` + `AGENTS.md` + `specs/*`) et lit l'état courant depuis le disque.
 
-_Pas besoin d'orchestration sophistiquee_ -- juste une boucle bash simpliste qui continue de relancer l'agent, et l'agent determine quoi faire ensuite en lisant le fichier plan a chaque fois.
+_Pas besoin d'orchestration sophistiquee_ -- juste une boucle bash simpliste qui continue de relancer l'agent, et l'agent déterminé quoi faire ensuite en lisant le fichier plan a chaque fois.
 
-### II. Execution de tache
+### II. Exécution de tâche
 
-Chaque tache est promptee pour continuer son travail contre la backpressure (tests, etc.) jusqu'a ce qu'elle passe -- creant une pseudo 'boucle' interne (dans une seule session).
+Chaque tâche est promptee pour continuer son travail contre la backpressure (tests, etc.) jusqu'a ce qu'elle passe -- creant une pseudo 'boucle' interne (dans une seule session).
 
-Cette boucle interne est juste de l'auto-correction interne / du raisonnement iteratif au sein d'une seule longue reponse du modele, alimentee par les prompts de backpressure, l'utilisation d'outils et les subagents. Ce n'est pas une boucle au sens programmatique.
+Cette boucle interne est juste de l'auto-correction interne / du raisonnement iteratif au sein d'une seule longue réponse du modèle, alimentee par les prompts de backpressure, l'utilisation d'outils et les subagents. Ce n'est pas une boucle au sens programmatique.
 
-Une seule execution de tache n'a pas de limite technique dure. Le controle repose sur :
+Une seule exécution de tâche n'a pas de limite technique dure. Le contrôle repose sur :
 
-- _Discipline de portee_ -- PROMPT.md instruit "une tache" et "commit quand les tests passent"
-- _Backpressure_ -- les echecs de tests/build forcent l'agent a corriger les problemes avant de commiter
-- _Completion naturelle_ -- l'agent sort apres un commit reussi
+- _Discipline de portee_ -- PROMPT.md instruit "une tâche" et "commit quand les tests passent"
+- _Backpressure_ -- les échecs de tests/build forcent l'agent a corriger les problèmes avant de commiter
+- _Complétion naturelle_ -- l'agent sort apres un commit réussi
 
-_Ralph peut tourner en rond, ignorer les instructions, ou partir dans de mauvaises directions_ -- c'est attendu et fait partie du processus d'accordage. Quand Ralph "vous teste" en echouant de facons specifiques, vous ajoutez des garde-fous au prompt ou ajustez les mecanismes de backpressure. Le non-determinisme est gerable par l'observation et l'iteration.
+_Ralph peut tourner en rond, ignorer les instructions, ou partir dans de mauvaises directions_ -- c'est attendu et fait partie du processus d'accordage. Quand Ralph "vous teste" en echouant de facons spécifiques, vous ajoutez des garde-fous au prompt ou ajustez les mecanismes de backpressure. Le non-determinisme est gerable par l'observation et l'iteration.
 
-### Exemple de `loop.sh` ameliore
+### Exemple de `loop.sh` amélioré
 
-Enveloppe la boucle de base avec selection de mode (plan/build), avec max-iterations pour le nombre maximum de taches a completer, et git push apres chaque iteration.
+Enveloppe la boucle de base avec selection de mode (plan/build), avec max-iterations pour le nombre maximum de tâches a compléter, et git push apres chaque iteration.
 
-_Cette amelioration utilise deux fichiers prompt sauvegardes :_
+_Cette amélioration utilise deux fichiers prompt sauvegardes :_
 
-- `PROMPT_plan.md` -- Mode planification (analyse des ecarts, genere/met a jour le plan)
-- `PROMPT_build.md` -- Mode construction (implemente depuis le plan)
+- `PROMPT_plan.md` -- Mode planification (analyse des écarts, généré/met a jour le plan)
+- `PROMPT_build.md` -- Mode construction (implémenté depuis le plan)
 
 ```bash
 #!/bin/bash
@@ -351,34 +341,34 @@ done
 
 _Selection de mode :_
 
-- Pas de mot-cle -> Utilise `PROMPT_build.md` pour la construction (implementation)
-- Mot-cle `plan` -> Utilise `PROMPT_plan.md` pour la planification (analyse des ecarts, generation du plan)
+- Pas de mot-cle -> Utilise `PROMPT_build.md` pour la construction (implémentation)
+- Mot-cle `plan` -> Utilise `PROMPT_plan.md` pour la planification (analyse des écarts, generation du plan)
 
 _Max-iterations :_
 
-- Limite la _boucle de selection de tache_ (nombre de taches tentees ; PAS les appels d'outils au sein d'une seule tache)
-- Chaque iteration = une fenetre de contexte fraiche = une tache de IMPLEMENTATION_PLAN.md = un commit
+- Limite la _boucle de selection de tâche_ (nombre de tâches tentees ; PAS les appels d'outils au sein d'une seule tâche)
+- Chaque iteration = une fenêtre de contexte fraiche = une tâche de Implémentation_PLAN.md = un commit
 - `./loop.sh` tourne en illimite (arret manuel avec Ctrl+C)
-- `./loop.sh 20` tourne max 20 iterations puis s'arrete
+- `./loop.sh 20` tourne max 20 iterations puis s'arrêté
 
 _Flags CLI de Claude :_
 
-- `-p` (mode headless) : Active l'operation non-interactive, lit le prompt depuis stdin
-- `--dangerously-skip-permissions` : Contourne tous les prompts de permission pour des runs entierement automatises
+- `-p` (mode headless) : Active l'opération non-interactive, lit le prompt depuis stdin
+- `--dangerously-skip-permissions` : Contourne tous les prompts de permission pour des runs entièrement automatises
 - `--output-format=stream-json` : Produit du JSON structure pour logging/monitoring/visualisation
-- `--model opus` : L'agent principal utilise Opus pour la selection de tache, priorisation et coordination (peut utiliser `sonnet` pour la vitesse si les taches sont claires)
-- `--verbose` : Fournit un logging d'execution detaille
+- `--model opus` : L'agent principal utilise Opus pour la selection de tâche, priorisation et coordination (peut utiliser `sonnet` pour la vitesse si les tâches sont claires)
+- `--verbose` : Fournit un logging d'exécution détaillé
 
 ### Variante avec sortie streamee
 
-Une alternative `loop_streamed.sh` qui pipe la sortie JSON brute de Claude a travers `parse_stream.js` pour un affichage terminal lisible et colore montrant les appels d'outils, resultats et statistiques d'execution.
+Une alternative `loop_streamed.sh` qui pipe la sortie JSON brute de Claude a travers `parse_stream.js` pour un affichage terminal lisible et colore montrant les appels d'outils, résultats et statistiques d'exécution.
 
-_Differences par rapport au `loop.sh` de base :_
+_Différences par rapport au `loop.sh` de base :_
 
 - Passe le prompt comme argument (`-p "$FULL_PROMPT"`) au lieu d'un pipe stdin
 - Ajoute `--include-partial-messages` pour le streaming en temps reel
-- Pipe la sortie a travers `parse_stream.js` (Node.js, aucune dependance)
-- Ajoute "Execute the instructions above." au contenu du prompt
+- Pipe la sortie a travers `parse_stream.js` (Node.js, aucune dépendance)
+- Ajoute "Exécuté the instructions above." au contenu du prompt
 
 _Fichiers :_ `loop_streamed.sh` et `parse_stream.js`
 
@@ -743,7 +733,7 @@ rl.on('line', (line) => {
 
 Ce repository est disponible sous la [Licence MIT](LICENSE).
 
-Les captures d'ecran tierces et images provenant de sources externes sont exclues sauf mention explicite contraire. Voir [NOTICE](NOTICE) pour les details.
+Les captures d'écran tierces et images provenant de sources externes sont exclues sauf mention explicite contraire. Voir [NOTICE](NOTICE) pour les détails.
 
 ---
 
@@ -767,15 +757,15 @@ racine-du-projet/
 
 Le script de boucle principal qui orchestre les iterations Ralph.
 
-Voir la section [Mecanique de la boucle](#mecanique-de-la-boucle) pour des exemples d'implementation detailles et les options de configuration.
+Voir la section [Mécanique de la boucle](#mécanique-de-la-boucle) pour des exemples d'implémentation detailles et les options de configuration.
 
-_Setup :_ Rendre le script executable avant la premiere utilisation :
+_Setup :_ Rendre le script executable avant la première utilisation :
 
 ```bash
 chmod +x loop.sh
 ```
 
-_Fonction principale :_ Alimente continuellement le fichier prompt a Claude, gere les limites d'iterations et pousse les changements apres chaque completion de tache.
+_Fonction principale :_ Alimente continuellement le fichier prompt a Claude, géré les limites d'iterations et pousse les changements apres chaque complétion de tâche.
 
 ### PROMPTS
 
@@ -786,35 +776,35 @@ _Structure du prompt :_
 | Section                | Objectif                                                       |
 | ---------------------- | -------------------------------------------------------------- |
 | _Phase 0_ (0a, 0b, 0c) | Orienter : etudier specs, emplacement source, plan courant    |
-| _Phase 1-4_            | Instructions principales : tache, validation, commit           |
+| _Phase 1-4_            | Instructions principales : tâche, validation, commit           |
 | _Numerotation 999..._  | Garde-fous/invariants (nombre plus eleve = plus critique)      |
 
-_Patterns de langage cles_ (formulations specifiques de Geoff) :
+_Patterns de langage cles_ (formulations spécifiques de Geoff) :
 
 - "study" (pas "read" ou "look at") -- "etudier"
-- "don't assume not implemented" (critique, le talon d'Achille) -- "ne pas supposer que ce n'est pas implemente"
+- "don't assume not implemented" (critique, le talon d'Achille) -- "ne pas supposer que ce n'est pas implémenté"
 - "using parallel subagents" / "up to N subagents" -- "en utilisant des subagents paralleles" / "jusqu'a N subagents"
-- "only 1 subagent for build/tests" (controle de backpressure) -- "seulement 1 subagent pour build/tests"
-- "Think extra hard" (maintenant "Ultrathink") -- "Reflechir tres fort"
+- "only 1 subagent for build/tests" (contrôle de backpressure) -- "seulement 1 subagent pour build/tests"
+- "Think extra hard" (maintenant "Ultrathink") -- "Réfléchir tres fort"
 - "capture the why" -- "capturer le pourquoi"
 - "keep it up to date" -- "garder a jour"
 - "if functionality is missing then it's your job to add it" -- "si la fonctionnalite manque c'est ton job de l'ajouter"
-- "resolve them or document them" -- "les resoudre ou les documenter"
+- "resolve them or document them" -- "les résoudre ou les documenter"
 
 #### Convention de numerotation 999...
 
-Les garde-fous dans les prompts utilisent une numerotation en series croissantes de 9 (99999, 999999, 9999999, etc.). Ce n'est **pas** un systeme de priorite conventionnel. C'est une convention de Geoff ou :
+Les garde-fous dans les prompts utilisent une numerotation en series croissantes de 9 (99999, 999999, 9999999, etc.). Ce n'est **pas** un système de priorité conventionnel. C'est une convention de Geoff ou :
 
-- Les numeros ne sont pas des priorites mais des **invariants** -- des regles qui doivent toujours etre respectees
-- Le nombre croissant de 9 cree une separation visuelle claire entre les instructions principales et les garde-fous
-- Plus le numero est long, plus la regle est "fondamentale" dans la philosophie (les derniers ajouts ont les plus longs numeros)
-- Ca rend les garde-fous faciles a ajouter sans reordonner les instructions existantes
+- Les numeros ne sont pas des priorités mais des **invariants** -- des règles qui doivent toujours etre respectees
+- Le nombre croissant de 9 créé une séparation visuelle claire entre les instructions principales et les garde-fous
+- Plus le numero est long, plus la règle est "fondamentale" dans la philosophie (les derniers ajouts ont les plus longs numeros)
+- Ça rend les garde-fous faciles a ajouter sans reordonner les instructions existantes
 
 #### Template `PROMPT_plan.md`
 
 _Notes :_
 
-- Mettre a jour le placeholder [objectif-specifique-du-projet] ci-dessous.
+- Mettre a jour le placeholder [objectif-spécifique-du-projet] ci-dessous.
 - Les noms de subagents actuels presument l'utilisation de Claude.
 
 ```
@@ -862,22 +852,22 @@ _Note :_ Les noms de subagents actuels presument l'utilisation de Claude.
 Le "coeur de la boucle", unique et canonique -- un guide operationnel concis "comment tourner/builder".
 
 - PAS un changelog ni un journal de progression
-- Decrit comment builder/tourner le projet
+- Décrit comment builder/tourner le projet
 - Capture les apprentissages operationnels qui ameliorent la boucle
 - Garder bref (~60 lignes)
 
 Les statuts, la progression et la planification appartiennent a `IMPLEMENTATION_PLAN.md`, pas ici.
 
-_Loopback / Auto-evaluation immediate :_
+_Loopback / Auto-évaluation immédiate :_
 
-AGENTS.md devrait contenir les commandes specifiques au projet qui permettent le loopback -- la capacite de Ralph a evaluer immediatement son travail dans la meme boucle. Ca inclut :
+AGENTS.md devrait contenir les commandes spécifiques au projet qui permettent le loopback -- la capacite de Ralph a évaluer immédiatement son travail dans la même boucle. Ça inclut :
 
 - Commandes de build
-- Commandes de test (ciblees et suite complete)
+- Commandes de test (ciblees et suite complété)
 - Commandes de typecheck/lint
 - Tout autre outil de validation
 
-Le prompt CONSTRUCTION dit "lancer les tests" de facon generique ; AGENTS.md specifie les commandes reelles. C'est comme ca que la backpressure est cablee par projet.
+Le prompt CONSTRUCTION dit "lancer les tests" de façon generique ; AGENTS.md spécifié les commandes reelles. C'est comme ça que la backpressure est cablee par projet.
 
 #### Exemple
 
@@ -907,56 +897,56 @@ Apprentissages succincts sur comment TOURNER le projet :
 
 ### `IMPLEMENTATION_PLAN.md`
 
-Liste priorisee a puces de taches derivees de l'analyse des ecarts (specs vs code) -- generee par Ralph.
+Liste priorisee a puces de tâches derivees de l'analyse des écarts (specs vs code) -- générée par Ralph.
 
-- _Cree_ via le mode PLANIFICATION
-- _Mis a jour_ pendant le mode CONSTRUCTION (marquer comme complete, ajouter des decouvertes, noter des bugs)
+- _Créé_ via le mode PLANIFICATION
+- _Mis a jour_ pendant le mode CONSTRUCTION (marquer comme complété, ajouter des decouvertes, noter des bugs)
 - _Peut etre regenere_ -- Geoff : "J'ai supprime la liste TODO plusieurs fois" -> basculer en mode PLANIFICATION
-- _Auto-correcteur_ -- le mode CONSTRUCTION peut meme creer de nouvelles specs si manquantes
+- _Auto-correcteur_ -- le mode CONSTRUCTION peut même créer de nouvelles specs si manquantes
 
 La circularite est intentionnelle : consistance eventuelle par l'iteration.
 
-_Pas de template pre-specifie_ -- laisser Ralph/LLM dicter et gerer le format qui fonctionne le mieux pour lui.
+_Pas de template pre-spécifié_ -- laisser Ralph/LLM dicter et gérer le format qui fonctionne le mieux pour lui.
 
 ### `specs/*`
 
-Un fichier markdown par sujet de preoccupation. Ce sont la source de verite pour ce qui doit etre construit.
+Un fichier markdown par sujet de preoccupation. Ce sont la source de vérité pour ce qui doit etre construit.
 
-- Crees pendant la phase Exigences (conversation humain + LLM)
+- Créés pendant la phase Exigences (conversation humain + LLM)
 - Consommes par les modes PLANIFICATION et CONSTRUCTION
 - Peuvent etre mis a jour si des inconsistances sont decouvertes (rare, utiliser un subagent)
 
-_Pas de template pre-specifie_ -- laisser Ralph/LLM dicter et gerer le format qui fonctionne le mieux pour lui.
+_Pas de template pre-spécifié_ -- laisser Ralph/LLM dicter et gérer le format qui fonctionne le mieux pour lui.
 
 ### `src/` et `src/lib/`
 
 Code source de l'application et utilitaires/composants partages.
 
-References dans les templates `PROMPT.md` pour les etapes d'orientation.
+Références dans les templates `PROMPT.md` pour les étapes d'orientation.
 
 ---
 
-## Ameliorations
+## Améliorations
 
-Je suis encore en train de determiner la valeur/viabilite de celles-ci, mais les opportunites semblent prometteuses :
+Je suis encore en train de déterminer la valeur/viabilite de celles-ci, mais les opportunites semblent prometteuses :
 
-- [AskUserQuestionTool de Claude pour la planification](#utiliser-askuserquestiontool-de-claude-pour-la-planification) -- utiliser l'outil d'interview integre de Claude pour clarifier systematiquement les JTBD, cas limites et criteres d'acceptation pour les specs.
-- [Backpressure pilotee par les criteres d'acceptation](#backpressure-pilotee-par-les-criteres-dacceptation) -- Deriver les exigences de test pendant la planification a partir des criteres d'acceptation. Empeche la "triche" -- impossible de pretendre avoir fini sans les tests appropries qui passent.
-- [Backpressure non-deterministe](#backpressure-non-deterministe) -- Utiliser LLM-comme-juge pour des tests sur des taches subjectives (ton, esthetique, UX). Reviews binaires pass/fail qui iterent jusqu'au pass.
-- [Branches de travail compatibles Ralph](#branches-de-travail-compatibles-ralph) -- Demander a Ralph de "filtrer sur la feature X" a l'execution n'est pas fiable. A la place, creer un plan scope par branche en amont.
-- [JTBD -> Story Map -> Release SLC](#jtbd--story-map--release-slc) -- Pousser la puissance de "Laisser Ralph faire du Ralph" pour connecter l'audience et les activites des JTBD a des releases Simple/Lovable/Complete.
-- [Audit des specs](#audit-des-specs) -- Mode dedie pour generer/maintenir les specs avec des regles qualite : resultats comportementaux uniquement, cadrage des sujets, nommage coherent.
+- [AskUserQuestionTool de Claude pour la planification](#utiliser-askuserquestiontool-de-claude-pour-la-planification) -- utiliser l'outil d'interview intégré de Claude pour clarifier systematiquement les JTBD, cas limites et critères d'acceptation pour les specs.
+- [Backpressure pilotee par les critères d'acceptation](#backpressure-pilotee-par-les-critères-dacceptation) -- Deriver les exigences de test pendant la planification a partir des critères d'acceptation. Empêché la "triche" -- impossible de pretendre avoir fini sans les tests appropries qui passent.
+- [Backpressure non-deterministe](#backpressure-non-deterministe) -- Utiliser LLM-comme-juge pour des tests sur des tâches subjectives (ton, esthetique, UX). Reviews binaires pass/fail qui iterent jusqu'au pass.
+- [Branches de travail compatibles Ralph](#branches-de-travail-compatibles-ralph) -- Demander a Ralph de "filtrer sur la feature X" a l'exécution n'est pas fiable. A la place, créer un plan scope par branche en amont.
+- [JTBD -> Story Map -> Release SLC](#jtbd--story-map--release-slc) -- Pousser la puissance de "Laisser Ralph faire du Ralph" pour connecter l'audience et les activites des JTBD a des releases Simple/Lovable/Complété.
+- [Audit des specs](#audit-des-specs) -- Mode dedie pour générer/maintenir les specs avec des règles qualite : résultats comportementaux uniquement, cadrage des sujets, nommage cohérent.
 - [Reverse engineering de projets brownfield en specs](#reverse-engineering-de-projets-brownfield-en-specs) -- Amener les codebases brownfield dans le workflow Ralph en effectuant le reverse engineering du code existant en specs avant de planifier du nouveau travail.
 
 ---
 
 ### Utiliser AskUserQuestionTool de Claude pour la planification
 
-Pendant la Phase 1 (Definir les exigences), utiliser l'outil integre `AskUserQuestionTool` de Claude pour explorer systematiquement les JTBD, sujets de preoccupation, cas limites et criteres d'acceptation via une interview structuree avant d'ecrire les specs.
+Pendant la Phase 1 (Définir les exigences), utiliser l'outil intégré `AskUserQuestionTool` de Claude pour explorer systematiquement les JTBD, sujets de preoccupation, cas limites et critères d'acceptation via une interview structuree avant d'écrire les specs.
 
 _Quand l'utiliser :_ Exigences initiales minimales/vagues, besoin de clarifier les contraintes, ou plusieurs approches valides existent.
 
-_Invoquer :_ "Interviewe-moi en utilisant AskUserQuestion pour comprendre [JTBD/sujet/criteres d'acceptation/...]"
+_Invoquer :_ "Interviewe-moi en utilisant AskUserQuestion pour comprendre [JTBD/sujet/critères d'acceptation/...]"
 
 Claude posera des questions ciblees pour clarifier les exigences et assurer l'alignement avant de produire les fichiers `specs/*.md`.
 
@@ -965,60 +955,60 @@ _Flow :_
 1. Commencer avec les informations connues ->
 2. _Claude interviewe via AskUserQuestion_ ->
 3. Iterer jusqu'a clarte ->
-4. Claude ecrit les specs avec criteres d'acceptation ->
+4. Claude écrit les specs avec critères d'acceptation ->
 5. Passer a la planification/construction
 
-Aucun changement de code ou de prompt necessaire -- ca ameliore simplement la Phase 1 en utilisant les capacites existantes de Claude Code.
+Aucun changement de code ou de prompt nécessaire -- ça amélioré simplement la Phase 1 en utilisant les capacites existantes de Claude Code.
 
 _Inspiration_ -- [Post X de Thariq](https://x.com/trq212/status/2005315275026260309)
 
 ---
 
-### Backpressure pilotee par les criteres d'acceptation
+### Backpressure pilotee par les critères d'acceptation
 
-Le Ralph de Geoff connecte _implicitement_ specs -> implementation -> tests par l'iteration emergente. Cette amelioration rendrait cette connexion _explicite_ en derivant les exigences de test pendant la planification, creant une ligne directe de "a quoi ressemble le succes" a "qu'est-ce qui le verifie".
+Le Ralph de Geoff connecte _implicitement_ specs -> implémentation -> tests par l'iteration emergente. Cette amélioration rendrait cette connexion _explicite_ en derivant les exigences de test pendant la planification, creant une ligne directe de "a quoi ressemble le succes" a "qu'est-ce qui le vérifié".
 
-Cette amelioration connecte les criteres d'acceptation (dans les specs) directement aux exigences de test (dans le plan d'implementation), ameliorant la qualite de la backpressure en :
+Cette amélioration connecte les critères d'acceptation (dans les specs) directement aux exigences de test (dans le plan d'implémentation), améliorant la qualite de la backpressure en :
 
-- _Empechant la "triche"_ -- impossible de pretendre avoir fini sans les tests requis derives des criteres d'acceptation
-- _Activant un workflow TDD_ -- exigences de test connues avant le debut de l'implementation
-- _Ameliorant la convergence_ -- signal de completion clair (les tests requis passent) vs ambigu ("ca semble fait ?")
-- _Maintenant le determinisme_ -- exigences de test dans le plan (etat connu) pas emergentes (probabilistiques)
+- _Empechant la "triche"_ -- impossible de pretendre avoir fini sans les tests requis derives des critères d'acceptation
+- _Activant un workflow TDD_ -- exigences de test connues avant le début de l'implémentation
+- _Améliorant la convergence_ -- signal de complétion clair (les tests requis passent) vs ambigu ("ça semble fait ?")
+- _Maintenant le determinisme_ -- exigences de test dans le plan (état connu) pas emergentes (probabilistiques)
 
 #### Compatibilite avec la philosophie de base
 
 | Principe                 | Maintenu ? | Comment                                                          |
 | ------------------------ | ---------- | ---------------------------------------------------------------- |
-| Operation monolithique   | Oui        | Un agent, une tache, une boucle a la fois                        |
+| Opération monolithique   | Oui        | Un agent, une tâche, une boucle a la fois                        |
 | Backpressure critique    | Oui        | Les tests sont le mecanisme, juste derives explicitement maintenant |
-| Efficacite du contexte   | Oui        | La planification decide des tests une fois vs la construction qui redecouvre |
-| Setup deterministe       | Oui        | Exigences de test dans le plan (etat connu) pas emergentes       |
-| Laisser Ralph Ralph      | Oui        | Ralph choisit toujours la priorite et l'approche d'implementation |
+| Efficacite du contexte   | Oui        | La planification décidé des tests une fois vs la construction qui redecouvre |
+| Setup deterministe       | Oui        | Exigences de test dans le plan (état connu) pas emergentes       |
+| Laisser Ralph Ralph      | Oui        | Ralph choisit toujours la priorité et l'approche d'implémentation |
 | Plan jetable             | Oui        | Mauvaises exigences de test ? Regenerer le plan                  |
-| "Capturer le pourquoi"   | Oui        | Intention du test documentee dans le plan avant l'implementation |
-| Pas de triche            | Oui        | Les tests requis empechent les implementations placeholder       |
+| "Capturer le pourquoi"   | Oui        | Intention du test documentee dans le plan avant l'implémentation |
+| Pas de triche            | Oui        | Les tests requis empêchent les implémentations placeholder       |
 
 #### L'equilibre de la prescriptivite
 
 La distinction critique :
 
-_Criteres d'acceptation_ (dans les specs) = Resultats comportementaux, resultats observables, a quoi ressemble le succes
+_Critères d'acceptation_ (dans les specs) = Résultats comportementaux, résultats observables, a quoi ressemble le succes
 
 - OK : "Extrait 5-10 couleurs dominantes de n'importe quelle image uploadee"
 - OK : "Traite les images <5MB en <100ms"
-- OK : "Gere les cas limites : niveaux de gris, couleur unique, fonds transparents"
+- OK : "Géré les cas limites : niveaux de gris, couleur unique, fonds transparents"
 
-_Exigences de test_ (dans le plan d'implementation) = Points de verification derives des criteres d'acceptation
+_Exigences de test_ (dans le plan d'implémentation) = Points de vérification derives des critères d'acceptation
 
-- OK : "Tests requis : Extraire 5-10 couleurs, Performance <100ms, Gerer le cas limite niveaux de gris"
+- OK : "Tests requis : Extraire 5-10 couleurs, Performance <100ms, Gérer le cas limite niveaux de gris"
 
-_Approche d'implementation_ (a la discretion de Ralph) = Decisions techniques sur comment y arriver
+_Approche d'implémentation_ (a la discretion de Ralph) = Décisions techniques sur comment y arriver
 
 - PAS OK : "Utiliser le clustering K-means avec 3 iterations et conversion d'espace colorimetrique LAB"
 
-La cle : _Specifier QUOI verifier (resultats), pas COMMENT implementer (approche)_
+La cle : _Spécifier QUOI vérifier (résultats), pas COMMENT implémenter (approche)_
 
-Ca maintient le principe "Laisser Ralph Ralph" -- Ralph decide des details d'implementation tout en ayant des signaux de succes clairs.
+Ça maintient le principe "Laisser Ralph Ralph" -- Ralph décidé des détails d'implémentation tout en ayant des signaux de succes clairs.
 
 #### Architecture : connexion en trois phases
 
@@ -1033,26 +1023,26 @@ Phase 3 : Construction (implemente avec tests)
     Implementation + Tests -> Backpressure
 ```
 
-#### Phase 1 : Definition des exigences
+#### Phase 1 : Définition des exigences
 
 Pendant la conversation humain + LLM qui produit les specs :
 
 - Discuter des JTBD et decouper en sujets de preoccupation
-- Utiliser des subagents pour charger du contexte externe si necessaire
-- _Discuter et definir les criteres d'acceptation_ -- quels resultats observables et verifiables indiquent le succes
-- Garder les criteres comportementaux (resultats), pas implementation (comment construire)
-- Le LLM ecrit les specs incluant les criteres d'acceptation de la facon la plus logique pour la spec
-- Les criteres d'acceptation deviennent la base pour deriver les exigences de test en phase de planification
+- Utiliser des subagents pour charger du contexte externe si nécessaire
+- _Discuter et définir les critères d'acceptation_ -- quels résultats observables et verifiables indiquent le succes
+- Garder les critères comportementaux (résultats), pas implémentation (comment construire)
+- Le LLM écrit les specs incluant les critères d'acceptation de la façon la plus logique pour la spec
+- Les critères d'acceptation deviennent la base pour deriver les exigences de test en phase de planification
 
-#### Phase 2 : Amelioration du mode Planification
+#### Phase 2 : Amélioration du mode Planification
 
-Modifier l'instruction 1 de `PROMPT_plan.md` pour inclure la derivation de tests. Ajouter apres la premiere phrase :
+Modifier l'instruction 1 de `PROMPT_plan.md` pour inclure la derivation de tests. Ajouter apres la première phrase :
 
 ```markdown
 For each task in the plan, derive required tests from acceptance criteria in specs - what specific outcomes need verification (behavior, performance, edge cases). Tests verify WHAT works, not HOW it's implemented. Include as part of task definition.
 ```
 
-#### Phase 3 : Amelioration du mode Construction
+#### Phase 3 : Amélioration du mode Construction
 
 Modifier les instructions de `PROMPT_build.md` :
 
@@ -1078,22 +1068,22 @@ _Ajouter un nouveau garde-fou_ (dans la sequence des 9) :
 
 ### Backpressure non-deterministe
 
-Certains criteres d'acceptation resistent a la validation programmatique :
+Certains critères d'acceptation resistent a la validation programmatique :
 
-- _Qualite creative_ -- ton de l'ecriture, flux narratif, engagement
-- _Jugements esthetiques_ -- harmonie visuelle, equilibre du design, coherence de marque
+- _Qualite creative_ -- ton de l'écriture, flux narratif, engagement
+- _Jugements esthetiques_ -- harmonie visuelle, equilibre du design, cohérence de marque
 - _Qualite UX_ -- navigation intuitive, hierarchie d'information claire
 - _Pertinence du contenu_ -- messages contextuels, adequation a l'audience
 
-Ceux-ci necessitent un jugement humain mais ont besoin de backpressure pour satisfaire les criteres d'acceptation pendant la boucle de construction.
+Ceux-ci necessitent un jugement humain mais ont besoin de backpressure pour satisfaire les critères d'acceptation pendant la boucle de construction.
 
 _Solution :_ Ajouter des tests LLM-comme-juge comme backpressure avec pass/fail binaire.
 
-Les reviews LLM sont non-deterministes (le meme artefact peut recevoir des jugements differents d'un run a l'autre). Ca s'aligne avec la philosophie Ralph : "deterministiquement mauvais dans un monde non-deterministe." La boucle fournit la consistance eventuelle par l'iteration -- les reviews tournent jusqu'au pass, acceptant la variance naturelle.
+Les reviews LLM sont non-deterministes (le même artefact peut recevoir des jugements differents d'un run a l'autre). Ça s'aligne avec la philosophie Ralph : "deterministiquement mauvais dans un monde non-deterministe." La boucle fournit la consistance eventuelle par l'iteration -- les reviews tournent jusqu'au pass, acceptant la variance naturelle.
 
-#### Ce qui doit etre cree (premiere etape)
+#### Ce qui doit etre créé (première étape)
 
-Creer deux fichiers dans `src/lib/` :
+Créer deux fichiers dans `src/lib/` :
 
 ```
 src/lib/
@@ -1101,7 +1091,7 @@ src/lib/
   llm-review.test.ts     # Exemples de reference montrant le pattern (Ralph apprend de ceux-ci)
 ```
 
-##### `llm-review.ts` -- API binaire pass/fail que Ralph decouvre :
+##### `llm-review.ts` -- API binaire pass/fail que Ralph découvre :
 
 ```typescript
 interface ReviewResult {
@@ -1116,19 +1106,19 @@ function createReview(config: {
 }): Promise<ReviewResult>;
 ```
 
-_Support multimodal :_ Les deux niveaux d'intelligence utiliseraient un modele multimodal (texte + vision). La detection du type d'artefact est automatique :
+_Support multimodal :_ Les deux niveaux d'intelligence utiliseraient un modèle multimodal (texte + vision). La detection du type d'artefact est automatique :
 
-- Evaluation texte : `artifact: "Votre contenu ici"` -> Route comme input texte
-- Evaluation vision : `artifact: "./tmp/screenshot.png"` -> Route comme input vision (detecte les extensions .png, .jpg, .jpeg)
+- Évaluation texte : `artifact: "Votre contenu ici"` -> Route comme input texte
+- Évaluation vision : `artifact: "./tmp/screenshot.png"` -> Route comme input vision (détecté les extensions .png, .jpg, .jpeg)
 
 _Niveaux d'intelligence_ (qualite du jugement, pas type de capacite) :
 
-- `fast` (par defaut) : Modeles rapides et economiques pour des evaluations directes
+- `fast` (par défaut) : Modèles rapides et economiques pour des évaluations directes
   - Exemple : Gemini 3.0 Flash (multimodal, rapide, pas cher)
-- `smart` : Modeles de meilleure qualite pour un jugement esthetique/creatif nuance
-  - Exemple : GPT 5.1 (multimodal, meilleur jugement, cout plus eleve)
+- `smart` : Modèles de meilleure qualite pour un jugement esthetique/creatif nuance
+  - Exemple : GPT 5.1 (multimodal, meilleur jugement, coût plus eleve)
 
-L'implementation de la fixture selectionne les modeles appropries. (Les exemples sont des options actuelles, pas des exigences.)
+L'implémentation de la fixture selectionne les modèles appropries. (Les exemples sont des options actuelles, pas des exigences.)
 
 ##### `llm-review.test.ts` -- Montre a Ralph comment l'utiliser (exemples texte et vision) :
 
@@ -1170,11 +1160,11 @@ test("coherence visuelle de marque", async () => {
 });
 ```
 
-_Ralph apprend de ces exemples :_ Tant le texte que les screenshots fonctionnent comme artefacts. Choisir selon ce qui doit etre evalue. La fixture gere le reste en interne.
+_Ralph apprend de ces exemples :_ Tant le texte que les screenshots fonctionnent comme artefacts. Choisir selon ce qui doit etre évalué. La fixture géré le reste en interne.
 
-_Extensibilite future :_ Le design actuel utilise un seul `artifact: string` pour la simplicite. Peut s'etendre a `artifact: string | string[]` si des patterns clairs emergent necessitant plusieurs artefacts (comparaisons avant/apres, coherence entre elements, evaluation multi-perspective). Les screenshots composites ou le texte concatene pourraient gerer la plupart des besoins multi-elements.
+_Extensibilite future :_ Le design actuel utilise un seul `artifact: string` pour la simplicite. Peut s'etendre a `artifact: string | string[]` si des patterns clairs emergent necessitant plusieurs artefacts (comparaisons avant/apres, cohérence entre éléments, évaluation multi-perspective). Les screenshots composites ou le texte concatene pourraient gérer la plupart des besoins multi-éléments.
 
-#### Integration avec le workflow Ralph
+#### Intégration avec le workflow Ralph
 
 _Phase de planification_ -- Mettre a jour `PROMPT_plan.md` :
 
@@ -1198,43 +1188,43 @@ Ajouter un nouveau garde-fou (dans la sequence des 9) :
 9999. Create tests to verify implementation meets acceptance criteria and include both conventional tests (behavior, performance, correctness) and perceptual quality tests (for subjective criteria, see src/lib patterns).
 ```
 
-_Decouverte, pas documentation :_ Ralph apprend les patterns de review LLM depuis les exemples de `llm-review.test.ts` pendant l'exploration de `src/lib` (Phase 0c). Pas de mises a jour AGENTS.md necessaires -- les exemples de code SONT la documentation.
+_Découverte, pas documentation :_ Ralph apprend les patterns de review LLM depuis les exemples de `llm-review.test.ts` pendant l'exploration de `src/lib` (Phase 0c). Pas de mises a jour AGENTS.md nécessaires -- les exemples de code SONT la documentation.
 
 #### Compatibilite avec la philosophie de base
 
 | Principe                | Maintenu ?   | Comment                                                                                                                                                       |
 | ----------------------- | ------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Backpressure critique   | Oui          | Etend la backpressure a l'acceptation non-programmatique                                                                                                       |
-| Setup deterministe      | Partiel      | Criteres dans le plan (deterministe), evaluation non-deterministe mais converge par iteration. Compromis intentionnel pour la qualite subjective.              |
-| Efficacite du contexte  | Oui          | Fixture reutilisee via `src/lib`, petites definitions de test                                                                                                  |
-| Laisser Ralph Ralph     | Oui          | Ralph decouvre le pattern, choisit quand l'utiliser, ecrit les criteres                                                                                        |
+| Setup deterministe      | Partiel      | Critères dans le plan (deterministe), évaluation non-deterministe mais converge par iteration. Compromis intentionnel pour la qualite subjective.              |
+| Efficacite du contexte  | Oui          | Fixture reutilisee via `src/lib`, petites définitions de test                                                                                                  |
+| Laisser Ralph Ralph     | Oui          | Ralph découvre le pattern, choisit quand l'utiliser, écrit les critères                                                                                        |
 | Plan jetable            | Oui          | Exigences de review font partie du plan, regenerer si mauvaises                                                                                                |
-| La simplicite gagne     | Oui          | Une seule fonction, resultat binaire, pas de complexite de scoring                                                                                             |
-| Ajouter des signes      | Oui          | Ajouts legers au prompt, apprentissage par exploration du code                                                                                                 |
+| La simplicite gagne     | Oui          | Une seule fonction, résultat binaire, pas de complexite de scoring                                                                                             |
+| Ajouter des signes      | Oui          | Ajouts légers au prompt, apprentissage par exploration du code                                                                                                 |
 
 ---
 
 ### Branches de travail compatibles Ralph
 
-_Le principe critique :_ Le Ralph de Geoff travaille depuis un plan unique et jetable ou Ralph choisit "le plus important". Pour utiliser des branches avec Ralph tout en maintenant ce pattern, vous devez scoper au moment de la creation du plan, pas a la selection de tache.
+_Le principe critique :_ Le Ralph de Geoff travaille depuis un plan unique et jetable ou Ralph choisit "le plus important". Pour utiliser des branches avec Ralph tout en maintenant ce pattern, vous devez scoper au moment de la création du plan, pas a la selection de tâche.
 
 _Pourquoi c'est important :_
 
-- PAS OK _Mauvaise approche_ : Creer un plan complet, puis demander a Ralph de "filtrer" les taches a l'execution -> pas fiable (70-80%), viole le determinisme
-- OK _Bonne approche_ : Creer un plan scope en amont pour chaque branche de travail -> deterministe, simple, maintient "le plan est jetable"
+- PAS OK _Mauvaise approche_ : Créer un plan complet, puis demander a Ralph de "filtrer" les tâches a l'exécution -> pas fiable (70-80%), viole le determinisme
+- OK _Bonne approche_ : Créer un plan scope en amont pour chaque branche de travail -> deterministe, simple, maintient "le plan est jetable"
 
-_Solution :_ Ajouter un mode `plan-work` pour creer un IMPLEMENTATION_PLAN.md scope au travail sur la branche courante. L'utilisateur cree une branche de travail, puis lance `plan-work` avec une description en langage naturel du focus du travail. Le LLM utilise cette description pour scoper le plan. Apres la planification, Ralph construit depuis ce plan deja scope sans aucun filtrage semantique -- il choisit juste "le plus important" comme toujours.
+_Solution :_ Ajouter un mode `plan-work` pour créer un Implémentation_PLAN.md scope au travail sur la branche courante. L'utilisateur créé une branche de travail, puis lance `plan-work` avec une description en langage naturel du focus du travail. Le LLM utilise cette description pour scoper le plan. Apres la planification, Ralph construit depuis ce plan déjà scope sans aucun filtrage semantique -- il choisit juste "le plus important" comme toujours.
 
-_Terminologie :_ "Work" (travail) est intentionnellement large -- ca peut decrire des features, des sujets de preoccupation, des efforts de refactoring, des changements d'infrastructure, des corrections de bugs, ou tout ensemble coherent de changements lies. La description de travail que vous passez a `plan-work` est en langage naturel pour le LLM -- ca peut etre de la prose, pas contrainte par les regles de nommage de branches git.
+_Terminologie :_ "Work" (travail) est intentionnellement large -- ça peut décrire des features, des sujets de preoccupation, des efforts de refactoring, des changements d'infrastructure, des corrections de bugs, ou tout ensemble cohérent de changements lies. La description de travail que vous passez a `plan-work` est en langage naturel pour le LLM -- ça peut etre de la prose, pas contrainte par les règles de nommage de branches git.
 
 #### Principes de design
 
-- Chaque session Ralph opere de facon monolithique sur UN corps de travail par branche
-- L'utilisateur cree les branches manuellement -- controle total sur les conventions de nommage et la strategie (par ex. worktrees)
+- Chaque session Ralph opère de façon monolithique sur UN corps de travail par branche
+- L'utilisateur créé les branches manuellement -- contrôle total sur les conventions de nommage et la stratégie (par ex. worktrees)
 - Descriptions de travail en langage naturel -- passer de la prose au LLM, pas contraint par le nommage git
-- Scoping a la creation du plan (deterministe) pas a la selection de tache (probabiliste)
-- Un plan par branche -- un IMPLEMENTATION_PLAN.md par branche
-- Le plan reste jetable -- regenerer le plan scope quand mauvais/obsolete pour une branche
+- Scoping a la création du plan (deterministe) pas a la selection de tâche (probabiliste)
+- Un plan par branche -- un Implémentation_PLAN.md par branche
+- Le plan reste jetable -- regenerer le plan scope quand mauvais/obsolète pour une branche
 - Pas de changement dynamique de branche au sein d'une session de boucle
 - Maintient la simplicite et le determinisme
 - Optionnel -- le workflow branche principale fonctionne toujours
@@ -1242,16 +1232,16 @@ _Terminologie :_ "Work" (travail) est intentionnellement large -- ca peut decrir
 
 #### Workflow
 
-_1. Planification complete (sur la branche principale)_
+_1. Planification complété (sur la branche principale)_
 
 ```bash
 ./loop.sh plan
 # Generer le IMPLEMENTATION_PLAN.md complet pour tout le projet
 ```
 
-_2. Creer une branche de travail_
+_2. Créer une branche de travail_
 
-L'utilisateur execute :
+L'utilisateur exécuté :
 
 ```bash
 git checkout -b ralph/user-auth-oauth
@@ -1275,9 +1265,9 @@ _4. Construire depuis le plan (sur la branche de travail)_
 # Choisit la tache la plus importante du plan deja scope
 ```
 
-_5. Creation de PR (quand le travail est termine)_
+_5. Création de PR (quand le travail est termine)_
 
-L'utilisateur execute :
+L'utilisateur exécuté :
 
 ```bash
 gh pr create --base main --head ralph/user-auth-oauth --fill
@@ -1285,7 +1275,7 @@ gh pr create --base main --head ralph/user-auth-oauth --fill
 
 #### Script de boucle avec scope de travail
 
-Etend le script de boucle ameliore de base pour ajouter le support des branches de travail avec planification scopee :
+Etend le script de boucle amélioré de base pour ajouter le support des branches de travail avec planification scopee :
 
 ```bash
 #!/bin/bash
@@ -1451,16 +1441,16 @@ ULTIMATE GOAL: We want to achieve the scoped work "${WORK_SCOPE}". Consider miss
 
 | Principe                | Maintenu ? | Comment                                                                             |
 | ----------------------- | ---------- | ----------------------------------------------------------------------------------- |
-| Operation monolithique  | Oui        | Ralph opere toujours comme processus unique au sein de la branche                   |
-| Une tache par boucle    | Oui        | Inchange                                                                            |
+| Opération monolithique  | Oui        | Ralph opère toujours comme processus unique au sein de la branche                   |
+| Une tâche par boucle    | Oui        | Inchange                                                                            |
 | Contexte frais          | Oui        | Inchange                                                                            |
-| Deterministe            | Oui        | Scoping a la creation du plan (deterministe), pas a l'execution (probabiliste)      |
-| Simple                  | Oui        | Amelioration optionnelle, le workflow principal fonctionne toujours                  |
-| Pilote par le plan      | Oui        | Un IMPLEMENTATION_PLAN.md par branche                                               |
-| Source de verite unique  | Oui        | Un plan par branche -- le plan scope remplace le plan complet sur la branche        |
+| Deterministe            | Oui        | Scoping a la création du plan (deterministe), pas a l'exécution (probabiliste)      |
+| Simple                  | Oui        | Amélioration optionnelle, le workflow principal fonctionne toujours                  |
+| Pilote par le plan      | Oui        | Un Implémentation_PLAN.md par branche                                               |
+| Source de vérité unique  | Oui        | Un plan par branche -- le plan scope remplace le plan complet sur la branche        |
 | Plan jetable            | Oui        | Regenerer le plan scope n'importe quand : `./loop.sh plan-work "description"`       |
 | Markdown plutot que JSON| Oui        | Toujours des plans markdown                                                         |
-| Laisser Ralph Ralph     | Oui        | Ralph choisit "le plus important" du plan deja scope -- pas de filtre               |
+| Laisser Ralph Ralph     | Oui        | Ralph choisit "le plus important" du plan déjà scope -- pas de filtre               |
 
 ---
 
@@ -1468,16 +1458,16 @@ ULTIMATE GOAL: We want to achieve the scoped work "${WORK_SCOPE}". Consider miss
 
 #### Sujets de preoccupation -> Activites
 
-Le [workflow suggere](https://ghuntley.com/content/images/size/w2400/2025/07/The-ralph-Process.png) de Geoff aligne deja la planification avec les Jobs-to-be-Done -- decomposant les JTBD en sujets de preoccupation, qui a leur tour deviennent des specs. J'adore ca et je pense qu'il y a une opportunite de s'appuyer davantage sur les benefices produit que cette approche offre en recadrant les _sujets de preoccupation_ comme des _activites_.
+Le [workflow suggere](https://ghuntley.com/content/images/size/w2400/2025/07/The-ralph-Process.png) de Geoff aligne déjà la planification avec les Jobs-to-be-Done -- decomposant les JTBD en sujets de preoccupation, qui a leur tour deviennent des specs. J'adore ça et je pense qu'il y a une opportunite de s'appuyer davantage sur les benefices produit que cette approche offre en recadrant les _sujets de preoccupation_ comme des _activites_.
 
-Les activites sont des verbes dans un parcours ("uploader une photo", "extraire des couleurs") plutot que des capacites ("systeme d'extraction de couleurs"). Elles sont naturellement scopees par l'intention utilisateur.
+Les activites sont des verbes dans un parcours ("uploader une photo", "extraire des couleurs") plutot que des capacites ("système d'extraction de couleurs"). Elles sont naturellement scopees par l'intention utilisateur.
 
 > Sujets : "extraction de couleurs", "moteur de mise en page" -> oriente capacite
 > Activites : "uploader une photo", "voir les couleurs extraites", "arranger la mise en page" -> oriente parcours
 
 #### Activites -> Parcours utilisateur
 
-Les activites -- et leurs etapes constitutives -- se sequencent naturellement en un flux utilisateur, creant une _structure de parcours_ qui rend les lacunes et dependances visibles. Une _[User Story Map](https://www.nngroup.com/articles/user-story-mapping/)_ organise les activites comme colonnes (la colonne vertebrale du parcours) avec les profondeurs de capacite comme lignes -- l'espace complet de ce qui _pourrait_ etre construit :
+Les activites -- et leurs étapes constitutives -- se sequencent naturellement en un flux utilisateur, creant une _structure de parcours_ qui rend les lacunes et dépendances visibles. Une _[User Story Map](https://www.nngroup.com/articles/user-story-mapping/)_ organise les activites comme colonnes (la colonne vertebrale du parcours) avec les profondeurs de capacite comme lignes -- l'espace complet de ce qui _pourrait_ etre construit :
 
 ```
 UPLOADER    ->   EXTRAIRE    ->   ARRANGER     ->   PARTAGER
@@ -1489,7 +1479,7 @@ batch            themes IA       auto-layout       embed
 
 #### Parcours utilisateur -> Tranches de release
 
-Les tranches horizontales a travers la carte deviennent des candidats de release. Pas chaque activite n'a besoin de nouvelle capacite dans chaque release -- certaines cellules restent vides, et c'est bien si la tranche reste coherente :
+Les tranches horizontales a travers la carte deviennent des candidats de release. Pas chaque activite n'a besoin de nouvelle capacite dans chaque release -- certaines cellules restent vides, et c'est bien si la tranche reste cohérente :
 
 ```
                   UPLOADER    ->   EXTRAIRE    ->   ARRANGER     ->   PARTAGER
@@ -1503,13 +1493,13 @@ Release 3:        batch            themes IA        templates         embed
 
 #### Tranches de release -> Releases SLC
 
-La story map vous donne la _structure_ pour decouper. Le concept _[Simple, Lovable, Complete (SLC)](https://longform.asmartbear.com/slc/)_ de Jason Cohen vous donne les _criteres_ de ce qui fait une bonne tranche :
+La story map vous donne la _structure_ pour decouper. Le concept _[Simple, Lovable, Complété (SLC)](https://longform.asmartbear.com/slc/)_ de Jason Cohen vous donne les _critères_ de ce qui fait une bonne tranche :
 
 - _Simple_ -- Portee etroite que vous pouvez livrer vite. Pas chaque activite, pas chaque profondeur.
-- _Complete_ -- Accomplit pleinement un job dans cette portee. Pas une preview cassee.
-- _Lovable_ -- Les gens veulent reellement l'utiliser. Agreeable dans ses limites.
+- _Complété_ -- Accomplit pleinement un job dans cette portee. Pas une preview cassee.
+- _Lovable_ -- Les gens veulent réellement l'utiliser. Agreeable dans ses limites.
 
-_Pourquoi SLC plutot que MVP ?_ Les MVP optimisent pour l'apprentissage au detriment du client -- "minimum" signifie souvent casse ou frustrant. SLC inverse ca : apprendre en conditions reelles _tout en_ delivrant de la vraie valeur. Si ca reussit, vous avez de l'optionalite. Si ca echoue, vous avez quand meme bien traite les utilisateurs.
+_Pourquoi SLC plutot que MVP ?_ Les MVP optimisent pour l'apprentissage au detriment du client -- "minimum" signifie souvent casse ou frustrant. SLC inverse ça : apprendre en conditions reelles _tout en_ delivrant de la vraie valeur. Si ça reussit, vous avez de l'optionalite. Si ça échoué, vous avez quand même bien traite les utilisateurs.
 
 Chaque tranche peut devenir une release avec une valeur et une identite claires :
 
@@ -1531,19 +1521,19 @@ Design Studio:    batch            themes IA        templates         embed
 
 #### Operationnaliser avec Ralph
 
-Les concepts ci-dessus -- activites, story maps, releases SLC -- sont les _outils de reflexion_. Comment les traduire dans le workflow Ralph ?
+Les concepts ci-dessus -- activites, story maps, releases SLC -- sont les _outils de réflexion_. Comment les traduire dans le workflow Ralph ?
 
-_Approche Ralph par defaut :_
+_Approche Ralph par défaut :_
 
-1. _Definir les exigences_ : Humain + LLM definissent les sujets de preoccupation JTBD -> `specs/*.md`
-2. _Creer le plan de taches_ : Le LLM analyse toutes les specs + code actuel -> `IMPLEMENTATION_PLAN.md`
-3. _Construire_ : Ralph construit contre la portee complete
+1. _Définir les exigences_ : Humain + LLM definissent les sujets de preoccupation JTBD -> `specs/*.md`
+2. _Créer le plan de tâches_ : Le LLM analyse toutes les specs + code actuel -> `IMPLEMENTATION_PLAN.md`
+3. _Construire_ : Ralph construit contre la portee complété
 
-Ca fonctionne bien pour du travail oriente capacites (features, refactors, infrastructure). Mais ca ne produit pas naturellement des releases de produit a valeur (SLC) -- ca produit "ce que les specs decrivent".
+Ça fonctionne bien pour du travail oriente capacites (features, refactors, infrastructure). Mais ça ne produit pas naturellement des releases de produit a valeur (SLC) -- ça produit "ce que les specs decrivent".
 
 _Approche Activites -> Release SLC :_
 
-Pour obtenir des releases SLC, il faut ancrer les activites dans le contexte audience. L'audience definit QUI a les JTBD, ce qui informe QUELLES activites comptent et ce que "lovable" signifie.
+Pour obtenir des releases SLC, il faut ancrer les activites dans le contexte audience. L'audience définit QUI a les JTBD, ce qui informe QUELLES activites comptent et ce que "lovable" signifie.
 
 ```
 Audience (qui)
@@ -1553,39 +1543,39 @@ Audience (qui)
 
 ##### Workflow
 
-_I. Phase exigences (2 etapes) :_
+_I. Phase exigences (2 étapes) :_
 
-Toujours effectuee dans des conversations LLM avec l'humain, similaire a l'approche Ralph par defaut.
+Toujours effectuee dans des conversations LLM avec l'humain, similaire a l'approche Ralph par défaut.
 
-1. _Definir l'audience et ses JTBD_ -- POUR QUI construisons-nous et quels RESULTATS veulent-ils ?
+1. _Définir l'audience et ses JTBD_ -- POUR QUI construisons-nous et quels Résultats veulent-ils ?
 
-   - Humain + LLM discutent et determinent la ou les audience(s) et leurs JTBD (resultats desires)
-   - Peut contenir plusieurs audiences connectees (par ex. le "designer" cree, le "client" review)
-   - Genere `AUDIENCE_JTBD.md`
+   - Humain + LLM discutent et determinent la ou les audience(s) et leurs JTBD (résultats desires)
+   - Peut contenir plusieurs audiences connectees (par ex. le "designer" créé, le "client" review)
+   - Généré `AUDIENCE_JTBD.md`
 
-2. _Definir les activites_ -- QUE font les utilisateurs pour accomplir leurs JTBD ?
+2. _Définir les activites_ -- QUE font les utilisateurs pour accomplir leurs JTBD ?
 
    - Informe par `AUDIENCE_JTBD.md`
-   - Pour chaque JTBD, identifier les activites necessaires pour l'accomplir
-   - Pour chaque activite, determiner :
+   - Pour chaque JTBD, identifier les activites nécessaires pour l'accomplir
+   - Pour chaque activite, déterminer :
      - Profondeurs de capacite (basique -> avancee) -- niveaux de sophistication
-     - Resultat(s) desire(s) a chaque profondeur -- a quoi ressemble le succes ?
-   - Genere `specs/*.md` (une par activite)
+     - Résultat(s) desire(s) a chaque profondeur -- a quoi ressemble le succes ?
+   - Généré `specs/*.md` (une par activite)
 
-   Les etapes discretes au sein des activites sont implicites et le LLM peut les inferer pendant la planification.
+   Les étapes discretes au sein des activites sont implicites et le LLM peut les inferer pendant la planification.
 
 _II. Phase planification :_
 
 Effectuee dans la boucle Ralph avec un prompt de planification _mis a jour_.
 
 - Le LLM analyse :
-  - `AUDIENCE_JTBD.md` (qui, resultats desires)
+  - `AUDIENCE_JTBD.md` (qui, résultats desires)
   - `specs/*` (ce qui pourrait etre construit)
-  - Etat du code actuel (ce qui existe)
-- Le LLM determine la prochaine tranche SLC (quelles activites, a quelles profondeurs de capacite) et planifie les taches pour cette tranche
-- Le LLM genere `IMPLEMENTATION_PLAN.md`
-- _L'humain verifie_ le plan avant de construire :
-  - La portee represente-t-elle une release SLC coherente ?
+  - État du code actuel (ce qui existe)
+- Le LLM déterminé la prochaine tranche SLC (quelles activites, a quelles profondeurs de capacite) et planifie les tâches pour cette tranche
+- Le LLM généré `IMPLEMENTATION_PLAN.md`
+- _L'humain vérifié_ le plan avant de construire :
+  - La portee represente-t-elle une release SLC cohérente ?
   - Les bonnes activites sont-elles incluses aux bonnes profondeurs ?
   - Si incorrect -> relancer la boucle de planification pour regenerer le plan, en mettant optionnellement a jour les inputs ou le prompt de planification
   - Si correct -> proceder a la construction
@@ -1600,7 +1590,7 @@ Variante de `PROMPT_plan.md` qui ajoute le contexte audience et la recommandatio
 
 _Notes :_
 
-- Contrairement au template par defaut, celui-ci n'a pas de placeholder `[objectif-specifique-du-projet]` -- l'objectif est implicite : recommander la prochaine release la plus precieuse pour l'audience.
+- Contrairement au template par défaut, celui-ci n'a pas de placeholder `[objectif-specifique-du-projet]` -- l'objectif est implicite : recommander la prochaine release la plus precieuse pour l'audience.
 - Les noms de subagents actuels presument l'utilisation de Claude.
 
 ```
@@ -1623,17 +1613,17 @@ ULTIMATE GOAL: We want to achieve the most valuable next release for the audienc
 
 ##### Notes
 
-_Pourquoi `AUDIENCE_JTBD.md` comme artefact separe :_
+_Pourquoi `AUDIENCE_JTBD.md` comme artefact séparé :_
 
-- Source de verite unique -- empeche la derive entre specs
+- Source de vérité unique -- empêché la derive entre specs
 - Permet un raisonnement holistique : "De quoi cette audience a-t-elle PLUS besoin ?"
 - Les JTBD captures avec l'audience (le "pourquoi" vit avec le "qui")
-- Reference deux fois : pendant la creation des specs ET la planification SLC
-- Garde les specs d'activite focalisees sur le QUOI, sans repeter le QUI
+- Référence deux fois : pendant la création des specs ET la planification SLC
+- Garde les specs d'activite focalisees sur le QUOI, sans répéter le QUI
 
 _Cardinalites :_
 
-- Une audience -> plusieurs JTBD ("Designer" a "capturer l'espace", "explorer des concepts", "presenter au client")
+- Une audience -> plusieurs JTBD ("Designer" a "capturer l'espace", "explorer des concepts", "présenter au client")
 - Un JTBD -> plusieurs activites ("capturer l'espace" inclut upload, mesures, detection de piece)
 - Une activite -> peut servir plusieurs JTBD ("uploader une photo" sert a la fois "capturer" et "rassembler de l'inspiration")
 
@@ -1641,17 +1631,17 @@ _Cardinalites :_
 
 ### Audit des specs
 
-Un mode de boucle dedie pour generer et maintenir les fichiers spec avec des regles de qualite appliquees. Assure que les specs restent focalisees sur les resultats comportementaux (pas les details d'implementation), les sujets correctement scopes (test "une phrase sans 'et'"), et les conventions de nommage coherentes.
+Un mode de boucle dedie pour générer et maintenir les fichiers spec avec des règles de qualite appliquees. Assure que les specs restent focalisees sur les résultats comportementaux (pas les détails d'implémentation), les sujets correctement scopes (test "une phrase sans 'et'"), et les conventions de nommage coherentes.
 
-_Quand l'utiliser :_ Apres avoir ecrit ou mis a jour des specs, lancer le mode specs pour appliquer la coherence et l'hygiene a travers tous les fichiers spec.
+_Quand l'utiliser :_ Apres avoir écrit ou mis a jour des specs, lancer le mode specs pour appliquer la cohérence et l'hygiene a travers tous les fichiers spec.
 
-_Ce que ca fait :_
+_Ce que ça fait :_
 
 - Itere sur les fichiers `specs/*` existants
-- Applique les regles de qualite : resultats comportementaux uniquement, pas de blocs de code, pas de details d'implementation
+- Applique les règles de qualite : résultats comportementaux uniquement, pas de blocs de code, pas de détails d'implémentation
 - Valide le scoping des sujets en utilisant le test "Une phrase sans 'Et'"
-- Cree de nouveaux fichiers spec si necessaire base sur `specs/README.md`
-- Applique un nommage de fichier coherent : `<int>-nom-fichier.md` (par ex. `01-range-optimization.md`)
+- Créé de nouveaux fichiers spec si nécessaire base sur `specs/README.md`
+- Applique un nommage de fichier cohérent : `<int>-nom-fichier.md` (par ex. `01-range-optimization.md`)
 
 _Usage :_ Ajouter un argument `specs` a votre script de boucle qui selectionne `PROMPT_specs.md` :
 
@@ -1679,13 +1669,13 @@ elif [[ "$1" =~ ^[0-9]+$ ]]; then
     ...
 ```
 
-_Pour ajouter le mode specs a `loop_streamed.sh` :_ meme changement -- ajouter le bloc `elif` a la meme position. Le reste du script (streaming, pipe `parse_stream.js`) fonctionne sans changement.
+_Pour ajouter le mode specs a `loop_streamed.sh` :_ même changement -- ajouter le bloc `elif` a la même position. Le reste du script (streaming, pipe `parse_stream.js`) fonctionne sans changement.
 
 #### Template `PROMPT_specs.md`
 
 _Notes :_
 
-- Les specs definissent QUOI verifier (resultats), pas COMMENT implementer (approche). Les decisions d'implementation sont laissees a Ralph pendant la phase de construction.
+- Les specs definissent QUOI vérifier (résultats), pas COMMENT implémenter (approche). Les décisions d'implémentation sont laissees a Ralph pendant la phase de construction.
 
 ```
 0a. Study `specs/*` with up to 250 parallel Sonnet subagents to learn the application specifications.
@@ -1728,7 +1718,7 @@ If you need "and" to describe what it does, it's probably multiple topics
 
 ### Reverse engineering de projets brownfield en specs
 
-C'est facile de commencer a travailler avec des specs en greenfield, mais quand vous travaillez en brownfield, il faut une autre approche. C'est pourquoi vous devez faire le reverse engineering des implementations du code en specs pour commencer a utiliser le playbook Ralph.
+C'est facile de commencer a travailler avec des specs en greenfield, mais quand vous travaillez en brownfield, il faut une autre approche. C'est pourquoi vous devez faire le reverse engineering des implémentations du code en specs pour commencer a utiliser le playbook Ralph.
 
 _Quand l'utiliser :_ Vous avez herite ou rejoint une codebase sans specs. Vous voulez utiliser Ralph sur un projet qui n'a pas ete construit avec Ralph. Vous devez ajouter des features a un projet brownfield existant.
 
@@ -1737,36 +1727,36 @@ _Invoquer :_ "Reverse-engineer les specs pour [sujet/domaine] en utilisant `PROM
 _Flow :_
 
 1. Pointer l'agent sur la codebase existante avec `PROMPT_reverse_engineer_specs.md` ->
-2. L'agent investigue le code (conscient de l'implementation) ->
-3. L'agent ecrit les specs decrivant le comportement reel (sans implementation) ->
+2. L'agent investigue le code (conscient de l'implémentation) ->
+3. L'agent écrit les specs decrivant le comportement reel (sans implémentation) ->
 4. Les specs atterrissent dans `specs/` ->
-5. Repeter autant que necessaire pour toutes les specs
+5. Répéter autant que nécessaire pour toutes les specs
 6. Proceder avec les phases Ralph normales (plan -> build) contre la baseline documentee
 
 Vous pouvez utiliser un pattern d'orchestration d'agents ou le sous-agent est le reverse engineer et l'orchestrateur connait la philosophie des sujets de preoccupation :
 
-- **Couverture complete du domaine :** Dire a l'orchestrateur d'identifier la liste des sujets du domaine, puis deleguer a des sous-agents la creation de specifications completes pour chaque sujet.
-- **Couverture scopee par tache :** Fournir une tache specifique que vous allez effectuer et faire analyser la codebase par l'agent, trouver les sujets pertinents, puis creer/mettre a jour chaque spec respective.
+- **Couverture complété du domaine :** Dire a l'orchestrateur d'identifier la liste des sujets du domaine, puis déléguer a des sous-agents la création de specifications completes pour chaque sujet.
+- **Couverture scopee par tâche :** Fournir une tâche spécifique que vous allez effectuer et faire analyser la codebase par l'agent, trouver les sujets pertinents, puis créer/mettre a jour chaque spec respective.
 
-Aucune modification des fichiers prompt existants necessaire -- c'est purement additif. Les specs generees sont au meme format que ce que Ralph consomme deja dans les phases de planification et construction.
+Aucune modification des fichiers prompt existants nécessaire -- c'est purement additif. Les specs générées sont au même format que ce que Ralph consomme déjà dans les phases de planification et construction.
 
 #### Considerations
 
-- **Structures mono-repo :** Peut necessiter de scoper le reverse engineering a des packages ou services specifiques plutot qu'au repo entier. Pointer l'agent vers le sous-dossier pertinent.
-- **Generation de specs pour un domaine entier :** Generer des specs pour un domaine entier est un investissement plus important -- ca vaut le coup si votre equipe adopte Ralph comme workflow standard.
-- **Developpement rapide ou petits changements :** Les petits changements de code peuvent deriver des specs generees. Decider en amont si votre equipe va relancer le reverse engineering pour garder les specs a jour, ou accepter une derive temporaire.
+- **Structures mono-repo :** Peut nécessiter de scoper le reverse engineering a des packages ou services spécifiques plutot qu'au repo entier. Pointer l'agent vers le sous-dossier pertinent.
+- **Generation de specs pour un domaine entier :** Générer des specs pour un domaine entier est un investissement plus important -- ça vaut le coup si votre équipe adopte Ralph comme workflow standard.
+- **Développement rapide ou petits changements :** Les petits changements de code peuvent deriver des specs générées. Décider en amont si votre équipe va relancer le reverse engineering pour garder les specs a jour, ou accepter une derive temporaire.
 - **Obsolescence des specs apres refactors :** Une fois que Ralph construit de nouvelles features par-dessus les specs reverse-engineerees, les refactors majeurs peuvent invalider les specs silencieusement. Relancer le reverse engineering periodiquement sur les zones fortement modifiees.
-- **Granularite des sujets :** Le prompt applique strictement "un sujet par spec". Sur une grande codebase, decider ou tracer les limites des sujets est un choix de jugement -- trop large et les specs deviennent ingereables, trop etroit et vous noyez sous les fichiers. Commencer large et decouper si necessaire.
-- **Les bugs deviennent des specs :** Le prompt documente intentionnellement le comportement bugge comme le comportement defini. Les specs reverse-engineerees decrivent ce qui *est*, pas ce qui *devrait etre*. Ecrire de nouvelles specs separement pour les changements de comportement desires.
-- **Cout en tokens sur les grandes codebases :** Le tracage exhaustif du code avec des sous-agents peut bruler des tokens significatifs. Scoper d'abord aux zones que vous planifiez reellement de modifier.
+- **Granularite des sujets :** Le prompt applique strictement "un sujet par spec". Sur une grande codebase, décider ou tracer les limites des sujets est un choix de jugement -- trop large et les specs deviennent ingereables, trop etroit et vous noyez sous les fichiers. Commencer large et decouper si nécessaire.
+- **Les bugs deviennent des specs :** Le prompt documente intentionnellement le comportement bugge comme le comportement défini. Les specs reverse-engineerees decrivent ce qui *est*, pas ce qui *devrait etre*. Écrire de nouvelles specs séparément pour les changements de comportement desires.
+- **Coût en tokens sur les grandes codebases :** Le tracage exhaustif du code avec des sous-agents peut bruler des tokens significatifs. Scoper d'abord aux zones que vous planifiez réellement de modifier.
 
 #### Compatibilite avec la philosophie de base
 
 | Principe                | Maintenu ? | Comment                                                                                                     |
 | ----------------------- | ---------- | ----------------------------------------------------------------------------------------------------------- |
-| Setup deterministe      | Oui        | Les specs sont des artefacts ecrits (etat connu), pas du contexte ad-hoc, contient tous les defauts du code |
-| Efficacite du contexte  | Partiel    | Doit etre adopte a travers toute la culture de l'equipe                                                     |
-| Capturer le pourquoi    | Partiel    | Pas tout le code implemente contient le pourquoi, capture les commentaires seulement s'ils expriment l'intention |
+| Setup deterministe      | Oui        | Les specs sont des artefacts ecrits (état connu), pas du contexte ad-hoc, contient tous les defauts du code |
+| Efficacite du contexte  | Partiel    | Doit etre adopte a travers toute la culture de l'équipe                                                     |
+| Capturer le pourquoi    | Partiel    | Pas tout le code implémenté contient le pourquoi, capture les commentaires seulement s'ils expriment l'intention |
 | Laisser Ralph Ralph     | Oui        | Les sujets de preoccupation sont toujours choisis par Ralph                                                  |
 | Plan jetable            | Oui        | Les specs fournissent une baseline stable ; les plans se regenerent contre la realite documentee             |
 | La simplicite gagne     | Oui        | Fournit une vue d'ensemble de toutes vos specifications                                                      |
@@ -1775,8 +1765,8 @@ Aucune modification des fichiers prompt existants necessaire -- c'est purement a
 
 _Notes :_
 
-- Documente le comportement reel du code (bugs inclus) -- pas le comportement prevu
-- Processus en deux phases : Phase 1 investigue avec acces complet au code, Phase 2 ecrit les specs avec zero detail d'implementation
+- Documente le comportement reel du code (bugs inclus) -- pas le comportement prévu
+- Processus en deux phases : Phase 1 investigue avec acces complet au code, Phase 2 écrit les specs avec zero détail d'implémentation
 - Un sujet par spec, applique par le test "une phrase sans 'et'"
 - Les noms de subagents actuels presument l'utilisation de Claude
 
@@ -1808,13 +1798,13 @@ _Notes :_
 
 ## Environnements sandbox
 
-_Modele de securite :_ La sandbox (Docker/E2B) fournit la frontiere de securite. Dans la sandbox, Claude tourne avec les permissions completes parce que le conteneur lui-meme est isole.
+_Modèle de sécurité :_ La sandbox (Docker/E2B) fournit la frontière de sécurité. Dans la sandbox, Claude tourne avec les permissions completes parce que le conteneur lui-même est isole.
 
-_Philosophie de securite :_
+_Philosophie de sécurité :_
 
-> "La question n'est pas si ca va etre compromis, mais quand. Et quel est le rayon de l'explosion ?"
+> "La question n'est pas si ça va etre compromis, mais quand. Et quel est le rayon de l'explosion ?"
 
-Tourner sur des VMs dediees ou des sandboxes Docker locales. Restreindre la connectivite reseau, fournir uniquement les credentials necessaires, et assurer aucun acces aux donnees privees au-dela de ce que la tache requiert.
+Tourner sur des VMs dediees ou des sandboxes Docker locales. Restreindre la connectivite reseau, fournir uniquement les credentials nécessaires, et assurer aucun acces aux donnees privees au-delà de ce que la tâche requiert.
 
 ### Options
 
@@ -1822,20 +1812,20 @@ Tourner sur des VMs dediees ou des sandboxes Docker locales. Restreindre la conn
 
 - Environnements Linux persistants qui survivent entre les executions indefiniment
 - Isolation Firecracker VM avec jusqu'a 8 vCPUs et 8GB RAM
-- Checkpoint/restore rapide (~300ms creation, <1s restore)
+- Checkpoint/restore rapide (~300ms création, <1s restore)
 - Auto-sleep apres 30 secondes d'inactivite
 - URL HTTPS unique par Sprite pour webhooks, APIs, acces public
-- Politiques reseau Layer 3 pour controle egress (whitelist de domaines ou liste LLM-friendly par defaut)
+- Politiques reseau Layer 3 pour contrôle egress (whitelist de domaines ou liste LLM-friendly par défaut)
 - CLI, REST API, JavaScript SDK, Go SDK (Python et Elixir bientot)
 - Outils pre-installes : Claude Code, Codex CLI, Gemini CLI, Python 3.13, Node.js 22.20
 - 30$ de credits gratuits pour commencer (~500 Sprites)
 
 #### E2B
 
-- Concu specialement pour les agents IA et workflows LLM
+- Conçu specialement pour les agents IA et workflows LLM
 - Template pre-construit `anthropic-claude-code` livre avec Claude Code CLI pret
 - Appels SDK en une ligne en Python ou JavaScript (v1.5.1+)
-- Filesystem complet + git pour progress.txt, prd.json et operations repo
+- Filesystem complet + git pour progress.txt, prd.json et opérations repo
 - Limites de session de 24h sur le plan Pro (1h sur Hobby)
 - Acces natif a 200+ outils MCP via partenariat Docker (GitHub, Notion, Stripe, etc.)
 - Compute configurable : 1-8 vCPU, 512MB-8GB RAM
@@ -1843,12 +1833,12 @@ Tourner sur des VMs dediees ou des sandboxes Docker locales. Restreindre la conn
 #### exe.dev
 
 - Plateforme VM persistante par David Crawshaw (ancien CTO Tailscale) et Josh Bleecher Snyder
-- Creation de VM en ~2 secondes
+- Création de VM en ~2 secondes
 - Stockage disque persistant (pas ephemere)
 - Interface native SSH (`ssh exe.dev`)
 - TLS automatique et domaines personnalises
 - Agent IA Shelley inclus (web, mobile-friendly)
-- Pas de SDK necessaire -- interaction purement SSH
+- Pas de SDK nécessaire -- interaction purement SSH
 
 #### Docker (local)
 
@@ -1860,9 +1850,9 @@ docker sandbox run claude -c               # Continuer la derniere session
 ```
 
 - Credentials stockees dans le volume persistant `docker-claude-sandbox-data`
-- `--dangerously-skip-permissions` active par defaut
+- `--dangerously-skip-permissions` active par défaut
 - Image de base inclut : Node.js, Python 3, Go, Git, Docker CLI, GitHub CLI, ripgrep, jq
-- Le conteneur persiste en arriere-plan ; relancer reutilise le meme conteneur
+- Le conteneur persiste en arriere-plan ; relancer reutilise le même conteneur
 - Utilisateur non-root avec acces sudo
 
 ### Tableau comparatif
@@ -1882,4 +1872,4 @@ docker sandbox run claude -c               # Continuer la derniere session
 
 - **Pour la production/multi-tenant :** E2B -- template Claude Code zero-setup, sessions 24h, isolation vraie, 200+ outils MCP
 - **Pour les agents persistants long-running :** Sprites -- pas de limites de session, snapshots transactionnels, auto-sleep, outils IA pre-installes
-- **Pour le developpement local :** Docker Sandboxes -- `docker sandbox run claude`, gratuit, duree illimitee
+- **Pour le développement local :** Docker Sandboxes -- `docker sandbox run claude`, gratuit, duree illimitee

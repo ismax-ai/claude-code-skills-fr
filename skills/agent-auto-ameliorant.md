@@ -1,25 +1,25 @@
 ---
-name: agent-auto-ameliorant
-description: "Il produit, il critique, il corrige. Tout seul. Curation de la memoire auto de Claude Code : analyse, promotion en regles, extraction en skills reutilisables."
+name: agent-auto-améliorant
+description: "Il produit, il critique, il corrige. Tout seul. Curation de la mémoire auto de Claude Code : analyse, promotion en règles, extraction en skills réutilisables."
 ---
 
-# Agent Auto-Ameliorant
+# Agent Auto-Améliorant
 
-> Inspire de [pskoett/self-improving-agent](https://github.com/pskoett/self-improving-agent) — adapte en francais.
+> Inspire de [pskoett/self-improving-agent](https://github.com/pskoett/self-improving-agent) — adapte en français.
 
-La memoire auto de Claude Code capture des patterns. Ce skill ajoute l'intelligence : il analyse ce que Claude a appris, promeut les patterns prouves en regles, et extrait les solutions recurrentes en skills reutilisables.
+La mémoire auto de Claude Code capture des patterns. Ce skill ajoute l'intelligence : il analyse ce que Claude a appris, promeut les patterns prouves en règles, et extrait les solutions récurrentes en skills réutilisables.
 
 ## Commandes
 
-| Commande | Ce que ca fait |
+| Commande | Ce que ça fait |
 |----------|---------------|
-| `/si:review` | Analyse MEMORY.md — trouve les candidats a promotion, les entrees obsoletes, les opportunites de consolidation |
+| `/si:review` | Analyse MEMORY.md — trouve les candidats a promotion, les entrees obsolètes, les opportunites de consolidation |
 | `/si:promote` | Fait passer un pattern de MEMORY.md → CLAUDE.md ou `.claude/rules/` |
 | `/si:extract` | Transforme un pattern prouve en skill standalone |
-| `/si:status` | Dashboard sante memoire — nombre de lignes, fichiers thematiques, recommandations |
-| `/si:remember` | Sauvegarde explicitement un savoir important dans la memoire auto |
+| `/si:status` | Dashboard sante mémoire — nombre de lignes, fichiers thematiques, recommandations |
+| `/si:remember` | Sauvegarde explicitement un savoir important dans la mémoire auto |
 
-## Comment ca s'articule
+## Comment ça s'articule
 
 ```
 ┌──────────────────────────────────────────────────┐
@@ -42,12 +42,12 @@ La memoire auto de Claude Code capture des patterns. Ce skill ajoute l'intellige
 └──────────────────────────────────────────────────┘
 ```
 
-## Architecture memoire
+## Architecture mémoire
 
-| Fichier | Qui ecrit | Charge quand |
+| Fichier | Qui écrit | Charge quand |
 |---------|-----------|-------------|
 | `./CLAUDE.md` | Toi (+ `/si:promote`) | Chaque session, en entier |
-| `MEMORY.md` | Claude (auto) | 200 premieres lignes |
+| `MEMORY.md` | Claude (auto) | 200 premières lignes |
 | `memory/*.md` | Claude (debordement) | A la demande |
 | `.claude/rules/*.md` | Toi (+ `/si:promote`) | Quand les fichiers concernes sont ouverts |
 
@@ -63,24 +63,24 @@ La memoire auto de Claude Code capture des patterns. Ce skill ajoute l'intellige
 
 ## Concepts cles
 
-### La memoire auto capture, elle ne trie pas
+### La mémoire auto capture, elle ne trie pas
 
-La memoire auto est excellente pour enregistrer ce que Claude apprend. Mais elle ne juge pas :
+La mémoire auto est excellente pour enregistrer ce que Claude apprend. Mais elle ne juge pas :
 - Quel apprentissage est temporaire vs permanent
-- Quels patterns devraient devenir des regles
-- Quand la limite de 200 lignes gaspille de l'espace sur des entrees obsoletes
+- Quels patterns devraient devenir des règles
+- Quand la limite de 200 lignes gaspille de l'espace sur des entrees obsolètes
 - Quelles solutions meritent de devenir des skills
 
 C'est le role de ce skill.
 
 ### Promotion = graduation
 
-Quand tu promeus un apprentissage, il passe du brouillon de Claude (MEMORY.md) au systeme de regles de ton projet (CLAUDE.md ou `.claude/rules/`).
+Quand tu promeus un apprentissage, il passe du brouillon de Claude (MEMORY.md) au système de règles de ton projet (CLAUDE.md ou `.claude/rules/`).
 
 - **MEMORY.md** : "Ce projet utilise pnpm" (contexte de fond)
 - **CLAUDE.md** : "Utiliser pnpm, pas npm" (instruction appliquee)
 
-Les regles promues ont une priorite superieure et sont chargees en entier (pas tronquees a 200 lignes).
+Les règles promues ont une priorité supérieure et sont chargees en entier (pas tronquées a 200 lignes).
 
 ### Le dossier rules/ pour le savoir scope
 
@@ -98,20 +98,20 @@ paths:
 - Toujours tester les reponses d'erreur, pas juste le happy path
 ```
 
-Ca se charge uniquement quand Claude travaille sur des fichiers de test API. Zero overhead sinon.
+Ça se charge uniquement quand Claude travaille sur des fichiers de test API. Zero overhead sinon.
 
 ## Agents internes
 
 ### memory-analyst
 Analyse MEMORY.md et les fichiers thematiques pour identifier :
 - Entrees qui reviennent entre sessions (candidats a promotion)
-- Entrees obsoletes qui referencent des fichiers supprimes
+- Entrees obsolètes qui referencent des fichiers supprimes
 - Entrees liees qui devraient etre consolidees
-- Ecarts entre ce que MEMORY.md sait et ce que CLAUDE.md impose
+- Écarts entre ce que MEMORY.md sait et ce que CLAUDE.md impose
 
 ### skill-extractor
-Prend un pattern prouve et genere un skill complet :
+Prend un pattern prouve et généré un skill complet :
 - Fichier SKILL.md avec frontmatter correct
-- Documentation de reference
+- Documentation de référence
 - Exemples et cas limites
 - Pret a installer
