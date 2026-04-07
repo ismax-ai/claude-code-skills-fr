@@ -1,6 +1,50 @@
 # Crédits
 
-3 skills sur 10 sont des forks de projets open source existants. Les versions ici sont traduites en français et améliorées avec des fonctionnalités en plus.
+7 skills sur 10 sont des forks de projets open source existants. Les versions ici sont traduites en français et améliorées avec des fonctionnalités en plus.
+
+---
+
+## Superpowers (`/superpowers`)
+
+**Auteur original** : [pcvelz](https://github.com/pcvelz)
+**Repo source** : [pcvelz/superpowers](https://github.com/pcvelz/superpowers)
+
+**Ce qu'on a ajouté** :
+- Traduction complète en français
+- Descriptions fingerprint FR
+
+---
+
+## Créateur de Skills (`/createur-de-skills`)
+
+**Auteur original** : [pcvelz](https://github.com/pcvelz)
+**Repo source** : [pcvelz/superpowers](https://github.com/pcvelz/superpowers)
+
+**Ce qu'on a ajouté** :
+- Traduction complète en français
+- Descriptions fingerprint FR
+
+---
+
+## Boîte à Outils Prompt Engineer (`/prompt-engineer`)
+
+**Auteur original** : [AlirezaRezvworking](https://github.com/AlirezaRezvworking)
+**Repo source** : [AlirezaRezvworking/prompt-engineer-toolkit](https://github.com/AlirezaRezvworking/prompt-engineer-toolkit)
+
+**Ce qu'on a ajouté** :
+- Traduction complète en français
+- Descriptions fingerprint FR
+
+---
+
+## Gouvernance des Prompts (`/gouvernance-prompts`)
+
+**Auteur original** : [chad848](https://github.com/chad848)
+**Repo source** : [chad848/prompt-governance](https://github.com/chad848/prompt-governance)
+
+**Ce qu'on a ajouté** :
+- Traduction complète en français
+- Descriptions fingerprint FR
 
 ---
 
@@ -18,7 +62,7 @@
 
 ---
 
-## Karen (`/karen`)
+## Le Reality Check — Karen (`/karen`)
 
 **Auteur original** : [darcyegb](https://github.com/darcyegb)
 **Repo source** : [darcyegb/ClaudeCodeAgents](https://github.com/darcyegb/ClaudeCodeAgents)
@@ -32,7 +76,7 @@
 
 ---
 
-## Ralph (`/ralph`)
+## La Boucle Infinie — Ralph (`/ralph`)
 
 **Auteur original** : [Geoffrey Huntley](https://ghuntley.com)
 **Source** : [ghuntley.com/ralph](https://ghuntley.com/ralph/)
@@ -44,9 +88,9 @@
 
 ---
 
-## Les 7 autres
+## Les 3 originaux
 
-Superpowers, Créateur de Skills, Prompt Engineer, Agent Auto-Améliorant, Gouvernance Prompts, Sentinel et L'Aigle Superviseur sont des créations originales par [Ismax](https://github.com/ismax-ai).
+Agent Auto-Améliorant, Le Red Team (Sentinel) et L'Aigle Superviseur sont des créations originales par [Ismax](https://github.com/ismax-ai).
 
 ---
 
