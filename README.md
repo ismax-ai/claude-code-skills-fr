@@ -1,22 +1,32 @@
 # Skills Claude Code par Ismax
 
-10 skills. Prêts à copier. En français.
+La plus grosse bibliotheque francophone de skills Claude Code. Open source.
 
 ---
 
-## Le problème
+## C'est quoi un skill ?
 
-Tu écris un post. Tu relis. Tu publies.
+Un skill, c'est un fichier d'instructions qui donne de nouvelles capacites a Claude Code. Tu tapes une commande, Claude change de comportement. `/sentinel` et il devient un red teamer qui attaque ton travail sous 20 angles. `/ralph` et il entre dans une boucle autonome jusqu'a ce que le resultat soit propre. `/karen` et il verifie si c'est vraiment fait, pas juste "fait".
 
-Et le premier commentaire pointe la faille que tu n'avais pas vue. Ou pire, le silence. Personne ne réagit parce que le texte sonnait robot sans que tu t'en rendes compte.
+En gros : un skill = un expert specialise que tu appelles en une commande.
 
-En fait le vrai problème c'est pas ta rédaction. C'est que tu relis avec les mêmes yeux qui ont écrit. Tu ne peux pas être ton propre critique (et c'est normal).
+Pas de code a ecrire. Pas de plugin a installer. Pas de configuration. Tu copies, Claude fait le reste.
 
-## La solution
+## Pourquoi cette bibliotheque
 
-10 skills Claude Code qui font le boulot à ta place. Red team, superviseur qualité, avocat du diable, boucle infinie, prompt engineer. Chaque skill = un expert que tu appelles en une commande.
+Claude Code est puissant de base. Mais il fait ce que tu lui demandes, exactement comme tu le demandes. Si ton prompt est vague, le resultat est vague. Si tu oublies de lui dire de verifier son travail, il ne verifie pas.
 
-Pas besoin de coder. Pas de terminal. Juste un copier-coller.
+Les skills corrigent ca. Chaque skill encode un processus complet : les etapes, les criteres de qualite, les cas limites, les red flags a detecter. Du coup tu obtiens un resultat de niveau expert sans ecrire un prompt de 200 lignes a chaque fois.
+
+Aujourd'hui il y a 10 skills. L'objectif c'est d'en avoir 100+. Chaque skill est teste en conditions reelles avant d'etre publie ici.
+
+## Pour qui
+
+- Tu utilises Claude Code (ou tu veux t'y mettre)
+- Tu veux des resultats concrets : du contenu qui tient, du code qui marche, des decisions challengees
+- Tu preferes installer un truc qui marche plutot que passer 3 heures a bricoler un prompt
+
+Pas besoin d'etre dev. Tous les skills s'installent avec un copier-coller.
 
 ---
 
@@ -161,25 +171,17 @@ En 10 secondes, tu sais que ton post va se faire descendre. Avant de le publier.
 
 ---
 
-## Crédits
+## Credits
 
-3 skills sont des forks de projets open source. Traduits en français et améliorés.
+7 skills sur 10 sont des traductions integrales de projets open source. 3 sont des creations originales.
 
-| Skill | Auteur original | Source | Ce qu'on a ajouté |
-|-------|----------------|--------|-------------------|
-| L'Avocat du Diable | [notmanas](https://github.com/notmanas/claude-code-skills) | Devil's Advocate | Traduction FR, frameworks CIA, pre-mortem |
-| Karen | [darcyegb](https://github.com/darcyegb/ClaudeCodeAgents) | Karen | Traduction FR, severity ratings, bullshit detection |
-| Ralph | [Geoffrey Huntley](https://ghuntley.com/ralph/) | Ralph | Traduction FR, structure plan d'implémentation |
-
-Les 7 autres sont des créations originales.
-
-Détails complets dans [CREDITS.md](CREDITS.md).
+Details complets, auteurs originaux et sources dans [CREDITS.md](CREDITS.md).
 
 ---
 
 ## Pour aller plus loin
 
-Ces 10 skills sont un bout de mon workflow IA. Si tu veux voir comment je les utilise en vrai, comment je crée du contenu, et les systèmes que je construis au quotidien :
+Cette bibliotheque c'est un bout de mon workflow IA. Si tu veux voir comment j'utilise ces skills en vrai, comment je cree du contenu, et les systemes que je construis au quotidien :
 
 → **[Ma newsletter](https://redigeretvendreavecia.substack.com)** — 2 emails par semaine. Tutoriels IA en français, pas de blabla
 → **[Mon Instagram](https://instagram.com/ismaelalaoui_)** — workflows IA en carrousels, tout est actionnable
