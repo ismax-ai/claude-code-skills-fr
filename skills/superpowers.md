@@ -81,7 +81,7 @@ digraph skill_flow {
 
 Ces pensees signifient STOP — tu es en train de rationaliser :
 
-| Pensee | Realite |
+| Pensee | Réalité |
 |--------|---------|
 | "C'est juste une question simple" | Les questions sont des tâches. Vérifier les skills. |
 | "J'ai besoin de plus de contexte d'abord" | Le check des skills vient AVANT les questions de clarification. |

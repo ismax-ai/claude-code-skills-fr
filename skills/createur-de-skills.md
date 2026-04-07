@@ -13,11 +13,11 @@ description: "Utiliser quand tu créés de nouveaux skills, modifies des skills 
 
 **Les skills personnels vivent dans des répertoires spécifiques a l'agent (`$HOME/.claude/skills` pour Claude Code, `$HOME/.agents/skills/` pour Codex)**
 
-Tu ecris des cas de test (scenarios de pression avec des sous-agents), tu les regardes échouer (comportement de base), tu ecris le skill (documentation), tu regardes les tests passer (les agents se conforment), et tu refactores (tu bouches les failles).
+Tu ecris des cas de test (scénarios de pression avec des sous-agents), tu les regardes échouer (comportement de base), tu ecris le skill (documentation), tu regardes les tests passer (les agents se conforment), et tu refactores (tu bouches les failles).
 
 **Principe fondamental :** Si tu n'as pas regarde un agent échouer SANS le skill, tu ne sais pas si le skill enseigne la bonne chose.
 
-**PREREQUIS OBLIGATOIRE :** Tu DOIS comprendre superpowers-extended-cc:test-driven-development avant d'utiliser ce skill. Ce skill définit le cycle RED-GREEN-REFACTOR fondamental. Le skill actuel adapte le TDD a la documentation.
+**Prérequis OBLIGATOIRE :** Tu DOIS comprendre superpowers-extended-cc:test-driven-development avant d'utiliser ce skill. Ce skill définit le cycle RED-GREEN-REFACTOR fondamental. Le skill actuel adapte le TDD a la documentation.
 
 **Conseils officiels :** Pour les bonnes pratiques officielles d'Anthropic en matière de création de skills, voir anthropic-best-practices.md. Ce document fournit des patterns et recommandations supplémentaires qui completent l'approche centree TDD de ce skill.
 
@@ -33,12 +33,12 @@ Un **skill** est un guide de référence pour des techniques, patterns ou outils
 
 | Concept TDD | Création de Skill |
 |-------------|-------------------|
-| **Cas de test** | Scenario de pression avec sous-agent |
+| **Cas de test** | Scénario de pression avec sous-agent |
 | **Code de production** | Document du skill (SKILL.md) |
 | **Le test échoué (RED)** | L'agent viole la règle sans le skill (baseline) |
 | **Le test passe (GREEN)** | L'agent se conforme avec le skill present |
-| **Refactor** | Boucher les failles tout en maintenant la conformite |
-| **Écrire le test d'abord** | Lancer le scenario de base AVANT d'écrire le skill |
+| **Refactor** | Boucher les failles tout en maintenant la conformité |
+| **Écrire le test d'abord** | Lancer le scénario de base AVANT d'écrire le skill |
 | **Le regarder échouer** | Documenter les rationalisations exactes de l'agent |
 | **Code minimal** | Écrire le skill qui répond a ces violations spécifiques |
 | **Le regarder passer** | Vérifier que l'agent se conforme maintenant |
@@ -58,7 +58,7 @@ Le processus entier de création de skill suit RED-GREEN-REFACTOR.
 - Des solutions uniques
 - Des pratiques standard déjà bien documentees ailleurs
 - Des conventions spécifiques au projet (les mettre dans CLAUDE.md)
-- Des contraintes mecaniques (si c'est verifiable par regex/validation, automatise-le — reserve la documentation aux jugements)
+- Des contraintes mecaniques (si c'est verifiable par regex/validation, automatise-le — réservé la documentation aux jugements)
 
 ## Types de Skills
 
@@ -96,10 +96,10 @@ skills/
 **Frontmatter (YAML) :**
 - Deux champs obligatoires : `name` et `description` (voir [agentskills.io/specification](https://agentskills.io/specification) pour tous les champs supportes)
 - Max 1024 caractères au total
-- `name` : Utiliser uniquement lettres, chiffres et tirets (pas de parentheses, pas de caractères speciaux)
+- `name` : Utiliser uniquement lettres, chiffres et tirets (pas de parenthèses, pas de caractères speciaux)
 - `description` : Troisieme personne, décrit UNIQUEMENT quand utiliser (PAS ce que le skill fait)
   - Commencer par "Utiliser quand..." pour se concentrer sur les conditions de déclenchement
-  - Inclure les symptomes spécifiques, situations et contextes
+  - Inclure les symptômes spécifiques, situations et contextes
   - **NE JAMAIS résumer le processus ou le workflow du skill** (voir la section CSO pour comprendre pourquoi)
   - Rester sous 500 caractères si possible
 
@@ -151,7 +151,7 @@ Resultats concrets
 
 La description doit UNIQUEMENT décrire les conditions de déclenchement. NE PAS résumer le processus ou le workflow du skill dans la description.
 
-**Pourquoi c'est important :** Les tests ont révélé que quand une description résumé le workflow du skill, Claude peut suivre la description au lieu de lire le contenu complet du skill. Une description disant "revue de code entre les tâches" poussait Claude a faire UNE revue, alors que le flowchart du skill montrait clairement DEUX revues (conformite aux specs puis qualite du code).
+**Pourquoi c'est important :** Les tests ont révélé que quand une description résumé le workflow du skill, Claude peut suivre la description au lieu de lire le contenu complet du skill. Une description disant "revue de code entre les tâches" poussait Claude a faire UNE revue, alors que le flowchart du skill montrait clairement DEUX revues (conformité aux specs puis qualité du code).
 
 Quand la description a ete changee pour simplement "Utiliser quand tu executes des plans d'implémentation avec des tâches indépendantes" (sans résumé du workflow), Claude lisait correctement le flowchart et suivait le processus de revue en deux étapes.
 
@@ -172,8 +172,8 @@ description: Utiliser quand tu implementes une feature ou un bugfix, avant d'ecr
 ```
 
 **Contenu :**
-- Utiliser des déclencheurs concrets, symptomes et situations qui signalent que ce skill s'applique
-- Décrire le *problème* (conditions de course, comportement inconsistant) pas les *symptomes spécifiques au langage* (setTimeout, sleep)
+- Utiliser des déclencheurs concrets, symptômes et situations qui signalent que ce skill s'applique
+- Décrire le *problème* (conditions de course, comportement inconsistant) pas les *symptômes spécifiques au langage* (setTimeout, sleep)
 - Garder les déclencheurs agnostiques de la technologie sauf si le skill lui-même est spécifique a une technologie
 - Si le skill est spécifique a une technologie, le rendre explicite dans le déclencheur
 - Écrire a la troisieme personne (injecte dans le system prompt)
@@ -196,11 +196,11 @@ description: Utiliser quand les tests ont des conditions de course, des dependan
 description: Utiliser quand tu utilises React Router et geres les redirections d'authentification
 ```
 
-### 2. Couverture des mots-cles
+### 2. Couverture des mots-clés
 
 Utiliser les mots que Claude chercherait :
 - Messages d'erreur : "Hook timed out", "ENOTEMPTY", "race condition"
-- Symptomes : "instable", "bloque", "zombie", "pollution"
+- Symptômes : "instable", "bloque", "zombie", "pollution"
 - Synonymes : "timeout/blocage/freeze", "cleanup/teardown/afterEach"
 - Outils : Commandes reelles, noms de librairies, types de fichiers
 
@@ -210,7 +210,7 @@ Utiliser les mots que Claude chercherait :
 - ✅ `creation-de-skills` pas `skills-creation`
 - ✅ `attente-conditionnelle` pas `helpers-tests-async`
 
-### 4. Efficacite en tokens (Critique)
+### 4. Efficacité en tokens (Critique)
 
 **Problème :** les skills getting-started et fréquemment références se chargent dans CHAQUE conversation. Chaque token compte.
 
@@ -283,7 +283,7 @@ Utiliser le nom du skill uniquement, avec des marqueurs d'exigence explicites :
 - ✅ Bon : `**SOUS-SKILL OBLIGATOIRE :** Utiliser superpowers-extended-cc:test-driven-development`
 - ✅ Bon : `**PREREQUIS OBLIGATOIRE :** Tu DOIS comprendre superpowers-extended-cc:systematic-debugging`
 - ❌ Mauvais : `Voir skills/testing/test-driven-development` (pas clair si obligatoire)
-- ❌ Mauvais : `@skills/testing/test-driven-development/SKILL.md` (charge de force, brule du contexte)
+- ❌ Mauvais : `@skills/testing/test-driven-development/SKILL.md` (charge de force, brûlé du contexte)
 
 **Pourquoi pas de liens @ :** La syntaxe `@` charge les fichiers de force immédiatement, consommant 200k+ de contexte avant que tu en aies besoin.
 
@@ -333,9 +333,9 @@ Choisir le langage le plus pertinent :
 **Un bon exemple :**
 - Complet et executable
 - Bien commente en expliquant POURQUOI
-- Tire d'un scenario reel
+- Tire d'un scénario reel
 - Montre le pattern clairement
-- Pret a adapter (pas un template generique)
+- Pret a adapter (pas un template générique)
 
 **A éviter :**
 - Implémenter dans 5+ langages
@@ -369,7 +369,7 @@ pptx/
   ooxml.md       # 500 lignes de structure XML
   scripts/       # Outils executables
 ```
-Quand : le materiel de référence est trop lourd pour etre en ligne
+Quand : le materiel de référence est trop lourd pour être en ligne
 
 ## La Loi d'Airain (identique au TDD)
 
@@ -390,77 +390,77 @@ Tu as modifie un skill sans tester ? Même violation.
 - N'"adapte" pas pendant les tests
 - Supprimer veut dire supprimer
 
-**PREREQUIS OBLIGATOIRE :** Le skill superpowers-extended-cc:test-driven-development explique pourquoi c'est important. Les mêmes principes s'appliquent a la documentation.
+**Prérequis OBLIGATOIRE :** Le skill superpowers-extended-cc:test-driven-development explique pourquoi c'est important. Les mêmes principes s'appliquent a la documentation.
 
 ## Tester tous les types de Skills
 
-Differents types de skills necessitent differentes approches de test :
+Différents types de skills necessitent différentes approches de test :
 
 ### Skills d'application de discipline (règles/exigences)
 
 **Exemples :** TDD, vérification-avant-complétion, conception-avant-codage
 
 **Tester avec :**
-- Questions academiques : est-ce qu'ils comprennent les règles ?
-- Scenarios de pression : est-ce qu'ils se conforment sous stress ?
+- Questions académiques : est-ce qu'ils comprennent les règles ?
+- Scénarios de pression : est-ce qu'ils se conforment sous stress ?
 - Pressions multiples combinees : temps + coût irrecuperable + épuisement
 - Identifier les rationalisations et ajouter des contre-arguments explicites
 
-**Critère de succes :** L'agent suit la règle sous pression maximale
+**Critère de succès :** L'agent suit la règle sous pression maximale
 
 ### Skills de technique (guides pratiques)
 
 **Exemples :** attente-conditionnelle, tracage-de-cause-racine, programmation-defensive
 
 **Tester avec :**
-- Scenarios d'application : est-ce qu'ils appliquent la technique correctement ?
-- Scenarios de variation : est-ce qu'ils gerent les cas limites ?
+- Scénarios d'application : est-ce qu'ils appliquent la technique correctement ?
+- Scénarios de variation : est-ce qu'ils gerent les cas limites ?
 - Tests d'information manquante : est-ce que les instructions ont des lacunes ?
 
-**Critère de succes :** L'agent applique la technique avec succes a un nouveau scenario
+**Critère de succès :** L'agent applique la technique avec succès a un nouveau scénario
 
 ### Skills de pattern (modèles mentaux)
 
-**Exemples :** reduction-de-complexite, concepts de masquage d'information
+**Exemples :** réduction-de-complexité, concepts de masquage d'information
 
 **Tester avec :**
-- Scenarios de reconnaissance : est-ce qu'ils reconnaissent quand le pattern s'applique ?
-- Scenarios d'application : est-ce qu'ils savent utiliser le modèle mental ?
+- Scénarios de reconnaissance : est-ce qu'ils reconnaissent quand le pattern s'applique ?
+- Scénarios d'application : est-ce qu'ils savent utiliser le modèle mental ?
 - Contre-exemples : est-ce qu'ils savent quand NE PAS appliquer ?
 
-**Critère de succes :** L'agent identifié correctement quand et comment appliquer le pattern
+**Critère de succès :** L'agent identifié correctement quand et comment appliquer le pattern
 
 ### Skills de référence (documentation/APIs)
 
 **Exemples :** documentation API, références de commandes, guides de librairies
 
 **Tester avec :**
-- Scenarios de recherche : est-ce qu'ils trouvent la bonne information ?
-- Scenarios d'application : est-ce qu'ils utilisent correctement ce qu'ils ont trouve ?
+- Scénarios de recherche : est-ce qu'ils trouvent la bonne information ?
+- Scénarios d'application : est-ce qu'ils utilisent correctement ce qu'ils ont trouve ?
 - Test des lacunes : est-ce que les cas d'usage courants sont couverts ?
 
-**Critère de succes :** L'agent trouve et applique correctement l'information de référence
+**Critère de succès :** L'agent trouve et applique correctement l'information de référence
 
 ## Rationalisations courantes pour ne pas tester
 
-| Excuse | Realite |
+| Excuse | Réalité |
 |--------|---------|
 | "Le skill est clairement écrit" | Clair pour toi ≠ clair pour d'autres agents. Teste. |
 | "C'est juste une référence" | Les références peuvent avoir des lacunes, des sections floues. Teste la recherche. |
 | "Tester c'est exagere" | Les skills non testes ont des problèmes. Toujours. 15 min de test sauvent des heures. |
 | "Je testerai si des problèmes emergent" | Problèmes = les agents ne peuvent pas utiliser le skill. Tester AVANT de déployer. |
 | "Trop fastidieux a tester" | Tester est moins fastidieux que debugger un mauvais skill en production. |
-| "J'ai confiance que c'est bon" | L'exces de confiance garantit des problèmes. Teste quand même. |
-| "Une revue academique suffit" | Lire ≠ utiliser. Teste les scenarios d'application. |
-| "Pas le temps de tester" | Déployer un skill non teste fait perdre plus de temps a le corriger apres. |
+| "J'ai confiance que c'est bon" | L'excès de confiance garantit des problèmes. Teste quand même. |
+| "Une revue académique suffit" | Lire ≠ utiliser. Teste les scénarios d'application. |
+| "Pas le temps de tester" | Déployer un skill non teste fait perdre plus de temps a le corriger après. |
 
 **Toutes ces excuses signifient : Teste avant de déployer. Pas d'exception.**
 
 ## Blinder les Skills contre la rationalisation
 
-Les skills qui imposent de la discipline (comme le TDD) doivent resister a la rationalisation. Les agents sont intelligents et trouveront des failles quand ils sont sous pression.
+Les skills qui imposent de la discipline (comme le TDD) doivent résister a la rationalisation. Les agents sont intelligents et trouveront des failles quand ils sont sous pression.
 
-**Note de psychologie :** Comprendre POURQUOI les techniques de persuasion fonctionnent t'aide a les appliquer systematiquement. Voir persuasion-principles.md pour les fondements de recherche (Cialdini, 2021 ; Meincke et al., 2025) sur l'autorite, l'engagement, la rarete, la preuve sociale et les principes d'unite.
+**Note de psychologie :** Comprendre POURQUOI les techniques de persuasion fonctionnent t'aide a les appliquer systématiquement. Voir persuasion-principles.md pour les fondements de recherche (Cialdini, 2021 ; Meincke et al., 2025) sur l'autorité, l'engagement, la rarete, la preuve sociale et les principes d'unite.
 
 ### Fermer chaque faille explicitement
 
@@ -522,9 +522,9 @@ Faciliter l'auto-vérification des agents quand ils rationalisent :
 **Toutes ces phrases signifient : Supprime le code. Recommence avec le TDD.**
 ```
 
-### Mettre a jour le CSO pour les symptomes de violation
+### Mettre a jour le CSO pour les symptômes de violation
 
-Ajouter a la description : les symptomes de quand tu es SUR LE POINT de violer la règle :
+Ajouter a la description : les symptômes de quand tu es SUR LE POINT de violer la règle :
 
 ```yaml
 description: Utiliser quand tu implementes une feature ou un bugfix, avant d'ecrire le code d'implementation
@@ -536,7 +536,7 @@ Suivre le cycle TDD :
 
 ### RED : Écrire le test qui échoué (Baseline)
 
-Lancer le scenario de pression avec un sous-agent SANS le skill. Documenter le comportement exact :
+Lancer le scénario de pression avec un sous-agent SANS le skill. Documenter le comportement exact :
 - Quels choix ont-ils fait ?
 - Quelles rationalisations ont-ils utilisees (verbatim) ?
 - Quelles pressions ont déclenché les violations ?
@@ -547,16 +547,16 @@ C'est "regarder le test échouer" - tu dois voir ce que les agents font naturell
 
 Écrire le skill qui répond a ces rationalisations spécifiques. Ne pas ajouter de contenu supplémentaire pour des cas hypothetiques.
 
-Lancer les mêmes scenarios AVEC le skill. L'agent devrait maintenant se conformer.
+Lancer les mêmes scénarios AVEC le skill. L'agent devrait maintenant se conformer.
 
 ### REFACTOR : Boucher les failles
 
 L'agent a trouve une nouvelle rationalisation ? Ajouter un contre-argument explicite. Re-tester jusqu'a ce que ce soit blinde.
 
 **Méthodologie de test :** Voir @testing-skills-with-subagents.md pour la méthodologie de test complété :
-- Comment écrire des scenarios de pression
-- Types de pression (temps, coût irrecuperable, autorite, épuisement)
-- Boucher les trous systematiquement
+- Comment écrire des scénarios de pression
+- Types de pression (temps, coût irrecuperable, autorité, épuisement)
+- Boucher les trous systématiquement
 - Techniques de meta-test
 
 ## Anti-Patterns
@@ -567,7 +567,7 @@ L'agent a trouve une nouvelle rationalisation ? Ajouter un contre-argument expli
 
 ### ❌ Dilution multi-langages
 example-js.js, example-py.py, example-go.go
-**Pourquoi c'est mauvais :** Qualite mediocre, maintenance lourde
+**Pourquoi c'est mauvais :** Qualité mediocre, maintenance lourde
 
 ### ❌ Code dans les flowcharts
 ```dot
@@ -576,13 +576,13 @@ step2 [label="read file"];
 ```
 **Pourquoi c'est mauvais :** Impossible a copier-coller, difficile a lire
 
-### ❌ Labels generiques
+### ❌ Labels génériques
 helper1, helper2, step3, pattern4
 **Pourquoi c'est mauvais :** Les labels doivent avoir une signification semantique
 
 ## STOP : Avant de passer au skill suivant
 
-**Apres avoir écrit N'IMPORTE QUEL skill, tu DOIS T'Arrêter et compléter le processus de déploiement.**
+**Après avoir écrit N'IMPORTE QUEL skill, tu DOIS T'Arrêter et compléter le processus de déploiement.**
 
 **NE PAS :**
 - Créer plusieurs skills en lot sans tester chacun
@@ -591,28 +591,28 @@ helper1, helper2, step3, pattern4
 
 **La checklist de déploiement ci-dessous est OBLIGATOIRE pour CHAQUE skill.**
 
-Déployer des skills non testes = déployer du code non teste. C'est une violation des standards de qualite.
+Déployer des skills non testes = déployer du code non teste. C'est une violation des standards de qualité.
 
 ## Checklist de création de Skill (adaptee du TDD)
 
 **IMPORTANT : Utiliser TaskCreate pour créer une tâche pour CHAQUE élément de la checklist ci-dessous.**
 
 **Phase RED - Écrire le test qui échoué :**
-- [ ] Créer des scenarios de pression (3+ pressions combinees pour les skills de discipline)
-- [ ] Lancer les scenarios SANS le skill - documenter le comportement de base verbatim
+- [ ] Créer des scénarios de pression (3+ pressions combinees pour les skills de discipline)
+- [ ] Lancer les scénarios SANS le skill - documenter le comportement de base verbatim
 - [ ] Identifier les patterns dans les rationalisations/échecs
 
 **Phase GREEN - Écrire le skill minimal :**
-- [ ] Le nom utilise uniquement lettres, chiffres, tirets (pas de parentheses/caractères speciaux)
+- [ ] Le nom utilise uniquement lettres, chiffres, tirets (pas de parenthèses/caractères speciaux)
 - [ ] Frontmatter YAML avec les champs obligatoires `name` et `description` (max 1024 caractères ; voir [spec](https://agentskills.io/specification))
-- [ ] La description commence par "Utiliser quand..." et inclut des déclencheurs/symptomes spécifiques
+- [ ] La description commence par "Utiliser quand..." et inclut des déclencheurs/symptômes spécifiques
 - [ ] Description écrite a la troisieme personne
-- [ ] Mots-cles tout au long du document pour la recherche (erreurs, symptomes, outils)
+- [ ] Mots-clés tout au long du document pour la recherche (erreurs, symptômes, outils)
 - [ ] Vue d'ensemble claire avec principe fondamental
 - [ ] Traite les échecs spécifiques de la baseline identifies en phase RED
 - [ ] Code en ligne OU lien vers un fichier séparé
 - [ ] Un excellent exemple (pas multi-langages)
-- [ ] Lancer les scenarios AVEC le skill - vérifier que les agents se conforment
+- [ ] Lancer les scénarios AVEC le skill - vérifier que les agents se conforment
 
 **Phase REFACTOR - Boucher les failles :**
 - [ ] Identifier les NOUVELLES rationalisations depuis les tests
@@ -621,7 +621,7 @@ Déployer des skills non testes = déployer du code non teste. C'est une violati
 - [ ] Créer la liste de drapeaux rouges
 - [ ] Re-tester jusqu'a ce que ce soit blinde
 
-**Controles qualite :**
+**Controles qualité :**
 - [ ] Petit flowchart uniquement si la décision n'est pas évidente
 - [ ] Table de référence rapide
 - [ ] Section erreurs courantes
@@ -650,6 +650,6 @@ Comment les futures instances de Claude trouvent ton skill :
 
 Même Loi d'Airain : Pas de skill sans test qui échoué d'abord.
 Même cycle : RED (baseline), GREEN (écrire le skill), REFACTOR (boucher les failles).
-Mêmes benefices : Meilleure qualite, moins de surprises, résultats blindes.
+Mêmes bénéfices : Meilleure qualité, moins de surprises, résultats blindes.
 
 Si tu suis le TDD pour le code, suis-le pour les skills. C'est la même discipline appliquee a la documentation.

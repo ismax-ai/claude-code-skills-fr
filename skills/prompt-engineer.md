@@ -1,6 +1,6 @@
 ---
 name: prompt-engineer
-description: "Boite a outils pour analyser, tester et améliorer les prompts IA. A/B testing automatise, versioning avec historique immutable, boucle de regression, templates réutilisables et grille d'évaluation. Utiliser quand l'utilisateur veut améliorer ses prompts, construire des templates, optimiser un workflow de contenu IA, ou quand il mentionne 'prompt engineering', 'améliorer mes prompts', 'qualite d'écriture IA', 'templates de prompt' ou 'workflow de contenu IA'."
+description: "Boîte a outils pour analyser, tester et améliorer les prompts IA. A/B testing automatise, versioning avec historique immutable, boucle de regression, templates réutilisables et grille d'évaluation. Utiliser quand l'utilisateur veut améliorer ses prompts, construire des templates, optimiser un workflow de contenu IA, ou quand il mentionne 'prompt engineering', 'améliorer mes prompts', 'qualité d'écriture IA', 'templates de prompt' ou 'workflow de contenu IA'."
 license: MIT
 metadata:
   version: 1.0.0
@@ -9,15 +9,15 @@ metadata:
   updated: 2026-03-06
 ---
 
-# Boite a Outils Prompt Engineer
+# Boîte a Outils Prompt Engineer
 
 > Fork de [alirezarezvani/claude-skills](https://github.com/alirezarezvani/claude-skills) -- traduit intégralement en français.
 
 ## Vue d'ensemble
 
-Ce skill sert a faire passer les prompts du brouillon ad-hoc a des assets de production avec des tests reproductibles, du versioning et une protection contre les regressions. L'accent est mis sur la qualite mesurable plutot que sur l'intuition. L'utiliser quand on lance une nouvelle feature LLM qui nécessité des outputs fiables, quand la qualite des prompts se dégradé apres un changement de modèle ou d'instructions, quand plusieurs personnes editent les mêmes prompts et ont besoin d'historique/diffs, quand on veut un choix de prompt base sur des preuves pour la mise en production, ou quand on veut une gouvernance cohérente des prompts sur tous les environnements.
+Ce skill sert a faire passer les prompts du brouillon ad-hoc a des assets de production avec des tests reproductibles, du versioning et une protection contre les regressions. L'accent est mis sur la qualité mesurable plutôt que sur l'intuition. L'utiliser quand on lance une nouvelle feature LLM qui nécessité des outputs fiables, quand la qualité des prompts se dégradé après un changement de modèle ou d'instructions, quand plusieurs personnes editent les mêmes prompts et ont besoin d'historique/diffs, quand on veut un choix de prompt base sur des preuves pour la mise en production, ou quand on veut une gouvernance cohérente des prompts sur tous les environnements.
 
-## Capacites principales
+## Capacités principales
 
 - Évaluation A/B de prompts sur des cas de test structures
 - Scoring quantitatif pour l'adhérence, la pertinence et les verifications de sécurité
@@ -26,11 +26,11 @@ Ce skill sert a faire passer les prompts du brouillon ad-hoc a des assets de pro
 - Templates de prompts réutilisables et guide de selection
 - Workflows compatibles regression pour les mises a jour de modèles/prompts
 
-## Workflows cles
+## Workflows clés
 
 ### 1. Lancer un test A/B de prompts
 
-Preparer des cas de test en JSON puis lancer :
+Préparer des cas de test en JSON puis lancer :
 
 ```bash
 python3 scripts/prompt_tester.py \
@@ -49,7 +49,7 @@ Le testeur score les outputs par cas et agregge :
 
 - couverture du contenu attendu
 - violations de contenu interdit
-- conformite regex/format
+- conformité regex/format
 - cohérence de la longueur de sortie
 
 Utiliser le prompt avec le meilleur score comme candidat baseline, puis lancer la suite de regression.
@@ -127,8 +127,8 @@ Chaque cas de test doit définir :
 ## Politique de versioning
 
 - Utiliser des identifiants semantiques par feature (`support_classifier`, `ad_copy_shortform`).
-- Enregistrer auteur + note de changement pour chaque revision.
-- Ne jamais ecraser les versions precedentes.
+- Enregistrer auteur + note de changement pour chaque révision.
+- Ne jamais ecraser les versions précédentes.
 - Diff avant de promouvoir un nouveau prompt en production.
 
 ## Stratégie de déploiement
@@ -206,7 +206,7 @@ Input:
 {{input}}
 ```
 
-**Usage :** generation automatique de questions/reponses a partir d'un contenu source.
+**Usage :** génération automatique de questions/reponses a partir d'un contenu source.
 
 ### 6) Triage d'incidents
 
@@ -245,7 +245,7 @@ Input: {{input}}
 
 **Usage :** reecriture d'un contenu en adoptant un persona spécifique avec un objectif et un format donnes.
 
-### 9) Vérification de conformite
+### 9) Vérification de conformité
 
 ```text
 Check input against policy.
@@ -256,7 +256,7 @@ Input:
 {{input}}
 ```
 
-**Usage :** vérification automatique de conformite a une politique donnee, avec liste des violations et recommandations.
+**Usage :** vérification automatique de conformité a une politique donnee, avec liste des violations et recommandations.
 
 ### 10) Critique de prompt
 
@@ -297,7 +297,7 @@ Prompt:
 - Schema de sortie manquant
 - Contraintes contradictoires
 - Pas d'exemples negatifs pour les comportements non securises
-- Hypotheses implicites non formulees dans le prompt
+- Hypothèses implicites non formulees dans le prompt
 
 ---
 
@@ -311,7 +311,7 @@ Scorer chaque cas sur 0-100 via des critères ponderes :
 
 - Couverture du contenu attendu : +poids
 - Violations de contenu interdit : -poids
-- Conformite regex/format : +poids
+- Conformité regex/format : +poids
 - Cohérence de la longueur de sortie : +/-poids
 
 ### Seuils d'acceptation recommandes

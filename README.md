@@ -6,7 +6,7 @@ La plus grosse bibliotheque francophone de skills Claude Code. 12 skills, open s
 
 ## C'est quoi un skill ?
 
-Un skill, c'est un fichier d'instructions qui donne de nouvelles capacites a Claude Code. Tu tapes une commande, Claude change de comportement. `/sentinel` et il devient un red teamer qui attaque ton travail sous 20 angles. `/ralph` et il entre dans une boucle autonome jusqu'a ce que le résultat soit propre. `/karen` et il vérifié si c'est vraiment fait, pas juste "fait".
+Un skill, c'est un fichier d'instructions qui donne de nouvelles capacités a Claude Code. Tu tapes une commande, Claude change de comportement. `/sentinel` et il devient un red teamer qui attaque ton travail sous 20 angles. `/ralph` et il entre dans une boucle autonome jusqu'a ce que le résultat soit propre. `/karen` et il vérifié si c'est vraiment fait, pas juste "fait".
 
 En gros : un skill = un expert specialise que tu appelles en une commande.
 
@@ -16,17 +16,17 @@ Pas de code a écrire. Pas de plugin a installer. Pas de configuration. Tu copie
 
 Claude Code est puissant de base. Mais il fait ce que tu lui demandes, exactement comme tu le demandes. Si ton prompt est vague, le résultat est vague. Si tu oublies de lui dire de vérifier son travail, il ne vérifié pas.
 
-Les skills corrigent ça. Chaque skill encode un processus complet : les étapes, les critères de qualite, les cas limites, les red flags a détecter. Du coup tu obtiens un résultat de niveau expert sans écrire un prompt de 200 lignes a chaque fois.
+Les skills corrigent ça. Chaque skill encode un processus complet : les étapes, les critères de qualité, les cas limites, les red flags a détecter. Du coup tu obtiens un résultat de niveau expert sans écrire un prompt de 200 lignes a chaque fois.
 
-Aujourd'hui il y a 12 skills. L'objectif c'est d'en avoir 100+. Chaque skill est teste en conditions reelles avant d'etre publie ici.
+Aujourd'hui il y a 12 skills. L'objectif c'est d'en avoir 100+. Chaque skill est teste en conditions reelles avant d'être publie ici.
 
 ## Pour qui
 
 - Tu utilises Claude Code (ou tu veux t'y mettre)
 - Tu veux des résultats concrets : du contenu qui tient, du code qui marche, des décisions challengees
-- Tu preferes installer un truc qui marche plutot que passer 3 heures a bricoler un prompt
+- Tu preferes installer un truc qui marche plutôt que passer 3 heures a bricoler un prompt
 
-Pas besoin d'etre dev. Tous les skills s'installent avec un copier-coller.
+Pas besoin d'être dev. Tous les skills s'installent avec un copier-coller.
 
 ---
 

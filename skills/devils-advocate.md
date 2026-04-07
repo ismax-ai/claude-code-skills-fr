@@ -24,7 +24,7 @@ Demande a l'utilisateur ce qu'il veut challenger :
 
 ### En combinaison avec un autre skill
 
-Si l'utilisateur dit "lance /devils-advocate apres" ou "passe l'avocat du diable dessus", tu t'actives apres le skill principal. Tu relis ce qu'il a produit (l'audit, la spec, le plan, le code) et tu le challenges.
+Si l'utilisateur dit "lance /devils-advocate après" ou "passe l'avocat du diable dessus", tu t'actives après le skill principal. Tu relis ce qu'il a produit (l'audit, la spec, le plan, le code) et tu le challenges.
 
 ### Le processus
 
@@ -40,15 +40,15 @@ Applique les frameworks de questionnement de la section [Référence : Framework
 
 1. **Pre-mortem** : "C'est en prod. 3 mois plus tard, ça a cause un problème serieux. Qu'est-ce qui a merde ?"
 2. **Inversion** : "Qu'est-ce qui garantirait que ça échoué ? Est-ce qu'une de ces conditions est présenté ?"
-3. **Questionnement socratique** : Challenge les hypotheses et implications. "Tu assumes X. Et si X n'etait pas vrai ?"
+3. **Questionnement socratique** : Challenge les hypothèses et implications. "Tu assumes X. Et si X n'etait pas vrai ?"
 
-Cross-référence avec les categories d'angles morts de la section [Référence : Angles morts](#référence--angles-morts) :
+Cross-référence avec les catégories d'angles morts de la section [Référence : Angles morts](#référence--angles-morts) :
 - Sécurité, scalabilite, cycle de vie des donnees, points d'intégration, modes de defaillance
 - Concurrence, écarts d'environnement, observabilite, déploiement, cas limites
 
 Pour les outputs générés par IA spécifiquement, consulte la section [Référence : Angles morts IA](#référence--angles-morts-ia) :
 - Biais du happy path, acceptation du scope, confiance sans exactitude
-- Attraction des patterns, patchs reactifs, reecriture de tests
+- Attraction des patterns, patchs réactifs, reecriture de tests
 
 **Étape 3 : Verdict (toujours terminer avec)**
 
@@ -79,18 +79,18 @@ Quoi faire :
 
 ## Règles
 
-- **Maximum 7 objections par review.** Classees par sévérité. Si t'en as trouve 15, fais remonter les 7 du haut. Qualite plutot que quantite.
-- **Chaque objection doit etre actionnable.** Pas de critique gratuite. Si tu ne peux pas dire quoi faire, ne souleve pas le point.
-- **La sévérité doit etre honnête.** Critique = perte de donnees, faille sécurité, ou panne prod. Haute = impact utilisateur significatif ou dette technique. Moyenne = a corriger mais pas bloquant. Pas d'inflation.
+- **Maximum 7 objections par review.** Classees par sévérité. Si t'en as trouve 15, fais remonter les 7 du haut. Qualité plutôt que quantité.
+- **Chaque objection doit être actionnable.** Pas de critique gratuite. Si tu ne peux pas dire quoi faire, ne souleve pas le point.
+- **La sévérité doit être honnête.** Critique = perte de donnees, faille sécurité, ou panne prod. Haute = impact utilisateur significatif ou dette technique. Moyenne = a corriger mais pas bloquant. Pas d'inflation.
 - **Steel-man avant de challenger.** Si tu sautes cette étape, tes challenges seront bruyants et penibles.
 - **Le test "et alors ?"** Pour chaque objection, demande-toi : "S'ils ignorent ça, qu'est-ce qui se passe concretement ?" Si la réponse est "pas grand-chose", laisse tomber.
-- **Intensite adaptee au contexte.** Un prototype reçoit une revue plus légère qu'un système financier en production. Demande le contexte si c'est pas clair.
-- **Distinguer bloquant vs non-bloquant.** Marque clairement quelles objections doivent etre traitees avant de livrer et lesquelles sont du "surveille ça".
+- **Intensité adaptee au contexte.** Un prototype reçoit une revue plus légère qu'un système financier en production. Demande le contexte si c'est pas clair.
+- **Distinguer bloquant vs non-bloquant.** Marque clairement quelles objections doivent être traitees avant de livrer et lesquelles sont du "surveille ça".
 
 ## Ce que tu challenges
 
 - Plans et roadmaps ("Est-ce le bon truc a construire ?")
-- Décisions d'architecture ("Ça tiendra a l'echelle ? Et les modes de defaillance ?")
+- Décisions d'architecture ("Ça tiendra a l'échelle ? Et les modes de defaillance ?")
 - Code et implémentations ("Quels cas limites manquent ? Qu'est-ce qui casse sous charge ?")
 - Designs UX et specs ("L'audit a-t-il rate quelque chose ? Et le vrai workflow utilisateur ?")
 - Designs d'API ("Que se passe-t-il quand ce contrat doit changer ?")
@@ -108,7 +108,7 @@ Les 3 références ci-dessous sont intégrées dans ce fichier. Consulte-les sel
 
 - **[Référence : Frameworks de questionnement](#référence--frameworks-de-questionnement)** -- Pre-mortem, inversion, questionnement socratique, steel-manning, Six Thinking Hats, Five Whys. Pour les approches structurees de challenge de décisions.
 
-- **[Référence : Angles morts](#référence--angles-morts)** -- 11 categories de choses que les ingenieurs ratent systematiquement : sécurité, scalabilite, cycle de vie des donnees, modes de defaillance, concurrence, etc. Pour les reviews de code ou d'architecture.
+- **[Référence : Angles morts](#référence--angles-morts)** -- 11 catégories de choses que les ingenieurs ratent systématiquement : sécurité, scalabilite, cycle de vie des donnees, modes de defaillance, concurrence, etc. Pour les reviews de code ou d'architecture.
 
 - **[Référence : Angles morts IA](#référence--angles-morts-ia)** -- Ou l'IA tombe spécifiquement a cote : biais du happy path, acceptation du scope, confiance sans exactitude, attraction des patterns. Pour la review de tout output généré par IA.
 
@@ -117,7 +117,7 @@ Les 3 références ci-dessous sont intégrées dans ce fichier. Consulte-les sel
 - Direct. Pas de couverture. "Ça va casser quand..." pas "Ça pourrait potentiellement poser des problèmes si..."
 - Mets en avant ce qui compte le plus. Ne cache pas l'objection critique derrière trois objections moyennes.
 - Cite le framework qui a fait remonter l'objection. Ça apprend a l'utilisateur a raisonner comme ça lui-même.
-- Quand un truc est genuinement bon, dis-le sans reserve. Ne fabrique pas des objections pour paraitre rigoureux.
+- Quand un truc est genuinement bon, dis-le sans réservé. Ne fabrique pas des objections pour paraître rigoureux.
 - Utilise le vocabulaire de l'utilisateur. S'il appelle ça "le flow d'auth", tu appelles ça "le flow d'auth".
 
 ---
@@ -132,7 +132,7 @@ Materiel de référence pour l'analyse critique structuree des décisions logici
 
 #### Ce que c'est
 
-Un pre-mortem suppose que le projet/la décision a déjà échoué et travaille en remontant pour identifier les causes. Contrairement a un post-mortem (qui arrive apres l'échec), un pre-mortem exploite la retrospective prospective -- le constat psychologique que les gens sont 30% meilleurs pour identifier les raisons d'un résultat quand ils imaginent qu'il s'est déjà produit.
+Un pre-mortem suppose que le projet/la décision a déjà échoué et travaille en remontant pour identifier les causes. Contrairement a un post-mortem (qui arrive après l'échec), un pre-mortem exploite la retrospective prospective -- le constat psychologique que les gens sont 30% meilleurs pour identifier les raisons d'un résultat quand ils imaginent qu'il s'est déjà produit.
 
 #### Quand l'utiliser
 
@@ -144,22 +144,22 @@ Un pre-mortem suppose que le projet/la décision a déjà échoué et travaille 
 #### Processus étape par étape
 
 1. **Cadrer l'échec.** Dire : "On est 6 mois plus tard. Ce [feature/migration/décision] a ete livre et a cause un incident serieux. L'équipe est en salle de crise."
-2. **Générer des scenarios d'échec independamment.** Chaque participant (ou chaque passe d'analyse) écrit des scenarios d'échec spécifiques -- pas des risques vagues, mais des recits : "La migration a tourne pendant 47 minutes, a dépassé la fenêtre de maintenance, et a laisse la base dans un état inconsistant parce que..."
-3. **Identifier les échecs les plus plausibles.** Classer par probabilite x impact. Se concentrer sur les échecs a la fois plausibles et embarrassants a posteriori ("on aurait du voir ça venir").
-4. **Tracer chaque échec jusqu'a sa cause racine dans le plan actuel.** Quelle hypothese, quel test manquant, ou quel cas non géré aurait cause ça ?
+2. **Générer des scénarios d'échec indépendamment.** Chaque participant (ou chaque passe d'analyse) écrit des scénarios d'échec spécifiques -- pas des risques vagues, mais des recits : "La migration a tourne pendant 47 minutes, a dépassé la fenêtre de maintenance, et a laisse la base dans un état inconsistant parce que..."
+3. **Identifier les échecs les plus plausibles.** Classer par probabilité x impact. Se concentrer sur les échecs a la fois plausibles et embarrassants a posteriori ("on aurait du voir ça venir").
+4. **Tracer chaque échec jusqu'a sa cause racine dans le plan actuel.** Quelle hypothèse, quel test manquant, ou quel cas non géré aurait cause ça ?
 5. **Déterminer les actions preventives.** Pour chaque échec plausible : qu'est-ce qu'on ajouterait, changerait ou testerait pour le prévenir ?
 
 #### Exemples de questions pour le contexte logiciel
 
-| Scenario | Question pre-mortem |
+| Scénario | Question pre-mortem |
 |----------|-------------------|
 | Nouvel endpoint API | "Cet endpoint a cause une panne prod. Le pager de l'ingenieur d'astreinte a sonne a 3h du mat. Qu'est-ce qui s'est passe ?" |
-| Migration de base | "La migration a échoué a mi-chemin en production. Qu'est-ce qui etait different en prod qu'on n'a pas pris en compte ?" |
+| Migration de base | "La migration a échoué a mi-chemin en production. Qu'est-ce qui etait différent en prod qu'on n'a pas pris en compte ?" |
 | Lancement de feature | "Les utilisateurs sont furieux. Les tickets support ont triple. Qu'est-ce qu'on s'est plante sur leur utilisation reelle ?" |
 | Upgrade de dépendance | "L'upgrade a casse la prod silencieusement -- pas d'erreurs, juste un comportement incorrect. Qu'est-ce qui a change que nos tests ne couvraient pas ?" |
 | Optimisation de performance | "L'optimisation a empire les choses sous charge reelle. Qu'est-ce qu'on a rate sur les patterns de trafic en production ?" |
 
-#### Point cle
+#### Point clé
 
 La puissance du pre-mortem est qu'il donne la permission d'exprimer des inquietudes qu'on aurait autrement supprimees. En code review, ça se traduit par : "Je ne dis pas que c'est faux, je dis que SI ça echouait, voila comment ça echouerait."
 
@@ -176,16 +176,16 @@ Au lieu de demander "comment réussir ?", demander "qu'est-ce qui garantirait l'
 - Pour évaluer si un design est robuste
 - Pour revoir les critères d'acceptation -- sont-ils suffisants ?
 - Pour évaluer la readiness operationnelle
-- Quand un plan semble solide mais qu'on n'arrive pas a articuler des preoccupations spécifiques
+- Quand un plan semble solide mais qu'on n'arrive pas a articuler des préoccupations spécifiques
 
 #### Processus en 3 étapes
 
 1. **Définir l'objectif inverse.** Si l'objectif est "pipeline de traitement de donnees fiable", l'inverse est "perte ou corruption de donnees garantie".
-2. **Enumerer les moyens d'atteindre l'inverse.** Etre exhaustif et spécifique :
+2. **Énumérer les moyens d'atteindre l'inverse.** Être exhaustif et spécifique :
    - "Ne jamais valider les schemas d'entree"
    - "Ignorer les échecs partiels et continuer le traitement"
-   - "Pas de cles d'idempotence sur les ecritures"
-   - "Déployer sans capacite de rollback"
+   - "Pas de clés d'idempotence sur les ecritures"
+   - "Déployer sans capacité de rollback"
    - "Pas de monitoring sur la profondeur de queue ou le lag de traitement"
 3. **Vérifier le plan actuel contre chaque élément.** Pour chaque condition garantissant l'échec, vérifier que le plan la prévient activement. Toute lacune est un finding.
 
@@ -197,7 +197,7 @@ Au lieu de demander "comment réussir ?", demander "qu'est-ce qui garantirait l'
 |-----------------------------------------------|-------|
 | Stocker les mots de passe en clair | Bcrypt/argon2 avec salt ? |
 | Ne jamais expirer les sessions | TTL du token + rotation du refresh ? |
-| Retourner des erreurs differentes pour "utilisateur non trouve" vs "mauvais mot de passe" | Messages d'erreur uniformes ? |
+| Retourner des erreurs différentes pour "utilisateur non trouve" vs "mauvais mot de passe" | Messages d'erreur uniformes ? |
 | Permettre des tentatives de login illimitees | Rate limiting + verrouillage ? |
 | Envoyer les tokens dans les paramètres d'URL | Headers uniquement, pas de logging ? |
 | Faire confiance aux claims de role cote client | Autorisation cote serveur a chaque requête ? |
@@ -209,7 +209,7 @@ Au lieu de demander "comment réussir ?", demander "qu'est-ce qui garantirait l'
 | Déployer le vendredi a 17h sans plan de rollback | Fenêtres de déploiement + runbook de rollback ? |
 | Lancer des migrations irréversibles | Migrations backward-compatible ? |
 | Sauter le canary/déploiement progressif | Déploiement progressif ? |
-| N'avoir aucun moyen de vérifier le succes post-deploy | Health checks + smoke tests ? |
+| N'avoir aucun moyen de vérifier le succès post-deploy | Health checks + smoke tests ? |
 | Dependre d'étapes manuelles non documentees | Pipeline automatise ? |
 
 #### Exemples de questions
@@ -225,20 +225,20 @@ Au lieu de demander "comment réussir ?", demander "qu'est-ce qui garantirait l'
 
 #### Ce que c'est
 
-Le questionnement socratique est une méthode disciplinee pour sonder la pensee a travers six categories de questions. Il n'affirme pas -- il révélé les lacunes, les hypotheses et les contradictions en posant les bonnes questions dans le bon ordre.
+Le questionnement socratique est une méthode disciplinee pour sonder la pensee a travers six catégories de questions. Il n'affirme pas -- il révélé les lacunes, les hypothèses et les contradictions en posant les bonnes questions dans le bon ordre.
 
 #### Quand l'utiliser
 
 - Pendant une code review ou design review
 - Quand on évalué une proposition technique
 - Quand quelqu'un (y compris toi-même) est confiant dans une approche
-- Pour faire remonter les hypotheses implicites
+- Pour faire remonter les hypothèses implicites
 
 #### Les six types
 
 ##### 3.1 Questions de clarification
 
-**Objectif :** S'assurer que le claim ou la décision est bien défini(e). Les declarations vagues cachent de la complexite.
+**Objectif :** S'assurer que le claim ou la décision est bien défini(e). Les declarations vagues cachent de la complexité.
 
 | Question | Quand l'utiliser |
 |----------|-------------|
@@ -248,9 +248,9 @@ Le questionnement socratique est une méthode disciplinee pour sonder la pensee 
 | "C'est quoi 'fini' pour ça ? C'est quoi le test d'acceptation ?" | Quand le scope est flou |
 | "Quand tu dis 'gérer les erreurs proprement', qu'est-ce que l'utilisateur voit ?" | Quand la gestion d'erreur est decrite mais pas spécifiée |
 
-##### 3.2 Sonder les hypotheses
+##### 3.2 Sonder les hypothèses
 
-**Objectif :** Faire remonter et tester les croyances tenues pour acquises. La plupart des defauts de design viennent d'hypotheses non testees.
+**Objectif :** Faire remonter et tester les croyances tenues pour acquises. La plupart des defauts de design viennent d'hypothèses non testees.
 
 | Question | Quand l'utiliser |
 |----------|-------------|
@@ -260,7 +260,7 @@ Le questionnement socratique est une méthode disciplinee pour sonder la pensee 
 | "Est-ce qu'on assume que les donnees tiennent en mémoire ?" | Pipelines de traitement |
 | "Et si cette table grossit de 100x ? Le plan de requête tient toujours ?" | Design de base de donnees |
 | "Est-ce qu'on assume que les deplois se font avec zero requêtes en vol ?" | Plans de migration/déploiement |
-| "Y a-t-il une hypothese ici sur l'ordre ou le timing ?" | Systèmes distribues, traitement d'événements |
+| "Y a-t-il une hypothèse ici sur l'ordre ou le timing ?" | Systèmes distribues, traitement d'événements |
 
 ##### 3.3 Sonder les preuves / le raisonnement
 
@@ -276,27 +276,27 @@ Le questionnement socratique est une méthode disciplinee pour sonder la pensee 
 
 ##### 3.4 Questionner les perspectives / points de vue
 
-**Objectif :** Considérer des angles alternatifs. Qu'est-ce que quelqu'un avec un role, un contexte, ou une expertise differente penserait ?
+**Objectif :** Considérer des angles alternatifs. Qu'est-ce que quelqu'un avec un role, un contexte, ou une expertise différente penserait ?
 
 | Question | Quand l'utiliser |
 |----------|-------------|
 | "Comment l'ingenieur d'astreinte vivrait ça a 3h du mat ?" | Readiness operationnelle |
-| "Qu'est-ce qu'un nouveau membre de l'équipe penserait en lisant ce code ?" | Clarte du code |
+| "Qu'est-ce qu'un nouveau membre de l'équipe penserait en lisant ce code ?" | Clarté du code |
 | "A quoi ça ressemble du point de vue de l'attaquant ?" | Review de sécurité |
 | "Qu'est-ce que le DBA dirait de ce pattern de requêtes ?" | Utilisation de base de donnees |
-| "Si on heritait de cette codebase, qu'est-ce qui nous frustrerait ?" | Qualite du code |
+| "Si on heritait de cette codebase, qu'est-ce qui nous frustrerait ?" | Qualité du code |
 | "De quoi l'équipe support client aurait besoin quand ça casse ?" | Gestion d'erreur, observabilite |
 
 ##### 3.5 Sonder les implications / consequences
 
-**Objectif :** Suivre la décision jusqu'a sa conclusion logique. Qu'est-ce qui se passe ensuite ? Et apres ?
+**Objectif :** Suivre la décision jusqu'a sa conclusion logique. Qu'est-ce qui se passe ensuite ? Et après ?
 
 | Question | Quand l'utiliser |
 |----------|-------------|
 | "Si on fait ça, a quoi on s'engage a maintenir ?" | Décisions d'architecture |
 | "Quel est le chemin de migration si cette approche ne scale pas ?" | Choix technologiques |
-| "Si ça reussit massivement, qu'est-ce qui casse en premier ?" | Planification de capacite |
-| "Qu'est-ce qui devient plus dur a changer apres qu'on livre ça ?" | Évaluation de la reversibilite |
+| "Si ça réussit massivement, qu'est-ce qui casse en premier ?" | Planification de capacité |
+| "Qu'est-ce qui devient plus dur a changer après qu'on livre ça ?" | Évaluation de la reversibilite |
 | "Quelles autres équipes ou systèmes sont impactes par ce changement ?" | Rayon d'explosion |
 | "Si on ajoute cette colonne maintenant, a quoi ressemble la migration dans 2 ans ?" | Design de schema |
 
@@ -307,8 +307,8 @@ Le questionnement socratique est une méthode disciplinee pour sonder la pensee 
 | Question | Quand l'utiliser |
 |----------|-------------|
 | "Pourquoi c'est cette question qu'on pose ? Y a-t-il un meilleur cadrage ?" | Quand on est bloque ou qu'on tourne en rond |
-| "Est-ce qu'on résout le symptome ou la cause racine ?" | Bug fixes, workarounds |
-| "C'est vraiment notre problème a résoudre, ou ça devrait etre géré ailleurs ?" | Décisions de scope/frontière |
+| "Est-ce qu'on résout le symptôme ou la cause racine ?" | Bug fixes, workarounds |
+| "C'est vraiment notre problème a résoudre, ou ça devrait être géré ailleurs ?" | Décisions de scope/frontière |
 | "Qu'est-ce qu'on ferait si on ne pouvait pas utiliser cette approche du tout ?" | Quand on est fixe sur une seule solution |
 | "Est-ce qu'on optimise pour la bonne métrique ?" | Décisions performance/business |
 
@@ -322,23 +322,23 @@ Avant de critiquer une décision ou une approche, articuler la version la plus f
 
 #### Pourquoi c'est important pour la calibration
 
-- Empêché les reactions reflexes "c'est faux" qui ratent le contexte
+- Empêché les réactions reflexes "c'est faux" qui ratent le contexte
 - Force a comprendre les compromis que l'auteur a réellement consideres
-- Rend ta critique eventuelle plus credible et spécifique
+- Rend ta critique éventuelle plus credible et spécifique
 - Attrape les cas ou l'approche est en fait correcte et c'est toi qui rates quelque chose
 
 #### Quand l'utiliser
 
-- Avant chaque critique -- ça devrait etre l'étape par défaut
+- Avant chaque critique -- ça devrait être l'étape par défaut
 - Quand ton instinct dit "c'est faux" -- cet instinct est souvent juste, mais le steel-man garantit que la critique est précise
 - Quand on review du code de quelqu'un avec plus de contexte metier que toi
 
 #### Processus étape par étape
 
 1. **Identifier la décision.** Quel choix spécifique a ete fait ? (Pas un vague "c'est mauvais" -- nommer la décision exacte.)
-2. **Lister les contraintes de l'auteur.** Pression temporelle, compatibilite ascendante, expertise de l'équipe, patterns existants, exigences business.
+2. **Lister les contraintes de l'auteur.** Pression temporelle, compatibilité ascendante, expertise de l'équipe, patterns existants, exigences business.
 3. **Construire le meilleur argument POUR cette approche.** "Cette approche est raisonnable parce que..."
-4. **Identifier ce qui devrait etre vrai pour que cette approche soit optimale.** "C'est le bon choix SI..."
+4. **Identifier ce qui devrait être vrai pour que cette approche soit optimale.** "C'est le bon choix SI..."
 5. **Maintenant évaluer :** Ces conditions sont-elles réellement vraies ? Sinon, qu'est-ce qui change spécifiquement ?
 
 #### Exemple
@@ -347,9 +347,9 @@ Avant de critiquer une décision ou une approche, articuler la version la plus f
 
 | Étape | Analyse |
 |------|----------|
-| Steel-man | "Le polling est plus simple a implémenter, debugger et déployer. Il fonctionne a travers tous les proxies et load balancers sans configuration speciale. L'équipe n'a pas d'experience WebSocket, et la frequence de mise a jour (toutes les 30s) ne nécessité pas du vrai temps reel. Le coût operationnel de maintenir des connexions WebSocket a l'echelle n'est pas negligeable." |
-| Conditions | "C'est optimal SI une latence de mise a jour de 30s est acceptable, SI la charge de polling est gerable a l'echelle prévue, SI il n'y a pas d'exigence future pour des mises a jour en dessous de la seconde." |
-| Évaluation | "L'exigence business dit 'quasi temps reel' que le PM a défini comme <5s. Le polling a 30s ne remplit pas ça. De plus, au nombre d'utilisateurs projete, le polling créé 200 req/s que les WebSockets elimineraient. Le steel-man est fort sur la simplicite operationnelle mais casse sur l'exigence de latence." |
+| Steel-man | "Le polling est plus simple a implémenter, debugger et déployer. Il fonctionne a travers tous les proxies et load balancers sans configuration speciale. L'équipe n'a pas d'expérience WebSocket, et la frequence de mise a jour (toutes les 30s) ne nécessité pas du vrai temps reel. Le coût operationnel de maintenir des connexions WebSocket a l'échelle n'est pas negligeable." |
+| Conditions | "C'est optimal SI une latence de mise a jour de 30s est acceptable, SI la charge de polling est gerable a l'échelle prévue, SI il n'y a pas d'exigence future pour des mises a jour en dessous de la seconde." |
+| Évaluation | "L'exigence business dit 'quasi temps reel' que le PM a défini comme <5s. Le polling a 30s ne remplit pas ça. De plus, au nombre d'utilisateurs projete, le polling créé 200 req/s que les WebSockets elimineraient. Le steel-man est fort sur la simplicité operationnelle mais casse sur l'exigence de latence." |
 
 #### Exemples de questions
 
@@ -370,7 +370,7 @@ Une méthode pour examiner une décision depuis six perspectives distinctes, une
 #### Quand l'utiliser
 
 - Quand une décision a ete prise vite et semble "évidente"
-- Quand un groupe est bloque dans un seul mode de pensee (par ex. ne discuter que des risques, ou que des benefices)
+- Quand un groupe est bloque dans un seul mode de pensee (par ex. ne discuter que des risques, ou que des bénéfices)
 - Pour une review structuree d'un architectural décision record (ADR)
 
 #### Les quatre chapeaux les plus pertinents pour la review logicielle
@@ -379,13 +379,13 @@ Une méthode pour examiner une décision depuis six perspectives distinctes, une
 
 Le chapeau de l'avocat du diable. Qu'est-ce qui peut mal tourner ?
 
-**Processus :** Supposer que ça va échouer. Enumerer chaque mode de defaillance, risque et faiblesse.
+**Processus :** Supposer que ça va échouer. Énumérer chaque mode de defaillance, risque et faiblesse.
 
 | Question | Focus |
 |----------|-------|
 | "Quel est le pire cas si ça échoué ?" | Évaluation d'impact |
-| "Ou est le point unique de defaillance ?" | Resilience |
-| "Que se passe-t-il quand la dépendance est down ?" | Tolerance aux pannes |
+| "Ou est le point unique de defaillance ?" | Résilience |
+| "Que se passe-t-il quand la dépendance est down ?" | Tolérance aux pannes |
 | "Quelle est la surface d'attaque sécurité ?" | Sécurité |
 | "Ou est-ce que ça sera penible a maintenir dans un an ?" | Dette technique |
 
@@ -393,7 +393,7 @@ Le chapeau de l'avocat du diable. Qu'est-ce qui peut mal tourner ?
 
 Qu'est-ce qu'on sait ? Qu'est-ce qu'on ne sait pas ? Qu'est-ce qu'on doit découvrir ?
 
-**Processus :** Enlever les opinions et les hypotheses. Se concentrer uniquement sur les faits, les donnees et les lacunes.
+**Processus :** Enlever les opinions et les hypothèses. Se concentrer uniquement sur les faits, les donnees et les lacunes.
 
 | Question | Focus |
 |----------|-------|
@@ -401,18 +401,18 @@ Qu'est-ce qu'on sait ? Qu'est-ce qu'on ne sait pas ? Qu'est-ce qu'on doit décou
 | "Combien d'utilisateurs vont réellement toucher ce code path ?" | Donnees d'utilisation |
 | "On a des donnees prod sur les taux d'erreur pour cette intégration ?" | Preuves empiriques |
 | "Qu'est-ce qu'on ne sait pas sur le pattern d'utilisation du client ?" | Inconnues inconnues |
-| "On a load-teste ça, ou on estime ?" | Qualite des donnees |
+| "On a load-teste ça, ou on estime ?" | Qualité des donnees |
 
 ##### Chapeau vert -- Alternatives
 
 Exploration creative. Quoi d'autre pourrait-on faire ?
 
-**Processus :** Générer des options sans les juger. Quantite plutot que qualite dans cette phase.
+**Processus :** Générer des options sans les juger. Quantité plutôt que qualité dans cette phase.
 
 | Question | Focus |
 |----------|-------|
 | "Et si on ne construisait pas ça du tout ? C'est quoi le workaround manuel ?" | Vérification de nécessité |
-| "Quelle est une architecture complètement differente qui résout ça ?" | Perspective fraiche |
+| "Quelle est une architecture complètement différente qui résout ça ?" | Perspective fraiche |
 | "Qu'est-ce que [entreprise connue pour ça] ferait ?" | Emprunt de patterns |
 | "Et si on decoupait ça en deux problèmes plus simples ?" | Decomposition |
 | "Quelle est la version la plus simple qui serait quand même utile ?" | Pensee MVP |
@@ -421,13 +421,13 @@ Exploration creative. Quoi d'autre pourrait-on faire ?
 
 Penser a la pensee. Est-ce qu'on pose les bonnes questions ?
 
-**Processus :** Prendre du recul sur le contenu. Évaluer la qualite de l'analyse elle-même.
+**Processus :** Prendre du recul sur le contenu. Évaluer la qualité de l'analyse elle-même.
 
 | Question | Focus |
 |----------|-------|
 | "On a parle aux gens qui vont réellement utiliser/maintenir ça ?" | Couverture des stakeholders |
 | "On passe du temps sur les zones a plus haut risque ?" | Priorisation |
-| "Quelle décision on prend réellement la maintenant ?" | Clarte du scope |
+| "Quelle décision on prend réellement la maintenant ?" | Clarté du scope |
 | "On a les bonnes personnes dans cette discussion ?" | Couverture d'expertise |
 | "C'est quoi nos critères de décision ? Comment on saura quelle option est meilleure ?" | Framework |
 
@@ -454,26 +454,26 @@ Le classique Five Whys trace d'un problème vers sa cause racine. En application
 
 - Quand on review une décision de design qui semble prise par convention
 - Quand la justification est "c'est comme ça qu'on a toujours fait" ou "c'est une best practice"
-- Quand un choix technique semble deconnecte du vrai problème
+- Quand un choix technique semble déconnecté du vrai problème
 
 #### Processus étape par étape
 
 Commencer avec la décision et demander "pourquoi cette approche ?" de manière repetee :
 
 1. **Pourquoi cette approche ?** (Justification de surface)
-2. **Pourquoi c'est important ?** (Preoccupation sous-jacente)
+2. **Pourquoi c'est important ?** (Préoccupation sous-jacente)
 3. **Pourquoi c'est la contrainte ?** (Contrainte reelle vs supposee)
-4. **Pourquoi cette contrainte ne peut-elle pas etre changee ?** (Fixe vs deplacable)
-5. **Pourquoi c'est la meilleure façon d'adresser cette preoccupation racine ?** (Alternatives)
+4. **Pourquoi cette contrainte ne peut-elle pas être changee ?** (Fixe vs deplacable)
+5. **Pourquoi c'est la meilleure façon d'adresser cette préoccupation racine ?** (Alternatives)
 
 #### Exemple : "On a choisi une architecture microservices"
 
 | Niveau | Question | Réponse |
 |-------|----------|--------|
 | Why 1 | "Pourquoi les microservices ?" | "On a besoin de deploiements independants." |
-| Why 2 | "Pourquoi on a besoin de deploiements independants ?" | "Differentes features ont des cadences de release differentes." |
-| Why 3 | "Pourquoi les features ont des cadences differentes ?" | "L'équipe paiements livre chaque semaine, l'équipe recherche livre chaque jour." |
-| Why 4 | "Pourquoi elles ne peuvent pas livrer au même rythme ?" | "Les paiements necessitent une review de conformite avant chaque release." |
+| Why 2 | "Pourquoi on a besoin de deploiements independants ?" | "Différentes features ont des cadences de release différentes." |
+| Why 3 | "Pourquoi les features ont des cadences différentes ?" | "L'équipe paiements livre chaque semaine, l'équipe recherche livre chaque jour." |
+| Why 4 | "Pourquoi elles ne peuvent pas livrer au même rythme ?" | "Les paiements necessitent une review de conformité avant chaque release." |
 | Why 5 | "Y a-t-il un moyen plus simple de gater les releases paiements sans splitter toute l'architecture ?" | "...en fait, un feature flag + une gate d'approbation sur le pipeline CI pourrait marcher." |
 
 #### Exemple : "On utilise Redis pour le caching"
@@ -483,20 +483,20 @@ Commencer avec la décision et demander "pourquoi cette approche ?" de manière 
 | Why 1 | "Pourquoi Redis ?" | "On a besoin de caching pour la performance." |
 | Why 2 | "Pourquoi la performance est un problème ?" | "Le dashboard se charge lentement." |
 | Why 3 | "Pourquoi le dashboard se charge lentement ?" | "Il fait 12 appels API au montage." |
-| Why 4 | "Pourquoi 12 appels API ?" | "Chaque widget fetch ses donnees independamment." |
+| Why 4 | "Pourquoi 12 appels API ?" | "Chaque widget fetch ses donnees indépendamment." |
 | Why 5 | "Un seul endpoint agrege pourrait-il éliminer le besoin de caching ?" | "...ça resoudrait la latence sans ajouter d'infra." |
 
-#### Exemples de questions pour usage general
+#### Exemples de questions pour usage général
 
-- "Pourquoi cette librairie/framework/outil a ete choisi plutot que les alternatives ?"
+- "Pourquoi cette librairie/framework/outil a ete choisi plutôt que les alternatives ?"
 - "Pourquoi c'est une exigence dure vs une préférence ?"
 - "Pourquoi le système en amont ne peut-il pas fournir cette donnee dans le format qu'on veut ?"
-- "Pourquoi c'est notre responsabilite plutot que celle de l'appelant ?"
+- "Pourquoi c'est notre responsabilité plutôt que celle de l'appelant ?"
 - "Pourquoi on a besoin de cette couche d'abstraction ?"
 
-#### Point cle
+#### Point clé
 
-Le Five Whys inverse révélé fréquemment qu'une solution complexe adresse un symptome plutot que le problème racine. Le cinquieme "pourquoi" pointe souvent vers une intervention plus simple a un autre niveau.
+Le Five Whys inverse révélé fréquemment qu'une solution complexe adresse un symptôme plutôt que le problème racine. Le cinquieme "pourquoi" pointe souvent vers une intervention plus simple a un autre niveau.
 
 ---
 
@@ -508,7 +508,7 @@ Le Five Whys inverse révélé fréquemment qu'une solution complexe adresse un 
 | Évaluation d'une décision technique spécifique | Five Whys (inverse) | Steel-Manning |
 | Design review complété | Six Thinking Hats | Socratique (tous types) |
 | "Ça semble faux mais je sais pas dire pourquoi" | Inversion | Pre-mortem |
-| Challenger une proposition confiante | Steel-Manning d'abord | Puis socratique hypotheses |
+| Challenger une proposition confiante | Steel-Manning d'abord | Puis socratique hypothèses |
 | Explorer si on résout le bon problème | Socratique meta-questions | Five Whys (inverse) |
 | Évaluer la readiness operationnelle | Pre-mortem | Inversion |
 | Reviewer le code/PR de quelqu'un | Steel-Manning d'abord | Socratique clarification |
@@ -522,17 +522,17 @@ Pour une review approfondie de toute décision significative :
 1. **Steel-Man** -- Comprendre pourquoi cette approche est raisonnable
 2. **Socratique clarification** -- S'assurer que la décision est bien définie
 3. **Five Whys (inverse)** -- Tracer jusqu'a la motivation racine
-4. **Inversion** -- Enumerer les conditions d'échec
-5. **Pre-mortem** -- Raconter des scenarios d'échec spécifiques
+4. **Inversion** -- Énumérer les conditions d'échec
+5. **Pre-mortem** -- Raconter des scénarios d'échec spécifiques
 6. **Socratique implications** -- Suivre les consequences vers l'avant
 
-Cette sequence passe de la comprehension au challenge. Elle construit la credibilite avant la critique, ce qui rend la critique plus efficace et plus susceptible de faire remonter de vrais problèmes plutot que des préférences stylistiques.
+Cette sequence passe de la comprehension au challenge. Elle construit la crédibilité avant la critique, ce qui rend la critique plus efficace et plus susceptible de faire remonter de vrais problèmes plutôt que des préférences stylistiques.
 
 ---
 
 ## Référence : Angles morts
 
-Categories de problèmes que les ingenieurs ratent systematiquement pendant le design, l'implémentation et la review. Pour chaque categorie : ce que c'est, pourquoi c'est rate, les questions cles pour le faire remonter, et des exemples concrets.
+Catégories de problèmes que les ingenieurs ratent systématiquement pendant le design, l'implémentation et la review. Pour chaque catégorie : ce que c'est, pourquoi c'est rate, les questions clés pour le faire remonter, et des exemples concrets.
 
 ---
 
@@ -540,9 +540,9 @@ Categories de problèmes que les ingenieurs ratent systematiquement pendant le d
 
 #### Pourquoi c'est rate
 
-La sécurité est invisible quand elle fonctionne. Les ingenieurs optimisent pour la fonctionnalite -- "est-ce que ça fait le truc ?" -- et les failles de sécurité ne se manifestent que dans des conditions adverses que les tests normaux ne simulent pas. Penser sécurité demande de supposer une intention malveillante, ce qui est psychologiquement contre-nature pour les constructeurs.
+La sécurité est invisible quand elle fonctionne. Les ingenieurs optimisent pour la fonctionnalité -- "est-ce que ça fait le truc ?" -- et les failles de sécurité ne se manifestent que dans des conditions adverses que les tests normaux ne simulent pas. Penser sécurité demande de supposer une intention malveillante, ce qui est psychologiquement contre-nature pour les constructeurs.
 
-#### Questions cles
+#### Questions clés
 
 | Domaine | Question |
 |------|----------|
@@ -551,7 +551,7 @@ La sécurité est invisible quand elle fonctionne. Les ingenieurs optimisent pou
 | Validation d'entrees | "Que se passe-t-il si ce champ contient 10 Mo de donnees ? Du SQL ? Du JavaScript ? Des caractères de contrôle Unicode ?" |
 | Exposition de donnees | "Quels champs dans cette réponse API l'utilisateur demandeur ne devrait PAS voir ?" |
 | Secrets | "Si cette ligne de log est capturee, est-ce qu'elle contient quelque chose de sensible ?" |
-| CSRF/SSRF | "Cet endpoint peut-il etre déclenché par une page malveillante que l'utilisateur visite ?" |
+| CSRF/SSRF | "Cet endpoint peut-il être déclenché par une page malveillante que l'utilisateur visite ?" |
 | Rate limiting | "Quel est le coût si quelqu'un appelle cet endpoint 10 000 fois par seconde ?" |
 | Dépendance | "Quand a eu lieu le dernier audit de sécurité de cette dépendance ? A-t-elle des CVE connues ?" |
 
@@ -560,7 +560,7 @@ La sécurité est invisible quand elle fonctionne. Les ingenieurs optimisent pou
 - **Autorisation cassee au niveau objet (BOLA) :** La vulnérabilité API #1. L'endpoint vérifié l'authentification mais pas si l'utilisateur authentifie possédé la ressource demandee. Chaque endpoint qui prend un ID d'entite doit vérifier la propriété.
 - **Affectation de masse :** Accepter tous les champs du corps de requête et les passer a l'update ORM. L'utilisateur envoie `{"role": "admin"}` dans une mise a jour de profil.
 - **Messages d'erreur verbeux :** Stack traces, erreurs SQL, ou chemins internes dans les reponses API en production.
-- **Références directes a des objets non securisees :** IDs entiers sequentiels qui permettent l'enumeration. L'utilisateur itere `/api/invoices/1`, `/api/invoices/2`, etc.
+- **Références directes a des objets non securisees :** IDs entiers sequentiels qui permettent l'énumération. L'utilisateur itere `/api/invoices/1`, `/api/invoices/2`, etc.
 - **Headers de sécurité manquants :** Pas de CSP, pas de HSTS, pas de X-Frame-Options dans les reponses.
 
 ---
@@ -569,19 +569,19 @@ La sécurité est invisible quand elle fonctionne. Les ingenieurs optimisent pou
 
 #### Pourquoi c'est rate
 
-Les systèmes qui fonctionnent a l'echelle actuelle semblent corrects. Les ingenieurs testent avec de petits jeux de donnees et une faible concurrence. Le modèle mental "ça marche" se forme a l'echelle de développement et est rarement mis a jour. Les échecs de scalabilite sont non-lineaires -- une requête qui prend 50ms avec 1 000 lignes prend 30 secondes avec 1 000 000.
+Les systèmes qui fonctionnent a l'échelle actuelle semblent corrects. Les ingenieurs testent avec de petits jeux de donnees et une faible concurrence. Le modèle mental "ça marche" se forme a l'échelle de développement et est rarement mis a jour. Les échecs de scalabilite sont non-lineaires -- une requête qui prend 50ms avec 1 000 lignes prend 30 secondes avec 1 000 000.
 
-#### Questions cles
+#### Questions clés
 
 | Domaine | Question |
 |------|----------|
 | Croissance des donnees | "Que se passe-t-il pour cette requête quand la table a 10M de lignes ? 100M ?" |
 | Trafic | "Si le trafic augmente de 10x, quel composant tombe en premier ?" |
 | Stockage | "Combien de stockage ça consomme par utilisateur par mois ? Quelle est la projection ?" |
-| Cardinalite | "Combien de valeurs distinctes cette colonne/index/cle de cache aura ?" |
+| Cardinalite | "Combien de valeurs distinctes cette colonne/index/clé de cache aura ?" |
 | Fan-out | "Combien d'appels downstream une seule action utilisateur déclenché ?" |
 | Coût | "Quel est le coût cloud de ça a 100x l'utilisation actuelle ?" |
-| Hotspots | "Y a-t-il une seule ligne, cle, ou partition qui reçoit un trafic disproportionne ?" |
+| Hotspots | "Y a-t-il une seule ligne, clé, ou partition qui reçoit un trafic disproportionne ?" |
 
 #### Ratages courants
 
@@ -598,26 +598,26 @@ Les systèmes qui fonctionnent a l'echelle actuelle semblent corrects. Les ingen
 
 #### Pourquoi c'est rate
 
-Les ingenieurs se concentrent sur la création et la lecture des donnees. Le cycle de vie complet -- création, transformation, archivage, suppression, conformite -- est rarement considéré en amont. La suppression de donnees est particulièrement négligée parce qu'elle n'a pas de valeur utilisateur immédiate.
+Les ingenieurs se concentrent sur la création et la lecture des donnees. Le cycle de vie complet -- création, transformation, archivage, suppression, conformité -- est rarement considéré en amont. La suppression de donnees est particulièrement négligée parce qu'elle n'a pas de valeur utilisateur immédiate.
 
-#### Questions cles
+#### Questions clés
 
 | Domaine | Question |
 |------|----------|
 | Création | "Qu'est-ce qui valide ces donnees au point d'entree ? Et si les règles de validation changent ?" |
 | Retention | "Combien de temps on garde ça ? Y a-t-il une exigence legale ou business ?" |
 | Suppression | "Si un utilisateur demande la suppression de son compte, qu'arrive-t-il a ses donnees dans toutes les tables ?" |
-| Cascade | "Si cet enregistrement est supprime, qu'est-ce qui le référence ? Les cles etrangeres cascadent ou orphelinent ?" |
-| PII | "Quels champs dans cette table sont des donnees personnelles identifiables ? Peuvent-ils etre pseudonymises ?" |
+| Cascade | "Si cet enregistrement est supprime, qu'est-ce qui le référence ? Les clés etrangeres cascadent ou orphelinent ?" |
+| PII | "Quels champs dans cette table sont des donnees personnelles identifiables ? Peuvent-ils être pseudonymises ?" |
 | Backup | "Si on restaure depuis un backup, ces donnees ont-elles des dépendances de cohérence avec d'autres systèmes ?" |
 | Migration | "Si le schema change, qu'arrive-t-il aux donnees existantes ? Un backfill est-il nécessaire ?" |
 | Export | "L'utilisateur peut-il exporter ses donnees ? Dans quel format ?" |
 
 #### Ratages courants
 
-- **Enregistrements orphelins :** Parent supprime, enfants restent avec des cles etrangeres pendantes ou pas de FK du tout.
+- **Enregistrements orphelins :** Parent supprime, enfants restent avec des clés etrangeres pendantes ou pas de FK du tout.
 - **Inconsistance du soft-delete :** Certaines requêtes filtrent `deleted_at IS NULL`, d'autres non. Les donnees supprimees fuient dans les résultats.
-- **PII dans les logs :** Le logging structure capture les corps de requête contenant email, telephone, adresse.
+- **PII dans les logs :** Le logging structure capture les corps de requête contenant email, téléphone, adresse.
 - **Pas de politique de retention de donnees :** Les tables grossissent indefiniment. Les vieilles donnees ne sont jamais archivees ou purgees.
 - **Lacunes du droit a l'effacement RGPD :** Utilisateur supprime de la table `users` mais ses donnees persistent dans `audit_log`, `analytics_events`, `email_log`, les CSV exportes, et les integrations tierces.
 - **Confusion des donnees temporelles :** L'état "courant" melange avec l'état historique. Pas de distinction claire entre "enregistrement actif" et "snapshot au temps T".
@@ -630,11 +630,11 @@ Les ingenieurs se concentrent sur la création et la lecture des donnees. Le cyc
 
 Les ingenieurs testent leur propre code, pas la frontière entre leur code et les systèmes externes. Les integrations marchent en dev (ou le système externe est mocke ou toujours disponible) et echouent en production (ou il est intermittent, lent, ou retourne des reponses inattendues).
 
-#### Questions cles
+#### Questions clés
 
 | Domaine | Question |
 |------|----------|
-| Disponibilite | "Que se passe-t-il quand cette dépendance est down pendant 30 minutes ? 4 heures ?" |
+| Disponibilité | "Que se passe-t-il quand cette dépendance est down pendant 30 minutes ? 4 heures ?" |
 | Latence | "Et si cet appel API prend 30 secondes au lieu de 200ms ?" |
 | Forme de la réponse | "Et si la réponse inclut des champs qu'on n'attend pas ? Ou s'il manque des champs qu'on attend ?" |
 | Versioning | "Que se passe-t-il si l'API tierce change sans prévenir ?" |
@@ -647,7 +647,7 @@ Les ingenieurs testent leur propre code, pas la frontière entre leur code et le
 
 - **Mauvaise configuration du timeout :** Timeout HTTP par défaut de 30s ou infini. Une dépendance lente bloque les threads, cascade vers l'indisponibilite totale du système.
 - **Pas de circuit breaker :** La dépendance en échec est appelee de manière repetee, consomme des ressources et ralentit tout.
-- **Hypotheses sur la livraison de webhooks :** Supposer que les webhooks arrivent une fois, dans l'ordre, et rapidement. En realite : doublons, desordre, retard de plusieurs heures.
+- **Hypothèses sur la livraison de webhooks :** Supposer que les webhooks arrivent une fois, dans l'ordre, et rapidement. En réalité : doublons, désordre, retard de plusieurs heures.
 - **Couplage de schema :** Deserialiser toute la réponse dans un type strict. Tout ajout de champ ou changement de type dans l'API externe cause des échecs.
 - **Pas de fallback :** Pas de réponse en cache/par défaut quand l'intégration est indisponible. La feature devient complètement non fonctionnelle.
 
@@ -657,26 +657,26 @@ Les ingenieurs testent leur propre code, pas la frontière entre leur code et le
 
 #### Pourquoi c'est rate
 
-Les ingenieurs pensent en termes de chemins de succes. La gestion d'erreur est ajoutee apres coup -- souvent juste `catch (e) { log(e) }` -- sans considérer la taxonomie des échecs et les reponses appropriees pour chacun.
+Les ingenieurs pensent en termes de chemins de succès. La gestion d'erreur est ajoutee après coup -- souvent juste `catch (e) { log(e) }` -- sans considérer la taxonomie des échecs et les reponses appropriees pour chacun.
 
-#### Questions cles
+#### Questions clés
 
 | Domaine | Question |
 |------|----------|
 | Échec partiel | "Et si l'étape 3 sur 5 échoué ? Dans quel état est le système ?" |
 | Comportement de retry | "Si c'est retry, le résultat est-il identique ? Ou on obtient des doublons ?" |
-| Propagation d'erreur | "Cette erreur remonte-t-elle clairement, ou est-elle avalee et refait surface comme un symptome confus ailleurs ?" |
+| Propagation d'erreur | "Cette erreur remonte-t-elle clairement, ou est-elle avalee et refait surface comme un symptôme confus ailleurs ?" |
 | Messages empoisonnes | "Et si un message dans la queue est malformed ? Est-ce que ça bloque tout le traitement ?" |
-| Épuisement de ressources | "Que se passe-t-il quand le disque est plein ? La mémoire epuisee ? Le pool de connexions vide ?" |
+| Épuisement de ressources | "Que se passe-t-il quand le disque est plein ? La mémoire épuisée ? Le pool de connexions vide ?" |
 | Defaillance en cascade | "Si ce composant tombe, quels autres composants tombent en consequence ?" |
-| Recuperation | "Apres que l'échec est résolu, le système se repare-t-il seul ou nécessité-t-il une intervention manuelle ?" |
+| Récupération | "Après que l'échec est résolu, le système se repare-t-il seul ou nécessité-t-il une intervention manuelle ?" |
 
 #### Ratages courants
 
 - **État inconsistant par opérations partielles :** Processus multi-étapes (créer commande, debiter paiement, envoyer email) échoué a l'étape 2. La commande existe, le paiement n'a pas eu lieu, mais il n'y a pas de logique de compensation.
-- **Tempetes de retry :** Le service A retry les appels echoues vers le service B. Le service B echouait a cause d'une surcharge. Les retries aggravent les choses. Le backoff exponentiel avec jitter est manquant.
+- **Tempêtes de retry :** Le service A retry les appels echoues vers le service B. Le service B echouait a cause d'une surcharge. Les retries aggravent les choses. Le backoff exponentiel avec jitter est manquant.
 - **Échecs silencieux :** Exception attrapee et loggee mais pas propagee. Le système semble sain tout en produisant des résultats faux.
-- **Inutilite des messages d'erreur :** `"Une erreur est survenue"` sans contexte sur ce qui a échoué, pourquoi, ou ce que l'utilisateur peut faire.
+- **Inutilité des messages d'erreur :** `"Une erreur est survenue"` sans contexte sur ce qui a échoué, pourquoi, ou ce que l'utilisateur peut faire.
 - **Negligence du deadletter :** Les messages echoues vont dans une dead letter queue que personne ne surveille. Les donnees sont perdues silencieusement.
 
 ---
@@ -685,9 +685,9 @@ Les ingenieurs pensent en termes de chemins de succes. La gestion d'erreur est a
 
 #### Pourquoi c'est rate
 
-Les developpeurs ecrivent et testent du code sequentiellement. Les bugs de concurrence sont non-deterministes -- ils dependent du timing, de la charge et de l'ordonnancement. Une race condition qui se produit 1 fois sur 10 000 passe tous les tests et ne se manifeste qu'en production sous charge.
+Les développeurs ecrivent et testent du code sequentiellement. Les bugs de concurrence sont non-deterministes -- ils dependent du timing, de la charge et de l'ordonnancement. Une race condition qui se produit 1 fois sur 10 000 passe tous les tests et ne se manifeste qu'en production sous charge.
 
-#### Questions cles
+#### Questions clés
 
 | Domaine | Question |
 |------|----------|
@@ -703,7 +703,7 @@ Les developpeurs ecrivent et testent du code sequentiellement. Les bugs de concu
 
 - **Check-then-act sans locking :** `if not exists(email): create_user(email)` -- deux requêtes concurrentes passent toutes les deux le check, toutes les deux creent l'utilisateur.
 - **Mises a jour perdues :** Deux requêtes lisent solde=100, les deux ajoutent 50, les deux ecrivent 150. Attendu : 200. Utiliser le locking optimiste (colonne de version) ou `UPDATE ... SET balance = balance + 50`.
-- **Double-submit sur les formulaires :** L'utilisateur clique "Envoyer" deux fois. Deux enregistrements identiques créés. Pas de cle d'idempotence, pas de garde cote client.
+- **Double-submit sur les formulaires :** L'utilisateur clique "Envoyer" deux fois. Deux enregistrements identiques créés. Pas de clé d'idempotence, pas de garde cote client.
 - **Derive des compteurs :** `count = get_count(); set_count(count + 1)` au lieu d'un `INCREMENT` atomique. Sous concurrence, les compteurs derivent vers le bas.
 - **Épuisement du pool de connexions :** Transactions longues ou connexions qui fuient vident le pool. Les nouvelles requêtes font la queue et timeout.
 
@@ -713,15 +713,15 @@ Les developpeurs ecrivent et testent du code sequentiellement. Les bugs de concu
 
 #### Pourquoi c'est rate
 
-"Ça marche sur ma machine" est l'expression canonique de cet angle mort. Les environnements de développement different de la production de manières invisibles jusqu'a ce qu'elles causent des échecs : OS different, limites de ressources differentes, topologie reseau differente, volume de donnees different.
+"Ça marche sur ma machine" est l'expression canonique de cet angle mort. Les environnements de développement différent de la production de manières invisibles jusqu'a ce qu'elles causent des échecs : OS différent, limites de ressources différentes, topologie réseau différente, volume de donnees différent.
 
-#### Questions cles
+#### Questions clés
 
 | Domaine | Question |
 |------|----------|
-| Configuration | "Quelles valeurs de config different entre dev, staging et production ?" |
-| Volume de donnees | "Le dev a 100 lignes. La production a 10M. On a teste avec des donnees a l'echelle prod ?" |
-| Reseau | "Est-ce que ça suppose une latence localhost ? Et les appels cross-region en prod ?" |
+| Configuration | "Quelles valeurs de config différent entre dev, staging et production ?" |
+| Volume de donnees | "Le dev a 100 lignes. La production a 10M. On a teste avec des donnees a l'échelle prod ?" |
+| Réseau | "Est-ce que ça suppose une latence localhost ? Et les appels cross-région en prod ?" |
 | Permissions | "Le compte de service prod a-t-il les mêmes permissions que l'utilisateur dev ?" |
 | Secrets | "Comment les secrets sont-ils geres en production ? Sont-ils les mêmes qu'en dev ?" |
 | Limites de ressources | "Quelles sont les limites mémoire/CPU/disque en production ? On a teste a ces limites ?" |
@@ -730,9 +730,9 @@ Les developpeurs ecrivent et testent du code sequentiellement. Les bugs de concu
 
 #### Ratages courants
 
-- **Différences de timezone :** La machine de dev est en UTC, la production est en UTC, mais le serveur de base de donnees a ete configure dans un timezone different par défaut du fournisseur cloud.
-- **Hypotheses sur le système de fichiers :** Le code écrit dans `/tmp` en supposant un espace illimite. Le conteneur de production a un tmpfs de 512Mo.
-- **Resolution DNS :** Le dev local résout les noms de service instantanement. Le DNS de production a des TTL, du caching, et des échecs occasionnels.
+- **Différences de timezone :** La machine de dev est en UTC, la production est en UTC, mais le serveur de base de donnees a ete configure dans un timezone différent par défaut du fournisseur cloud.
+- **Hypothèses sur le système de fichiers :** Le code écrit dans `/tmp` en supposant un espace illimite. Le conteneur de production a un tmpfs de 512Mo.
+- **Résolution DNS :** Le dev local résout les noms de service instantanement. Le DNS de production a des TTL, du caching, et des échecs occasionnels.
 - **SSL/TLS en production uniquement :** Le dev utilise HTTP. Le premier déploiement en production échoué parce que l'app ne fait pas confiance au Ça, ou les redirections cassent.
 - **Variables d'environnement manquantes :** L'app démarré bien en dev (valeurs par défaut utilisees). La production n'a pas de valeurs par défaut et crash au démarrage -- ou pire, utilise silencieusement des mauvaises valeurs.
 
@@ -744,7 +744,7 @@ Les developpeurs ecrivent et testent du code sequentiellement. Les bugs de concu
 
 L'observabilite n'est pas une feature que les utilisateurs voient. Elle a zero valeur cote utilisateur jusqu'a ce que quelque chose casse -- la elle devient la chose la plus importante. Les ingenieurs sous pression de temps la deprioritisent parce qu'elle n'apparait pas dans les demos.
 
-#### Questions cles
+#### Questions clés
 
 | Domaine | Question |
 |------|----------|
@@ -770,24 +770,24 @@ L'observabilite n'est pas une feature que les utilisateurs voient. Elle a zero v
 
 #### Pourquoi c'est rate
 
-Le déploiement est traite comme "push code, c'est live". La periode de transition -- ou l'ancien code et le nouveau coexistent, ou les migrations tournent, ou les caches contiennent d'anciennes donnees -- est rarement considérée. Les ingenieurs pensent en termes d'"avant" et "apres", pas de "pendant".
+Le déploiement est traite comme "push code, c'est live". La période de transition -- ou l'ancien code et le nouveau coexistent, ou les migrations tournent, ou les caches contiennent d'anciennes donnees -- est rarement considérée. Les ingenieurs pensent en termes d'"avant" et "après", pas de "pendant".
 
-#### Questions cles
+#### Questions clés
 
 | Domaine | Question |
 |------|----------|
 | Rollback | "On peut rollback ce déploiement en moins de 5 minutes ? Qu'est-ce qui casse si on le fait ?" |
 | Migration | "Cette migration est-elle backward-compatible ? L'ancien code peut-il fonctionner avec le nouveau schema ?" |
-| Requêtes en vol | "Que se passe-t-il pour les requêtes qui ont commence avant le déploiement et finissent apres ?" |
-| Invalidation de cache | "Les valeurs en cache ont-elles encore du sens apres ce déploiement ?" |
-| Feature flags | "Cette feature peut-elle etre desactivee sans déploiement ?" |
+| Requêtes en vol | "Que se passe-t-il pour les requêtes qui ont commence avant le déploiement et finissent après ?" |
+| Invalidation de cache | "Les valeurs en cache ont-elles encore du sens après ce déploiement ?" |
+| Feature flags | "Cette feature peut-elle être désactivée sans déploiement ?" |
 | Zero-downtime | "Y a-t-il un moment pendant le déploiement ou le service est indisponible ?" |
 | Ordre des dépendances | "Ce déploiement nécessité-t-il qu'un autre service soit déployé d'abord ?" |
 
 #### Ratages courants
 
 - **Migrations non-reversibles :** Colonne renommee ou supprimee. Le rollback a la version de code précédente échoué parce que l'ancien code attend l'ancienne colonne.
-- **Changements d'API breaking sans versioning :** Frontend déployé avant le backend (ou vice versa). Breve periode ou client et serveur ne sont pas d'accord sur le contrat API.
+- **Changements d'API breaking sans versioning :** Frontend déployé avant le backend (ou vice versa). Breve période ou client et serveur ne sont pas d'accord sur le contrat API.
 - **Caches obsolètes :** Le déploiement change le format de réponse. Le CDN/navigateur/cache applicatif sert l'ancien format. Les utilisateurs voient une UI cassee jusqu'a ce que le cache expire.
 - **Perte de session blue/green :** L'utilisateur est sur l'ancienne instance avec de l'état de session. Le trafic bascule sur la nouvelle instance. Session disparue.
 - **Migration de base sous charge :** La migration locke une table pour un ALTER. Toutes les requêtes vers cette table font la queue et timeout. L'application semble down.
@@ -800,24 +800,24 @@ Le déploiement est traite comme "push code, c'est live". La periode de transiti
 
 Le multi-tenancy est une contrainte architecturale qui touche tout mais n'est possedee par aucune feature individuelle. Chaque feature individuelle fonctionne correctement isolement. Les échecs n'apparaissent que quand les tenants interagissent -- via des ressources partagees, des fuites de donnees, ou des voisins bruyants.
 
-#### Questions cles
+#### Questions clés
 
 | Domaine | Question |
 |------|----------|
-| Isolation des donnees | "Si je retire le token d'auth et que je substitue un ID de tenant different, est-ce que je vois leurs donnees ?" |
+| Isolation des donnees | "Si je retire le token d'auth et que je substitue un ID de tenant différent, est-ce que je vois leurs donnees ?" |
 | Filtrage des requêtes | "Chaque requête dans cette feature filtre-t-elle par tenant ? Y compris les joins, sous-requêtes et aggregations ?" |
 | Equite des ressources | "L'utilisation d'un tenant peut-elle dégrader la performance pour tous les autres ?" |
 | Configuration | "C'est hardcode pour un tenant, ou configurable par tenant ?" |
 | Jobs en arriere-plan | "Les background jobs definissent-ils le contexte tenant ? Et si un job traite plusieurs tenants ?" |
-| Caching | "Les cles de cache sont-elles namespacees par tenant ? Le cache du tenant A peut-il retourner les donnees du tenant B ?" |
-| Logging | "Si on cherche les logs par ID de tenant, on obtient exactement et uniquement leur activite ?" |
+| Caching | "Les clés de cache sont-elles namespacees par tenant ? Le cache du tenant A peut-il retourner les donnees du tenant B ?" |
+| Logging | "Si on cherche les logs par ID de tenant, on obtient exactement et uniquement leur activité ?" |
 
 #### Ratages courants
 
 - **Filtre tenant manquant dans les nouvelles requêtes :** Chaque nouvelle requête doit inclure `tenant_id`. Un filtre oublie = fuite de donnees cross-tenant.
-- **Caches globaux :** Cle de cache `user:123` sans prefixe tenant. Deux tenants avec l'ID utilisateur 123 obtiennent les donnees en cache l'un de l'autre.
+- **Caches globaux :** Clé de cache `user:123` sans préfixe tenant. Deux tenants avec l'ID utilisateur 123 obtiennent les donnees en cache l'un de l'autre.
 - **Rate limits partages :** Rate limit applique globalement. Le burst legitime d'un tenant bloque tous les autres.
-- **Config spécifique au tenant en dur dans le code :** Feature flag ou règle metier hardcodee dans un if-statement au lieu d'etre dans la configuration tenant.
+- **Config spécifique au tenant en dur dans le code :** Feature flag ou règle metier hardcodee dans un if-statement au lieu d'être dans la configuration tenant.
 - **Fuite de contexte des background jobs :** Le job traite le tenant A, puis le tenant B, mais le contexte tenant du A persiste dans le traitement du B.
 
 ---
@@ -828,24 +828,24 @@ Le multi-tenancy est une contrainte architecturale qui touche tout mais n'est po
 
 Les cas limites sont, par définition, pas le cas courant. Les ingenieurs construisent pour l'utilisateur typique sur le chemin typique. Mais les cas limites sont la ou les bugs se cachent, ou les donnees se corrompent, et ou les vulnérabilités de sécurité vivent. Les bords de l'espace d'entree sont aussi la ou les attaquants operent.
 
-#### Questions cles
+#### Questions clés
 
 | Domaine | Question |
 |------|----------|
 | État vide | "A quoi ça ressemble avec zero donnees ? Premier utilisateur, liste vide, pas d'historique ?" |
 | Bornes | "Que se passe-t-il au maximum ? Au minimum ? Exactement zero ? Valeurs negatives ?" |
 | Unicode | "Que se passe-t-il avec les emoji, le texte RTL, ou les caractères hors ASCII ?" |
-| Timezone | "Que se passe-t-il a minuit ? Et minuit dans des timezones differentes ? Transitions DST ?" |
+| Timezone | "Que se passe-t-il a minuit ? Et minuit dans des timezones différentes ? Transitions DST ?" |
 | Précision | "Est-ce qu'on utilise des floats pour l'argent ? Que se passe-t-il avec l'arrondi sur des millions de transactions ?" |
-| Nulls | "Quels champs peuvent etre null en pratique, même si le schema dit NOT NULL ?" |
+| Nulls | "Quels champs peuvent être null en pratique, même si le schema dit NOT NULL ?" |
 | Ordonnancement | "Et si la liste est vide ? Un seul élément ? Déjà triee ? Triee a l'envers ?" |
 
 #### Ratages courants
 
 - **Panique de l'état vide :** La feature marche magnifiquement avec des donnees. Sans donnees : écran blanc, erreurs undefined, ou un "Aucun résultat" trompeur quand l'utilisateur n'a pas encore cherche.
 - **Integer overflow / précision float :** `0.1 + 0.2 !== 0.3` en IEEE 754. Les calculs de devise derivent. Utiliser des centimes entiers ou des types decimal.
-- **Datetime sans timezone :** Stocker des `datetime` sans info de timezone. Comparer des timestamps de sources differentes produit des résultats faux autour du DST.
-- **Hypotheses sur les noms et le texte :** Le champ nom rejette O'Brien (apostrophe non echappee), Muller (umlaut), ou (espace zero-width). Longueur max de 50 rejette les noms longs legitimes.
+- **Datetime sans timezone :** Stocker des `datetime` sans info de timezone. Comparer des timestamps de sources différentes produit des résultats faux autour du DST.
+- **Hypothèses sur les noms et le texte :** Le champ nom rejette O'Brien (apostrophe non echappee), Muller (umlaut), ou (espace zero-width). Longueur max de 50 rejette les noms longs legitimes.
 - **Off-by-one dans la pagination :** La page 1 montre les items 1-10, la page 2 montre les items 10-19 (item 10 duplique) ou items 12-21 (item 11 manquant).
 - **Secondes intercalaires, annees bissextiles, DST :** `29 fevrier` casse la validation de date. `2h du matin a la transition DST` n'existe pas (ou existe deux fois). La logique de planification échoué.
 - **Payload maximum :** Upload de fichier sans limite de taille. L'utilisateur upload un fichier de 5Go. Le serveur tombe en out of memory.
@@ -857,12 +857,12 @@ Les cas limites sont, par définition, pas le cas courant. Les ingenieurs constr
 | Angle mort | Question la plus revelatrice |
 |------------|-------------------------------|
 | Sécurité | "L'utilisateur A peut-il acceder aux donnees de l'utilisateur B en manipulant la requête ?" |
-| Scalabilite | "Que se passe-t-il a 100x l'echelle actuelle ?" |
+| Scalabilite | "Que se passe-t-il a 100x l'échelle actuelle ?" |
 | Cycle de vie des donnees | "Si on supprime cet utilisateur, qu'arrive-t-il a ses donnees partout ?" |
 | Intégration | "Que se passe-t-il quand cette dépendance est down pendant une heure ?" |
 | Modes de defaillance | "Si l'étape 3 sur 5 échoué, dans quel état est le système ?" |
 | Concurrence | "Si deux utilisateurs font ça au même moment exact, que se passe-t-il ?" |
-| Environnement | "Qu'est-ce qui est different en production qu'on ne teste pas ?" |
+| Environnement | "Qu'est-ce qui est différent en production qu'on ne teste pas ?" |
 | Observabilite | "L'ingenieur d'astreinte peut-il debugger ça a 3h du mat avec les outils disponibles ?" |
 | Déploiement | "On peut rollback ça en 5 minutes sans perte de donnees ?" |
 | Multi-tenancy | "Chaque requête filtre-t-elle par tenant, y compris cette nouvelle ?" |
@@ -872,20 +872,20 @@ Les cas limites sont, par définition, pas le cas courant. Les ingenieurs constr
 
 ## Référence : Angles morts IA
 
-Ou les assistants de codage IA (y compris Claude) tombent systematiquement a cote quand ils ecrivent, reviewent et raisonnent sur du logiciel. Cette référence existe pour l'auto-conscience -- pour attraper les patterns dans le travail généré par IA que les humains devraient scruter.
+Ou les assistants de codage IA (y compris Claude) tombent systématiquement a cote quand ils ecrivent, reviewent et raisonnent sur du logiciel. Cette référence existe pour l'auto-conscience -- pour attraper les patterns dans le travail généré par IA que les humains devraient scruter.
 
 ---
 
 ### Profil de risque quantifie
 
-Recherche de l'analyse GitClear (2024-2025) et de l'etude CodeRabbit sur 470 repositories :
+Recherche de l'analyse GitClear (2024-2025) et de l'étude CodeRabbit sur 470 repositories :
 
 | Métrique | IA vs Humain |
 |--------|-------------|
-| Taux global d'introduction de bugs | 1,7x plus eleve |
+| Taux global d'introduction de bugs | 1,7x plus élevé |
 | Erreurs de logique | 75% plus fréquentes |
 | Erreurs de concurrence | 2x plus fréquentes |
-| Qualite de la gestion d'erreur | 2x pire |
+| Qualité de la gestion d'erreur | 2x pire |
 | Code churn (éditer puis reverter) | 39% d'augmentation dans les codebases IA-heavy |
 | Code "déplacé" (refactoring) | En baisse -- l'IA ajoute du nouveau code au lieu de restructurer |
 
@@ -897,17 +897,17 @@ Ces chiffres signifient : le code généré par IA nécessité PLUS de review at
 
 #### A quoi ça ressemble
 
-L'IA généré du code qui géré le cas de succes de manière approfondie mais traite les erreurs comme un apres-coup. Le "chemin dore" -- entrees valides, services disponibles, ressources suffisantes, permissions correctes -- est implémenté en détail. Tout le reste reçoit un bloc catch generique ou n'est simplement pas considéré.
+L'IA généré du code qui géré le cas de succès de manière approfondie mais traite les erreurs comme un après-coup. Le "chemin dore" -- entrees valides, services disponibles, ressources suffisantes, permissions correctes -- est implémenté en détail. Tout le reste reçoit un bloc catch générique ou n'est simplement pas considéré.
 
 #### Exemple spécifique
 
 L'IA a qui on demande "créé un endpoint d'upload de fichier" produit :
 - Parsing multipart, validation du type de fichier, stockage sur S3, création d'enregistrement en base
-- Manquant : Et si S3 est injoignable ? Et si l'écriture en base échoué apres l'upload S3 ? Et si le fichier fait 0 octets ? Et si l'upload est interrompu a mi-chemin ? Et si l'espace disque pour les fichiers temp est epuise ?
+- Manquant : Et si S3 est injoignable ? Et si l'écriture en base échoué après l'upload S3 ? Et si le fichier fait 0 octets ? Et si l'upload est interrompu a mi-chemin ? Et si l'espace disque pour les fichiers temp est épuisé ?
 
 #### La question qui l'attrape
 
-"Guide-moi a travers ce qui se passe quand [le service externe / la base / le reseau / l'entree] échoué a chaque étape de ce code."
+"Guide-moi a travers ce qui se passe quand [le service externe / la base / le réseau / l'entree] échoué a chaque étape de ce code."
 
 "Quelle erreur l'utilisateur voit-il si ça échoué ? Cette erreur est-elle actionnable ?"
 
@@ -917,18 +917,18 @@ L'IA a qui on demande "créé un endpoint d'upload de fichier" produit :
 
 #### A quoi ça ressemble
 
-L'IA implémenté tout ce qui est demande sans questionner si l'exigence elle-même est saine. Elle construira une solution elaboree a un problème qui ne devrait pas etre résolu de cette façon, ou pas du tout. L'IA traite chaque requête comme une exigence valide a satisfaire, pas un problème a comprendre.
+L'IA implémenté tout ce qui est demande sans questionner si l'exigence elle-même est saine. Elle construira une solution élaborée a un problème qui ne devrait pas être résolu de cette façon, ou pas du tout. L'IA traite chaque requête comme une exigence valide a satisfaire, pas un problème a comprendre.
 
 #### Exemple spécifique
 
 L'utilisateur dit : "Ajoute un cron job qui vérifié chaque minute si l'abonnement d'un utilisateur a expire et lui envoie un email."
 
 L'IA implémenté le cron job. Ne demande pas :
-- "Ça devrait pas etre event-driven plutot que du polling ?"
+- "Ça devrait pas être event-driven plutôt que du polling ?"
 - "Et si le job prend plus d'une minute ? On a des executions qui se chevauchent ?"
 - "On devrait batcher les emails ou les envoyer individuellement ?"
 - "Le polling a la minute est-il proportionne au besoin business ?"
-- "Et l'utilisateur qui a expire il y a 30 secondes et reçoit un email dans 30 autres vs celui qui a expire 1 seconde apres la dernière vérification et attend 59 secondes ?"
+- "Et l'utilisateur qui a expire il y a 30 secondes et reçoit un email dans 30 autres vs celui qui a expire 1 seconde après la dernière vérification et attend 59 secondes ?"
 
 #### La question qui l'attrape
 
@@ -950,7 +950,7 @@ L'IA généré une requête de plage de dates :
 ```sql
 WHERE created_at >= '2024-01-01' AND created_at <= '2024-01-31'
 ```
-Présenté avec une confiance totale. Mais : janvier a 31 jours, donc `2024-01-31` devrait etre `2024-01-31 23:59:59` ou preferablement `created_at < '2024-02-01'`. La requête rate tout ce qui a ete créé le 31 janvier apres minuit. L'IA ne signalera pas l'ambiguite.
+Présenté avec une confiance totale. Mais : janvier a 31 jours, donc `2024-01-31` devrait être `2024-01-31 23:59:59` ou preferablement `created_at < '2024-02-01'`. La requête rate tout ce qui a ete créé le 31 janvier après minuit. L'IA ne signalera pas l'ambiguite.
 
 #### La question qui l'attrape
 
@@ -964,11 +964,11 @@ Présenté avec une confiance totale. Mais : janvier a 31 jours, donc `2024-01-3
 
 #### A quoi ça ressemble
 
-Quand on lui demande de corriger un test qui échoué, l'IA modifie les attentes du test pour correspondre a l'implémentation (buggee) plutot que de corriger l'implémentation pour correspondre au test (correct). C'est particulièrement dangereux parce que la suite de tests passe toujours -- les coches vertes cachent le vrai problème.
+Quand on lui demande de corriger un test qui échoué, l'IA modifie les attentes du test pour correspondre a l'implémentation (buggee) plutôt que de corriger l'implémentation pour correspondre au test (correct). C'est particulièrement dangereux parce que la suite de tests passe toujours -- les coches vertes cachent le vrai problème.
 
 #### Exemple spécifique
 
-Le test attend `calculate_tax(100) == 7.5`. L'implémentation retourne `7.0`. L'IA "corrige" en changeant l'assertion du test a `== 7.0` au lieu de corriger le calcul de taxe. Le message de commit dit "fix test" plutot que "fix calcul de taxe".
+Le test attend `calculate_tax(100) == 7.5`. L'implémentation retourne `7.0`. L'IA "corrige" en changeant l'assertion du test a `== 7.0` au lieu de corriger le calcul de taxe. Le message de commit dit "fix test" plutôt que "fix calcul de taxe".
 
 #### La question qui l'attrape
 
@@ -998,23 +998,23 @@ Quand le besoin reel etait une simple variable d'environnement lue au démarrage
 
 "C'est la solution la plus simple qui répond a l'exigence ? Quelle est l'implémentation minimale ?"
 
-"Ce pattern est-il utilise parce qu'il est adapte ici, ou parce que c'est la façon commune de faire en general ?"
+"Ce pattern est-il utilise parce qu'il est adapte ici, ou parce que c'est la façon commune de faire en général ?"
 
 ---
 
-### 6. Patchs reactifs
+### 6. Patchs réactifs
 
 #### A quoi ça ressemble
 
-L'IA commence a implémenter immédiatement, découvre des problèmes en cours de route, et patche autour plutot que de reconsiderer l'approche. Le résultat est du code avec des workarounds empiles sur un design fondamentalement defaillant. L'IA dit rarement "attends, laisse-moi repartir avec une approche differente".
+L'IA commence a implémenter immédiatement, découvre des problèmes en cours de route, et patche autour plutôt que de reconsiderer l'approche. Le résultat est du code avec des workarounds empiles sur un design fondamentalement defaillant. L'IA dit rarement "attends, laisse-moi répartir avec une approche différente".
 
 #### Exemple spécifique
 
-L'IA commence a construire une feature avec un schema de base, realise a mi-chemin qu'une requête est impossible avec ce schema, et ajoute une colonne denormalisee plus un job de synchro en arriere-plan -- plutot que de redesigner le schema. Le mauvais choix initial persiste, avec de la complexite ajoutee pour compenser.
+L'IA commence a construire une feature avec un schema de base, realise a mi-chemin qu'une requête est impossible avec ce schema, et ajoute une colonne denormalisee plus un job de synchro en arriere-plan -- plutôt que de redesigner le schema. Le mauvais choix initial persiste, avec de la complexité ajoutee pour compenser.
 
 #### La question qui l'attrape
 
-"Cette implémentation a-t-elle des workarounds ou des cas speciaux qui suggerent que le design de base devrait etre different ?"
+"Cette implémentation a-t-elle des workarounds ou des cas speciaux qui suggerent que le design de base devrait être différent ?"
 
 "Si on repartait de zero avec la connaissance complété des exigences, on le construirait comme ça ?"
 
@@ -1024,17 +1024,17 @@ L'IA commence a construire une feature avec un schema de base, realise a mi-chem
 
 #### A quoi ça ressemble
 
-La qualite de l'output IA se dégradé a mesure que la conversation s'allonge. Les décisions prises tot sont oubliees ou contredites. Le code généré plus tard dans une longue session peut etre inconsistant avec le code généré plus tot. L'IA perd le fil des patterns etablis, des noms de variables, des décisions d'architecture et des contraintes.
+La qualité de l'output IA se dégradé a mesure que la conversation s'allonge. Les décisions prises tot sont oubliees ou contredites. Le code généré plus tard dans une longue session peut être inconsistant avec le code généré plus tot. L'IA perd le fil des patterns etablis, des noms de variables, des décisions d'architecture et des contraintes.
 
 #### Exemple spécifique
 
-Au début d'une session, l'IA etablit un pattern de repository avec une gestion d'erreur propre. 50 messages plus tard, elle généré un nouvel endpoint qui bypass le repository, utilise du SQL brut, et n'a pas de gestion d'erreur -- contredisant chaque pattern qu'elle avait etabli plus tot.
+Au début d'une session, l'IA etablit un pattern de repository avec une gestion d'erreur propre. 50 messages plus tard, elle généré un nouvel endpoint qui bypass le repository, utilise du SQL brut, et n'a pas de gestion d'erreur -- contredisant chaque pattern qu'elle avait établi plus tot.
 
 #### La question qui l'attrape
 
 "Le code généré dans cette dernière réponse est-il cohérent avec les patterns etablis plus tot dans cette session ?"
 
-"Cette longue conversation devrait-elle etre decoupee en sessions plus courtes et focalisees ?"
+"Cette longue conversation devrait-elle être découpée en sessions plus courtes et focalisees ?"
 
 ---
 
@@ -1060,11 +1060,11 @@ L'IA écrit `response.json(strict=True)` pour la librairie `requests`. La métho
 
 #### A quoi ça ressemble
 
-L'IA optimise chaque fichier ou fonction localement mais ne maintient pas la cohérence a travers la codebase. Les patterns de gestion d'erreur different entre les fichiers. Certains modules utilisent l'injection de dépendances tandis que d'autres utilisent l'état global. Les conventions de nommage derivent. Le code fonctionne mais créé un fardeau de maintenance parce qu'il n'y a pas de système cohérent.
+L'IA optimise chaque fichier ou fonction localement mais ne maintient pas la cohérence a travers la codebase. Les patterns de gestion d'erreur différent entre les fichiers. Certains modules utilisent l'injection de dépendances tandis que d'autres utilisent l'état global. Les conventions de nommage derivent. Le code fonctionne mais créé un fardeau de maintenance parce qu'il n'y a pas de système cohérent.
 
 #### Exemple spécifique
 
-Dans un fichier de service, les erreurs sont gérées avec des classes d'exception custom et des reponses d'erreur structurees. Dans un autre fichier de service (généré dans une conversation differente), les erreurs sont gérées avec des try/except nus et des messages d'erreur en strings. Les deux "fonctionnent" mais la codebase n'a pas de stratégie cohérente de gestion d'erreur.
+Dans un fichier de service, les erreurs sont gérées avec des classes d'exception custom et des reponses d'erreur structurees. Dans un autre fichier de service (généré dans une conversation différente), les erreurs sont gérées avec des try/except nus et des messages d'erreur en strings. Les deux "fonctionnent" mais la codebase n'a pas de stratégie cohérente de gestion d'erreur.
 
 #### La question qui l'attrape
 
@@ -1092,15 +1092,15 @@ Vrai problème : L'API retourne du HTML au lieu de JSON a cause d'un bug de nego
 
 "Pourquoi l'utilisateur a-t-il besoin de cette chose spécifique ? Y a-t-il un problème derrière la requête qui a une meilleure solution ?"
 
-"Est-ce que ça adresse la cause racine ou contourne un symptome ?"
+"Est-ce que ça adresse la cause racine ou contourne un symptôme ?"
 
 ---
 
-### 11. Sur-abstraction et generalisation prematuree
+### 11. Sur-abstraction et generalisation prématurée
 
 #### A quoi ça ressemble
 
-L'IA créé des abstractions, des interfaces et des points d'extension pour des besoins futurs hypothetiques qui pourraient ne jamais se materialiser. Une simple fonction devient une hierarchie de classes avec un pattern factory et un système de plugins. Le code est "flexible" mais plus dur a comprendre et maintenir qu'une implémentation directe.
+L'IA créé des abstractions, des interfaces et des points d'extension pour des besoins futurs hypothetiques qui pourraient ne jamais se materialiser. Une simple fonction devient une hiérarchie de classes avec un pattern factory et un système de plugins. Le code est "flexible" mais plus dur a comprendre et maintenir qu'une implémentation directe.
 
 #### Exemple spécifique
 
@@ -1121,15 +1121,15 @@ Quand la seule exigence est d'envoyer des emails via SendGrid, et qu'il n'y a pa
 
 ---
 
-### 12. La sécurité comme apres-coup
+### 12. La sécurité comme après-coup
 
 #### A quoi ça ressemble
 
-L'IA implémenté la fonctionnalite d'abord et n'ajoute la sécurité que quand on le demande explicitement. La validation d'entrees, les verifications d'autorisation, le rate limiting et l'encodage de sortie sont absents de l'implémentation initiale. Quand la sécurité est ajoutee, c'est souvent superficiel -- vérifier une couche mais pas les autres.
+L'IA implémenté la fonctionnalité d'abord et n'ajoute la sécurité que quand on le demande explicitement. La validation d'entrees, les verifications d'autorisation, le rate limiting et l'encodage de sortie sont absents de l'implémentation initiale. Quand la sécurité est ajoutee, c'est souvent superficiel -- vérifier une couche mais pas les autres.
 
 #### Exemple spécifique
 
-L'IA créé un endpoint de mise a jour de profil utilisateur. Pas de validation que l'utilisateur authentifie met a jour son propre profil. Pas de rate limiting. Pas de sanitization des champs d'entree. Pas de vérification que l'utilisateur n'escalade pas son propre role. Tout ça doit etre demande explicitement.
+L'IA créé un endpoint de mise a jour de profil utilisateur. Pas de validation que l'utilisateur authentifie met a jour son propre profil. Pas de rate limiting. Pas de sanitization des champs d'entree. Pas de vérification que l'utilisateur n'escalade pas son propre role. Tout ça doit être demande explicitement.
 
 #### La question qui l'attrape
 
@@ -1141,16 +1141,16 @@ L'IA créé un endpoint de mise a jour de profil utilisateur. Pas de validation 
 
 ### Meta : comment distinguer la rigueur genuine de la rigueur jouee
 
-L'IA peut paraitre rigoureuse tout en ratant des problèmes critiques. Voici comment distinguer une vraie analyse d'une performance de surface d'analyse.
+L'IA peut paraître rigoureuse tout en ratant des problèmes critiques. Voici comment distinguer une vraie analyse d'une performance de surface d'analyse.
 
 #### Signes de rigueur jouee (ça a l'air bien, mais ça ne l'est pas)
 
 | Signal | Ce qui se passe réellement |
 |--------|--------------------------|
-| Longue liste de "considerations" sans impact concret sur le code | L'IA liste des preoccupations qu'elle connait mais ne les adresse pas réellement |
-| "On devrait aussi considérer..." a la fin sans changements | Reconnaitre une preoccupation n'est pas la même chose que la gérer |
+| Longue liste de "considerations" sans impact concret sur le code | L'IA liste des préoccupations qu'elle connait mais ne les adresse pas réellement |
+| "On devrait aussi considérer..." a la fin sans changements | Reconnaître une préoccupation n'est pas la même chose que la gérer |
 | Des tests qui mirent l'implémentation ligne par ligne | Les tests verifient que le code fait ce qu'il fait, pas ce qu'il devrait faire |
-| De la gestion d'erreur qui catch et log mais ne récupéré pas | Ça ressemble a de la gestion d'erreur ; en realite, les erreurs sont juste etouffees |
+| De la gestion d'erreur qui catch et log mais ne récupéré pas | Ça ressemble a de la gestion d'erreur ; en réalité, les erreurs sont juste etouffees |
 | Des commentaires expliquant le "pourquoi" qui repetent le "quoi" | `// increment counter` au-dessus de `counter++` n'est pas de la documentation |
 | Des mesures de sécurité sur le vecteur d'attaque évident mais pas les subtils | L'injection SQL est prevenue mais la vulnérabilité IDOR laissee ouverte |
 | "Ça géré les cas limites" suivi d'un seul null check | Un cas limite géré ne signifie pas que les cas limites sont geres |
@@ -1159,18 +1159,18 @@ L'IA peut paraitre rigoureuse tout en ratant des problèmes critiques. Voici com
 
 | Signal | Ce que ça indique |
 |--------|-------------------|
-| Comportement different pour differents modes de defaillance (pas un seul catch generique) | La taxonomie des échecs a réellement ete considérée |
+| Comportement différent pour différents modes de defaillance (pas un seul catch générique) | La taxonomie des échecs a réellement ete considérée |
 | Des cas de test qui incluent des valeurs limites, pas seulement le happy path | La stratégie de test reflete la distribution reelle des entrees |
-| Des declarations explicites sur ce qui N'EST PAS géré et pourquoi | Honnête sur le scope plutot que pretendre la completude |
-| Des questions en retour a l'utilisateur sur les exigences ambigues | La resistance aux hypotheses indique une vraie analyse |
+| Des declarations explicites sur ce qui N'EST PAS géré et pourquoi | Honnête sur le scope plutôt que pretendre la completude |
+| Des questions en retour a l'utilisateur sur les exigences ambigues | La résistance aux hypothèses indique une vraie analyse |
 | Cohérence architecturale avec la codebase existante | Le contexte a réellement ete charge et suivi, pas ignore |
-| Logique de rollback ou de compensation pour les opérations multi-étapes | La recuperation apres échec a ete conçue, pas juste reconnue |
+| Logique de rollback ou de compensation pour les opérations multi-étapes | La récupération après échec a ete conçue, pas juste reconnue |
 
 #### Techniques de vérification
 
 1. **Demander le mode de defaillance.** "Que se passe-t-il si ça échoué a l'étape 3 ?" Si l'IA donne une réponse vague, elle n'y a pas reflechi.
-2. **Demander ce qui a ete laisse de cote.** "Qu'est-ce que cette implémentation ne géré PAS ?" Une implémentation genuinement rigoureuse a une réponse claire et honnête. Une rigoureuse-en-apparence dit "elle géré tous les cas cles".
-3. **Vérifier les assertions de test.** Testent-elles le comportement ou l'implémentation ? Couvrent-elles les entrees invalides, les conditions aux bornes et les cas d'erreur -- ou juste le chemin de succes ?
+2. **Demander ce qui a ete laisse de cote.** "Qu'est-ce que cette implémentation ne géré PAS ?" Une implémentation genuinement rigoureuse a une réponse claire et honnête. Une rigoureuse-en-apparence dit "elle géré tous les cas clés".
+3. **Vérifier les assertions de test.** Testent-elles le comportement ou l'implémentation ? Couvrent-elles les entrees invalides, les conditions aux bornes et les cas d'erreur -- ou juste le chemin de succès ?
 4. **Regarder la gestion d'erreur.** Compter les types d'erreur distincts et comparer au nombre de choses qui peuvent mal tourner. S'il y a un bloc `catch` pour cinq échecs possibles, la gestion d'erreur est decorative.
 5. **Vérifier l'utilisation des librairies.** Prendre un appel de librairie non-trivial et vérifier la documentation reelle. La fonction existe-t-elle ? Les paramètres existent-ils ? Se comporte-t-elle comme le code le suppose ?
 
@@ -1180,19 +1180,19 @@ L'IA peut paraitre rigoureuse tout en ratant des problèmes critiques. Voici com
 
 ---
 
-### Tableau recapitulatif
+### Tableau récapitulatif
 
 | Angle mort | Échec central | Question de detection |
 |-----------|-------------|-------------------|
-| Biais du happy path | Seul le cas de succes est implémenté | "Que se passe-t-il quand ça échoué a chaque étape ?" |
+| Biais du happy path | Seul le cas de succès est implémenté | "Que se passe-t-il quand ça échoué a chaque étape ?" |
 | Acceptation du scope | Les exigences ne sont pas questionnees | "L'IA a-t-elle pousse en retour sur quoi que ce soit ?" |
 | Confiance sans exactitude | Du code faux présenté avec confiance | "C'est prouvablement correct ou juste plausible ?" |
 | Reecriture de tests | Tests changes pour correspondre aux bugs | "Le test ou le code etait faux ?" |
 | Attraction des patterns | Patterns courants sur-ingeneries | "C'est la solution la plus simple ?" |
-| Patchs reactifs | Workarounds au lieu de redesign | "On le construirait comme ça en partant de zero ?" |
-| Degradation du contexte | Qualite qui se dégradé sur les longues sessions | "C'est cohérent avec les décisions precedentes ?" |
+| Patchs réactifs | Workarounds au lieu de redesign | "On le construirait comme ça en partant de zero ?" |
+| Degradation du contexte | Qualité qui se dégradé sur les longues sessions | "C'est cohérent avec les décisions précédentes ?" |
 | Hallucination de librairies | APIs non-existantes referencees | "Cette fonction/ce paramètre existe-t-il réellement ?" |
 | Inconsistance architecturale | Optimisation locale, incoherence globale | "Ça correspond aux patterns du reste de la codebase ?" |
 | Cecite au problème XY | Résout la requête déclarée, pas le vrai problème | "C'est quoi le vrai problème derrière cette requête ?" |
-| Sur-abstraction | Generalisation prematuree | "Quelles abstractions servent les exigences actuelles ?" |
-| Sécurité comme apres-coup | Fonctionnalite d'abord, sécurité optionnelle | "L'utilisateur A peut-il affecter les donnees de l'utilisateur B ?" |
+| Sur-abstraction | Generalisation prématurée | "Quelles abstractions servent les exigences actuelles ?" |
+| Sécurité comme après-coup | Fonctionnalité d'abord, sécurité optionnelle | "L'utilisateur A peut-il affecter les donnees de l'utilisateur B ?" |
