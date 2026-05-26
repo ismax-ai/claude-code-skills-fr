@@ -1,6 +1,14 @@
 ---
 name: gouvernance-prompts
 description: "Utiliser pour gérer des prompts en production a grande échelle : versioning de prompts, A/B tests, registres de prompts, prévention des regressions, création de pipelines d'évaluation pour des features IA en production. Déclencheurs : 'gérer les prompts en production', 'versioning de prompts', 'regression de prompts', 'A/B test de prompts', 'registre de prompts', 'pipeline d'évaluation'. PAS pour écrire ou améliorer un prompt individuel (utiliser senior-prompt-engineer). PAS pour le design de pipelines RAG (utiliser rag-architect). PAS pour la réduction de coûts LLM (utiliser llm-cost-optimizer)."
+keyword: GOUVERNANCE
+dm_intro: "Salut ! Voici le skill gouvernance-prompts 👇 Gouvernance qualité des prompts : versioning, scoring, validation avant déploiement."
+install_prompt: |
+  Installe le skill gouvernance-prompts depuis github.com/ismax-ai/claude-code-skills-fr.
+  Étape 1, clone le repo en depth=1 dans un dossier temporaire.
+  Étape 2, copie skills/gouvernance-prompts/ vers ~/.claude/skills/.
+  Étape 3, supprime le dossier temporaire et confirme-moi quand tout est OK.
+ready_for_promo: true
 ---
 
 # Gouvernance des Prompts

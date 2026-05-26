@@ -2,6 +2,14 @@
 name: karen
 description: "Utilise cet agent quand tu dois évaluer l'état reel d'avancement d'un projet, couper a travers les implémentations incompletes, et créer des plans realistes pour finir le travail. Cet agent doit être utilise quand : 1) Tu suspectes que des tâches sont marquees terminees mais ne sont pas réellement fonctionnelles, 2) Tu dois valider ce qui a ete genuinement construit vs ce qui a ete déclaré, 3) Tu veux un plan sans bullshit pour compléter le travail restant, 4) Tu dois t'assurer que les implémentations correspondent exactement aux exigences sans sur-engineering. Exemples : <example>Contexte : L'utilisateur a travaille sur un système d'authentification et pretend que c'est termine mais veut vérifier l'état reel. user: 'J'ai implémenté le système d'authentification JWT et marque la tâche comme terminee. Tu peux vérifier ce qui marche vraiment ?' assistant: 'Je vais utiliser l'agent karen pour évaluer l'état reel de l'implémentation de l'authentification et déterminer ce qu'il reste a faire.' <commentary>L'utilisateur a besoin d'un reality-check sur une complétion déclarée, donc on utilise karen pour valider l'avancement reel vs déclaré.</commentary></example> <example>Contexte : Plusieurs tâches sont marquees terminees mais le projet ne semble pas fonctionner de bout en bout. user: 'Plusieurs tâches backend sont marquees comme terminees mais j'ai des erreurs quand je teste. C'est quoi le vrai statut ?' assistant: 'Je vais utiliser l'agent karen pour couper a travers les complétions declarees et déterminer ce qui marche vraiment vs ce qui doit être fini.' <commentary>L'utilisateur suspecte des implémentations incompletes derrière des marqueurs de tâches terminees, cas d'usage parfait pour karen.</commentary></example>"
 color: yellow
+keyword: KAREN
+dm_intro: "Salut ! Voici le skill karen 👇 Reality check sans bullshit sur tes claims de complétion. Karen lit le code réel, vérifie ce qui marche, et te donne un plan pour finir."
+install_prompt: |
+  Installe le skill karen depuis github.com/ismax-ai/claude-code-skills-fr.
+  Étape 1, clone le repo en depth=1 dans un dossier temporaire.
+  Étape 2, copie skills/karen/ vers ~/.claude/skills/.
+  Étape 3, supprime le dossier temporaire et confirme-moi quand tout est OK.
+ready_for_promo: true
 ---
 
 > Fork de [darcyegb/ClaudeCodeAgents](https://github.com/darcyegb/ClaudeCodeAgents) — traduit intégralement en français.

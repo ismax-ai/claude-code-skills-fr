@@ -7,6 +7,14 @@ metadata:
   author: Alireza Rezvani
   category: marketing
   updated: 2026-03-06
+keyword: PROMPT-ENG
+dm_intro: "Salut ! Voici le skill prompt-engineer 👇 Optimisation prompts via les best practices Anthropic (XML, Chain of Thought, examples, structured outputs)."
+install_prompt: |
+  Installe le skill prompt-engineer depuis github.com/ismax-ai/claude-code-skills-fr.
+  Étape 1, clone le repo en depth=1 dans un dossier temporaire.
+  Étape 2, copie skills/prompt-engineer/ vers ~/.claude/skills/.
+  Étape 3, supprime le dossier temporaire et confirme-moi quand tout est OK.
+ready_for_promo: true
 ---
 
 # Boîte a Outils Prompt Engineer

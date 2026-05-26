@@ -1,6 +1,14 @@
 ---
 name: devils-advocate
 description: "Questionne tes plans, ton code, tes designs et tes décisions avant de t'engager. Se combine avec n'importe quel autre skill comme couche de revue. Utilise l'analyse pré-mortem, la pensée par inversion et le questionnement socratique pour trouver ce que l'IA a raté : angles morts, hypothèses cachées, modes de défaillance et raccourcis optimistes."
+keyword: DEVILS
+dm_intro: "Salut ! Voici le skill devils-advocate 👇 Challenge tes plans, code et décisions avant commit. Pre-mortem analysis, inversion thinking, questions socratiques."
+install_prompt: |
+  Installe le skill devils-advocate depuis github.com/ismax-ai/claude-code-skills-fr.
+  Étape 1, clone le repo en depth=1 dans un dossier temporaire.
+  Étape 2, copie skills/devils-advocate/ vers ~/.claude/skills/.
+  Étape 3, supprime le dossier temporaire et confirme-moi quand tout est OK.
+ready_for_promo: true
 ---
 
 # L'Avocat du Diable
