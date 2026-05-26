@@ -1,5 +1,13 @@
 ---
 description: "Superviseur pré-publication : 6 passes séquentielles, 1 seul FAIL bloque tout"
+keyword: EAGLE
+dm_intro: "Salut ! Voici le skill eagle-supervisor 👇 Vue d'aigle qui supervise un pipeline multi-étapes et catch les drifts avant qu'ils cassent tout."
+install_prompt: |
+  Installe le skill eagle-supervisor depuis github.com/ismax-ai/claude-code-skills-fr.
+  Étape 1, clone le repo en depth=1 dans un dossier temporaire.
+  Étape 2, copie skills/eagle-supervisor/ vers ~/.claude/skills/.
+  Étape 3, supprime le dossier temporaire et confirme-moi quand tout est OK.
+ready_for_promo: true
 ---
 
 # /eagle-supervisor — L'Aigle Superviseur

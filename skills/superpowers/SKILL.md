@@ -1,6 +1,14 @@
 ---
 name: superpowers
 description: "A utiliser au début de chaque conversation — définit comment trouver et utiliser les skills, impose l'invocation du Skill tool AVANT toute réponse, y compris les questions de clarification."
+keyword: SUPERPOWERS
+dm_intro: "Salut ! Voici le skill superpowers 👇 Méta-framework d'orchestration : brainstorm, write-plan, execute-plan, code-review. Pipeline complet de dev assisté par IA."
+install_prompt: |
+  Installe le skill superpowers depuis github.com/ismax-ai/claude-code-skills-fr.
+  Étape 1, clone le repo en depth=1 dans un dossier temporaire.
+  Étape 2, copie skills/superpowers/ vers ~/.claude/skills/.
+  Étape 3, supprime le dossier temporaire et confirme-moi quand tout est OK.
+ready_for_promo: true
 ---
 
 > Fork de [pcvelz/superpowers](https://github.com/pcvelz/superpowers) — traduit intégralement en français.
