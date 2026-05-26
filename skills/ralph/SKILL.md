@@ -1,6 +1,14 @@
 ---
 name: ralph
 description: "La Boucle Infinie Ralph. Workflow autonome en 3 phases (specs, planification, build) avec boucle bash externe et contexte frais a chaque iteration. Playbook complet traduit intégralement en français."
+keyword: RALPH
+dm_intro: "Salut ! Voici le skill ralph 👇 Boucle autonome jusqu'à complétion d'une tâche. Le skill itère jusqu'au résultat final, sans intervention manuelle."
+install_prompt: |
+  Installe le skill ralph depuis github.com/ismax-ai/claude-code-skills-fr.
+  Étape 1, clone le repo en depth=1 dans un dossier temporaire.
+  Étape 2, copie skills/ralph/ vers ~/.claude/skills/.
+  Étape 3, supprime le dossier temporaire et confirme-moi quand tout est OK.
+ready_for_promo: true
 ---
 
 > Concept original : [Geoffrey Huntley](https://ghuntley.com/ralph/). Playbook : [ClaytonFarr/ralph-playbook](https://github.com/ClaytonFarr/ralph-playbook). Traduit intégralement en français.
