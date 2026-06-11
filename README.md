@@ -1,6 +1,6 @@
 # Skills Claude Code par Ismax
 
-La plus grosse bibliotheque francophone de skills Claude Code. 12 skills, open source.
+Une bibliothèque francophone de skills Claude Code. 10 skills, open source.
 
 ---
 
