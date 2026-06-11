@@ -18,7 +18,7 @@ Claude Code est puissant de base. Mais il fait ce que tu lui demandes, exactemen
 
 Les skills corrigent ça. Chaque skill encode un processus complet : les étapes, les critères de qualité, les cas limites, les red flags a détecter. Du coup tu obtiens un résultat de niveau expert sans écrire un prompt de 200 lignes a chaque fois.
 
-Aujourd'hui il y a 12 skills. L'objectif c'est d'en avoir 100+. Chaque skill est teste en conditions reelles avant d'être publie ici.
+Aujourd'hui il y a 10 skills. L'objectif c'est d'en avoir 100+. Chaque skill est teste en conditions reelles avant d'être publie ici.
 
 ## Pour qui
 
@@ -30,7 +30,7 @@ Pas besoin d'être dev. Tous les skills s'installent avec un copier-coller.
 
 ---
 
-## Les 12 skills
+## Les 10 skills
 
 | # | Skill | Commande | En une phrase |
 |---|-------|----------|---------------|
