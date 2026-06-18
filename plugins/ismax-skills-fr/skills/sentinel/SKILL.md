@@ -1,4 +1,5 @@
 ---
+name: sentinel
 description: "Red Team challenge : attaque un output avec 20 profils professionnels (CIA, Six Hats, OWASP)"
 keyword: SENTINEL
 dm_intro: "Salut ! Voici le skill sentinel 👇 Red Team challenge : attaque ton output avec profils CIA / Hats / OWASP pour détecter les failles avant publication."

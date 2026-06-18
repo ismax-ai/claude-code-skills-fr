@@ -1,6 +1,6 @@
 # Crédits
 
-7 skills sur 12 sont des forks de projets open source existants. Les versions ici sont des traductions completes et fideles en français.
+7 skills sur 15 sont des forks de projets open source existants. Les versions ici sont des traductions completes et fideles en français. Les 8 autres sont des créations originales.
 
 ---
 
@@ -82,9 +82,18 @@
 
 ---
 
-## Les 4 originaux
+## Les 8 originaux
 
-Agent Auto-Améliorant, Le Red Team (Sentinel), L'Aigle Superviseur, Le Régulateur (effort-router) et ELI5 sont des créations originales par [Ismax](https://github.com/ismax-ai).
+Créations originales par [Ismax](https://github.com/ismax-ai) :
+
+- **Agent Auto-Améliorant** (`/self-improve`)
+- **Le Red Team — Sentinel** (`/sentinel`)
+- **L'Aigle Superviseur** (`/eagle-supervisor`)
+- **ELI5** (`/eli5`)
+- **Clarté** (`/clarity`)
+- **Anti-Bullshit** (`/anti-bullshit`)
+- **Le Sceptique** (`/scepticisme`)
+- **Fact-Check** (`/fact-check-claims`)
 
 ---
 

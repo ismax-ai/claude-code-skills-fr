@@ -1,36 +1,67 @@
 # Skills Claude Code par Ismax
 
-Une bibliothèque francophone de skills Claude Code. 10 skills, open source.
+Une bibliothèque francophone de skills Claude Code. 15 skills, open source.
 
 ---
 
 ## C'est quoi un skill ?
 
-Un skill, c'est un fichier d'instructions qui donne de nouvelles capacités a Claude Code. Tu tapes une commande, Claude change de comportement. `/sentinel` et il devient un red teamer qui attaque ton travail sous 20 angles. `/ralph` et il entre dans une boucle autonome jusqu'a ce que le résultat soit propre. `/karen` et il vérifié si c'est vraiment fait, pas juste "fait".
+Un skill, c'est un fichier d'instructions qui donne de nouvelles capacités à Claude Code. Tu tapes une commande, Claude change de comportement. `/sentinel` et il devient un red teamer qui attaque ton travail sous 20 angles. `/ralph` et il entre dans une boucle autonome jusqu'à ce que le résultat soit propre. `/karen` et il vérifie si c'est vraiment fait, pas juste "fait".
 
-En gros : un skill = un expert specialise que tu appelles en une commande.
+En gros : un skill = un expert spécialisé que tu appelles en une commande.
 
-Pas de code a écrire. Pas de plugin a installer. Pas de configuration. Tu copies, Claude fait le reste.
+Pas de code à écrire. Pas de configuration compliquée. Tu installes le plugin une fois, et les 15 skills sont là.
 
-## Pourquoi cette bibliotheque
+## Pourquoi cette bibliothèque
 
-Claude Code est puissant de base. Mais il fait ce que tu lui demandes, exactement comme tu le demandes. Si ton prompt est vague, le résultat est vague. Si tu oublies de lui dire de vérifier son travail, il ne vérifié pas.
+Claude Code est puissant de base. Mais il fait ce que tu lui demandes, exactement comme tu le demandes. Si ton prompt est vague, le résultat est vague. Si tu oublies de lui dire de vérifier son travail, il ne vérifie pas.
 
-Les skills corrigent ça. Chaque skill encode un processus complet : les étapes, les critères de qualité, les cas limites, les red flags a détecter. Du coup tu obtiens un résultat de niveau expert sans écrire un prompt de 200 lignes a chaque fois.
+Les skills corrigent ça. Chaque skill encode un processus complet : les étapes, les critères de qualité, les cas limites, les red flags à détecter. Du coup tu obtiens un résultat de niveau expert sans écrire un prompt de 200 lignes à chaque fois.
 
-Aujourd'hui il y a 10 skills. L'objectif c'est d'en avoir 100+. Chaque skill est teste en conditions reelles avant d'être publie ici.
+Aujourd'hui il y a 15 skills. L'objectif c'est d'en avoir 100+. Chaque skill est testé en conditions réelles avant d'être publié ici.
 
 ## Pour qui
 
 - Tu utilises Claude Code (ou tu veux t'y mettre)
-- Tu veux des résultats concrets : du contenu qui tient, du code qui marche, des décisions challengees
-- Tu preferes installer un truc qui marche plutôt que passer 3 heures a bricoler un prompt
+- Tu veux des résultats concrets : du contenu qui tient, du code qui marche, des décisions challengées
+- Tu préfères installer un truc qui marche plutôt que passer 3 heures à bricoler un prompt
 
-Pas besoin d'être dev. Tous les skills s'installent avec un copier-coller.
+Pas besoin d'être dev.
 
 ---
 
-## Les 10 skills
+## Installation
+
+### Méthode recommandée — le plugin (tout d'un coup)
+
+Dans Claude Code, tape ces deux commandes :
+
+```
+/plugin marketplace add ismax-ai/claude-code-skills-fr
+/plugin install ismax-skills-fr@ismax
+```
+
+Les 15 skills s'installent d'un coup. Quand j'en ajoute de nouveaux, tu les récupères avec :
+
+```
+/plugin marketplace update ismax
+```
+
+### Méthode alternative — copier-coller (sans plugin)
+
+Si tu préfères, colle ce texte dans Claude Code. Il s'occupe du reste :
+
+```
+Va sur https://github.com/ismax-ai/claude-code-skills-fr,
+lis les fichiers SKILL.md dans plugins/ismax-skills-fr/skills/,
+et installe-les tous comme skills Claude Code.
+```
+
+> Pas encore Claude Code ? Installe-le depuis [claude.ai/code](https://claude.ai/code). C'est la version de Claude qui travaille directement sur ton ordi.
+
+---
+
+## Les 15 skills
 
 | # | Skill | Commande | En une phrase |
 |---|-------|----------|---------------|
@@ -44,40 +75,15 @@ Pas besoin d'être dev. Tous les skills s'installent avec un copier-coller.
 | 8 | **Karen** | `/karen` | Vérifie si c'est VRAIMENT fait. Pas juste "fait" |
 | 9 | **Ralph** | `/ralph` | Boucle plan → build → check. Tourne jusqu'au propre |
 | 10 | **L'Aigle Superviseur** | `/eagle-supervisor` | 6 passes qualité séquentielles. Un FAIL, rien ne sort |
-| 11 | **Le Régulateur** | `/effort-router` | Dose la réflexion par tâche. System 1 pour le simple, System 2 pour le critique |
-| 12 | **ELI5** | `/eli5` | Explique chaque terme technique à sa première apparition. Accessibilité sans simplification |
+| 11 | **ELI5** | `/eli5` | Repère chaque terme que ton lecteur ne comprend pas et le rend simple |
+| 12 | **Clarté** | `/clarity` | Coupe le flou et le blabla. Te dit où le lecteur décroche |
+| 13 | **Anti-Bullshit** | `/anti-bullshit` | Détecte l'oversell, les fausses promesses, le marketing creux |
+| 14 | **Le Sceptique** | `/scepticisme` | Fait relire ton contenu par un inconnu méfiant. Score sur 100 |
+| 15 | **Fact-Check** | `/fact-check-claims` | Vérifie chaque affirmation contre les sources officielles en direct |
 
 ---
 
-## Installation
-
-Copie ce texte dans Claude Code. Il s'occupe du reste.
-
-### Tout installer d'un coup
-
-```
-Va sur https://github.com/ismax-ai/claude-code-skills-fr,
-lis les fichiers dans le dossier skills/,
-et installe-les tous comme commandes Claude Code.
-```
-
-### Installer un skill précis
-
-```
-Va sur https://github.com/ismax-ai/claude-code-skills-fr,
-lis le fichier skills/sentinel.md,
-et installe-le comme commande Claude Code.
-```
-
-Remplace `sentinel.md` par le nom du skill voulu.
-
-Pas de terminal. Pas de ligne de commande. Pas de dossier à créer. Claude fait tout.
-
-> Pas encore Claude Code ? Installe-le depuis [claude.ai/code](https://claude.ai/code). C'est la version de Claude qui travaille directement sur ton ordi.
-
----
-
-## Les 3 familles
+## Les 4 familles
 
 ### ✦ Critique et qualité
 
@@ -90,6 +96,20 @@ Les skills qui attaquent ton travail avant que ton audience le fasse.
 **L'Avocat du Diable** prend ton idée. Il la steel-man d'abord (la renforce au maximum). Puis il l'attaque. Pre-mortem, inversion, questionnement socratique. 7 objections max, classées par sévérité. Si l'idée survit, elle est solide.
 
 **Karen** ne s'intéresse pas à ce que tu dis avoir fait. Elle regarde ce qui est VRAIMENT fait. Code qui compile mais ne tourne pas ? Feature "terminée" mais jamais testée ? Karen trouve le trou. C'est son truc.
+
+### ✦ Clarté et crédibilité
+
+Les skills qui rendent ton contenu clair, honnête et vérifié avant que tu le publies.
+
+**ELI5** scanne ton contenu et détecte chaque terme ou produit que tu cites sans l'expliquer. Pour chacun, il propose une définition courte, comme si tu l'expliquais à un débutant complet. Le fond ne change pas, tout devient accessible.
+
+**Clarté** relit ton texte phrase par phrase et te dit exactement où le lecteur va décrocher. Il repère les mots vagues comme "optimise" ou "gère" et les remplace par ce que ça fait vraiment.
+
+**Anti-Bullshit** relit ton contenu commercial avant publication. Il signale l'oversell, les fausses promesses et les histoires trop lisses pour être vraies, avec une reformulation concrète pour chaque problème.
+
+**Le Sceptique** fait relire ton contenu par un inconnu méfiant qui ne te connaît pas et a déjà vu trop de promesses creuses. Il challenge chaque affirmation, met un score sur 100, et te liste ce qui manque pour qu'on te croie.
+
+**Fact-Check** vérifie chaque affirmation factuelle de ton contenu (chiffre, date, fonctionnalité, citation) contre les sources officielles en direct. Pour t'éviter de publier une info devenue fausse depuis ta date de formation.
 
 ### ✦ Création et production
 
@@ -111,14 +131,6 @@ Les skills qui maintiennent l'ordre dans ton système.
 
 **Ralph** c'est la boucle infinie. Planifier, construire, vérifier. Si le résultat ne passe pas le check, il recommence. Encore. Encore. Jusqu'à ce que ce soit propre. (Spoiler : il peut tourner longtemps.)
 
-### ✦ Optimisation et accessibilité
-
-Les skills qui rendent Claude plus efficace et ton contenu plus accessible.
-
-**Le Régulateur** applique le principe System 1 / System 2 de Kahneman à Claude. Tâche simple (renommer, lister, chercher) ? Réponse directe, zéro sur-réflexion. Tâche critique (archi, sécurité, prod) ? Analyse en profondeur. Claude dose tout seul, tu parles normalement. Correction de route si le calibrage est mauvais.
-
-**ELI5** scanne ton contenu et détecte chaque terme technique utilisé sans explication. Anglais ou français, acronyme ou mot composé. Il injecte une définition courte à la première apparition. Le fond ne change pas, les termes deviennent accessibles.
-
 ---
 
 ## Workflow recommandé
@@ -127,20 +139,19 @@ Les skills qui rendent Claude plus efficace et ton contenu plus accessible.
 
 ```
 1. Tu écris
-2. /sentinel          → trouve les failles
-3. Tu corriges
-4. /eagle-supervisor  → vérifie que tout tient
-5. Tu publies
+2. /clarity           → coupe le flou
+3. /anti-bullshit     → enlève l'oversell
+4. /scepticisme       → un inconnu méfiant te relit
+5. /fact-check-claims → vérifie les chiffres
+6. Tu publies
 ```
-
-Sentinel attaque. L'aigle vérifie que les corrections tiennent.
 
 ### Pour du code
 
 ```
 1. Tu codes
 2. /karen             → vérifie que c'est fait pour de vrai
-3. /sentinel code     → red team technique
+3. /sentinel          → red team technique
 4. Tu corriges
 5. Tu livres
 ```
@@ -150,7 +161,7 @@ Sentinel attaque. L'aigle vérifie que les corrections tiennent.
 ```
 1. Tu poses ta décision
 2. /devils-advocate   → challenge les hypothèses
-3. /sentinel decision → red team complet
+3. /sentinel          → red team complet
 4. Tu décides en connaissance de cause
 ```
 
@@ -181,9 +192,9 @@ En 10 secondes, tu sais que ton post va se faire descendre. Avant de le publier.
 
 ---
 
-## Credits
+## Crédits
 
-7 skills sur 12 sont des traductions integrales de projets open source. 5 sont des creations originales.
+7 skills sur 15 sont des traductions intégrales de projets open source. 8 sont des créations originales.
 
 Détails complets, auteurs originaux et sources dans [CREDITS.md](CREDITS.md).
 
@@ -191,7 +202,7 @@ Détails complets, auteurs originaux et sources dans [CREDITS.md](CREDITS.md).
 
 ## Pour aller plus loin
 
-Cette bibliotheque c'est un bout de mon workflow IA. Si tu veux voir comment j'utilise ces skills en vrai, comment je créé du contenu, et les systèmes que je construis au quotidien :
+Cette bibliothèque c'est un bout de mon workflow IA. Si tu veux voir comment j'utilise ces skills en vrai, comment je crée du contenu, et les systèmes que je construis au quotidien :
 
 → **[Ma newsletter](https://redigeretvendreavecia.substack.com)** — 2 emails par semaine. Tutoriels IA en français, pas de blabla
 → **[Mon Instagram](https://instagram.com/ismaelalaoui_)** — workflows IA en carrousels, tout est actionnable

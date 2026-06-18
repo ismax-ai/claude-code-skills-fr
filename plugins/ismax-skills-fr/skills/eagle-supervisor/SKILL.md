@@ -1,4 +1,5 @@
 ---
+name: eagle-supervisor
 description: "Superviseur pré-publication : 6 passes séquentielles, 1 seul FAIL bloque tout"
 keyword: EAGLE
 dm_intro: "Salut ! Voici le skill eagle-supervisor 👇 Vue d'aigle qui supervise un pipeline multi-étapes et catch les drifts avant qu'ils cassent tout."
