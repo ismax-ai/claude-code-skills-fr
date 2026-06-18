@@ -6,7 +6,7 @@ dm_intro: "Salut ! Voici le skill createur-de-skills 👇 Aide à créer de nouv
 install_prompt: |
   Installe le skill createur-de-skills depuis github.com/ismax-ai/claude-code-skills-fr.
   Étape 1, clone le repo en depth=1 dans un dossier temporaire.
-  Étape 2, copie skills/createur-de-skills/ vers ~/.claude/skills/.
+  Étape 2, copie plugins/ismax-skills-fr/skills/createur-de-skills/ vers ~/.claude/skills/.
   Étape 3, supprime le dossier temporaire et confirme-moi quand tout est OK.
 ready_for_promo: true
 ---

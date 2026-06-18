@@ -7,7 +7,7 @@ dm_intro: "Voici le skill eli5. Il relit ton contenu et repère tout ce que ton 
 install_prompt: |
   Installe le skill eli5 depuis github.com/ismax-ai/claude-code-skills-fr.
   Étape 1, clone le repo en depth=1 dans un dossier temporaire.
-  Étape 2, copie skills/eli5/ vers ~/.claude/skills/.
+  Étape 2, copie plugins/ismax-skills-fr/skills/eli5/ vers ~/.claude/skills/.
   Étape 3, supprime le dossier temporaire et confirme-moi quand tout est OK.
 ready_for_promo: true
 ---

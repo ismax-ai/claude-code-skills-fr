@@ -6,7 +6,7 @@ dm_intro: "Salut ! Voici le skill agent-auto-ameliorant 👇 L'agent qui amélio
 install_prompt: |
   Installe le skill agent-auto-ameliorant depuis github.com/ismax-ai/claude-code-skills-fr.
   Étape 1, clone le repo en depth=1 dans un dossier temporaire.
-  Étape 2, copie skills/agent-auto-ameliorant/ vers ~/.claude/skills/.
+  Étape 2, copie plugins/ismax-skills-fr/skills/agent-auto-ameliorant/ vers ~/.claude/skills/.
   Étape 3, supprime le dossier temporaire et confirme-moi quand tout est OK.
 ready_for_promo: true
 ---

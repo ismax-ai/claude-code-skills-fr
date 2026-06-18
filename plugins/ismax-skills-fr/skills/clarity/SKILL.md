@@ -7,7 +7,7 @@ dm_intro: "Salut ! Voici le skill clarity. Il relit ton texte phrase par phrase 
 install_prompt: |
   Installe le skill clarity depuis github.com/ismax-ai/claude-code-skills-fr.
   Étape 1, clone le repo en depth=1 dans un dossier temporaire.
-  Étape 2, copie skills/clarity/ vers ~/.claude/skills/.
+  Étape 2, copie plugins/ismax-skills-fr/skills/clarity/ vers ~/.claude/skills/.
   Étape 3, supprime le dossier temporaire et confirme-moi quand tout est OK.
 ready_for_promo: true
 ---
