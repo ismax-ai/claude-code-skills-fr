@@ -1,6 +1,6 @@
 # Skills Claude Code par Ismax
 
-Une bibliothèque francophone de skills Claude Code. 15 skills, open source.
+Une bibliothèque francophone de skills Claude Code. 115 skills, open source.
 
 ---
 
@@ -10,7 +10,7 @@ Un skill, c'est un fichier d'instructions qui donne de nouvelles capacités à C
 
 En gros : un skill = un expert spécialisé que tu appelles en une commande.
 
-Pas de code à écrire. Pas de configuration compliquée. Tu installes le plugin une fois, et les 15 skills sont là.
+Pas de code à écrire. Pas de configuration compliquée. Tu installes le plugin une fois, et les 115 skills sont là.
 
 ## Pourquoi cette bibliothèque
 
@@ -18,7 +18,7 @@ Claude Code est puissant de base. Mais il fait ce que tu lui demandes, exactemen
 
 Les skills corrigent ça. Chaque skill encode un processus complet : les étapes, les critères de qualité, les cas limites, les red flags à détecter. Du coup tu obtiens un résultat de niveau expert sans écrire un prompt de 200 lignes à chaque fois.
 
-Aujourd'hui il y a 15 skills. L'objectif c'est d'en avoir 100+. Chaque skill est testé en conditions réelles avant d'être publié ici.
+Aujourd'hui il y a 115 skills : 15 que j'ai faits maison, et 100 que j'ai sélectionnés parmi les meilleurs projets open source de la communauté (licences MIT et Apache), traduits et adaptés en français. Chaque skill est testé en conditions réelles avant d'être publié ici.
 
 ## Pour qui
 
@@ -41,7 +41,7 @@ Dans Claude Code, tape ces deux commandes :
 /plugin install ismax-skills-fr@ismax
 ```
 
-Les 15 skills s'installent d'un coup. Quand j'en ajoute de nouveaux, tu les récupères avec :
+Les 115 skills s'installent d'un coup. Quand j'en ajoute de nouveaux, tu les récupères avec :
 
 ```
 /plugin marketplace update ismax
@@ -61,7 +61,9 @@ et installe-les tous comme skills Claude Code.
 
 ---
 
-## Les 15 skills
+## Les 15 skills maison
+
+> Catalogue complet des 115 (avec covers et fiches) : https://claude-pour-les-debutants.fr/skills-claude-code-gratuits
 
 | # | Skill | Commande | En une phrase |
 |---|-------|----------|---------------|

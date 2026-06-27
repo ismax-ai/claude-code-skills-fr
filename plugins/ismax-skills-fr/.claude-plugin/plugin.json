@@ -1,7 +1,7 @@
 {
   "name": "ismax-skills-fr",
-  "description": "15 skills Claude Code gratuits, en français. Critique, qualité, clarté, anti-bullshit, fact-check et plus.",
-  "version": "1.1.0",
+  "description": "115 skills Claude Code gratuits, en français : 15 maison + 100 sélectionnés dans la communauté open source (MIT/Apache), traduits et adaptés. Critique, écriture, marketing, design, productivité, recherche, technique.",
+  "version": "1.2.0",
   "author": {
     "name": "Ismax",
     "email": "info@astucesdigitales.fr"
