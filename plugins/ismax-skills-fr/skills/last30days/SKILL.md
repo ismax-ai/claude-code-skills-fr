@@ -1,5 +1,5 @@
 ---
-name: last30days
+name: ce-qui-se-dit-vraiment
 version: "3.8.3"
 description: "Research what people actually say about any topic in the last 30 days. Pulls posts and engagement from Reddit, X, YouTube, TikTok, Hacker News, Polymarket, GitHub, and the web."
 argument-hint: 'last30days nvidia earnings reaction | last30days AI video tools | last30days what users want in react'

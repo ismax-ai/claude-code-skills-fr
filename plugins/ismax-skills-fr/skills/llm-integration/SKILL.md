@@ -1,5 +1,5 @@
 ---
-name: llm-integration
+name: integrer-un-modele-ia
 description: LLM integration patterns including API usage, streaming, function calling, RAG pipelines, and cost optimization
 ---
 

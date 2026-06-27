@@ -1,5 +1,5 @@
 ---
-name: web-design-guidelines
+name: design-web-pro
 description: |
   Web design guidelines and standards by the Vercel engineering team. Covers layout, typography, color, motion, and accessibility for product UI.
 triggers:

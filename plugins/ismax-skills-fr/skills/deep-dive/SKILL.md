@@ -1,5 +1,5 @@
 ---
-name: deep-dive
+name: recherche-en-profondeur
 description: Claude-native deep research using DAG-based query planning, parallel subagent execution, and gap-driven iteration. No external API needed.
 user-invocable: true
 argument: The research question or topic to investigate deeply

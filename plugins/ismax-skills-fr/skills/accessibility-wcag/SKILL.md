@@ -1,5 +1,5 @@
 ---
-name: accessibility-wcag
+name: site-pour-tous
 description: Web accessibility patterns for WCAG 2.2 compliance including ARIA, keyboard navigation, screen readers, and testing
 ---
 

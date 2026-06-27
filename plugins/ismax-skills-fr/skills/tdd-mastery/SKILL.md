@@ -1,5 +1,5 @@
 ---
-name: tdd-mastery
+name: cycle-rouge-vert-refactor
 description: Test-driven development workflow with Red-Green-Refactor cycle across languages
 ---
 

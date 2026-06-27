@@ -1,5 +1,5 @@
 ---
-name: security-hardening
+name: securite-web-complete
 description: Application security covering input validation, auth, headers, secrets management, and dependency auditing
 ---
 

@@ -1,5 +1,5 @@
 ---
-name: edit-article
+name: article-allege-et-fluide
 description: Edit and improve articles by restructuring sections, improving clarity, and tightening prose. Use when user wants to edit, revise, or improve an article draft.
 disable-model-invocation: true
 ---

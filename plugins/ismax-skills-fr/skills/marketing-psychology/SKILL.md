@@ -1,5 +1,5 @@
 ---
-name: marketing-psychology
+name: psychologie-de-la-decision
 description: |
   Apply psychological principles and behavioral science to copy and design. Useful for tightening hooks, framing, and pricing presentation.
 triggers:

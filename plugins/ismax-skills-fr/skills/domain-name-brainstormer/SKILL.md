@@ -1,5 +1,5 @@
 ---
-name: domain-name-brainstormer
+name: nom-de-domaine
 description: |
   Generate creative domain name ideas and check availability across multiple TLDs including .com, .io, .dev, and .ai.
 triggers:

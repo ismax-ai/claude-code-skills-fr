@@ -1,5 +1,5 @@
 ---
-name: mcp-development
+name: brancher-claude-a-tes-outils
 description: MCP server development including tool design, resource endpoints, prompt templates, and transport configuration
 ---
 

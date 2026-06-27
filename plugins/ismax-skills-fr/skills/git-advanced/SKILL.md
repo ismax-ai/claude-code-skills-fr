@@ -1,5 +1,5 @@
 ---
-name: git-advanced
+name: git-sans-peur
 description: Advanced git workflows including worktrees, bisect, interactive rebase, hooks, and recovery techniques
 ---
 

@@ -1,5 +1,5 @@
 ---
-name: claude-memory-kit
+name: memoire-permanente
 description: "Persistent memory system for Claude Code. Two-layer architecture (hot cache + knowledge wiki), safety hooks, /close-day end-of-day synthesis. Zero external dependencies."
 author: awrshift
 version: 3.2.0
